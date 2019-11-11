@@ -9,7 +9,6 @@
         EditId = id;
         if (result.success == true) {
           let data = result.data;
-          console.log(data);
           if (data.createdDate != "") {
             var ngaynews = moment(data.createdDate).format('YYYY-MM-DD');
           } else {
