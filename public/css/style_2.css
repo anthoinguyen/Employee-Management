@@ -8939,7 +8939,7 @@ html {
 
 .content-wrapper {
   background: #f3f4fa;
-  padding: 1.5rem 1.7rem;
+  padding: 1rem 1rem;
   width: 100%;
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
@@ -10302,8 +10302,8 @@ pre {
   .btn.btn-rounded, .ajax-upload-dragdrop .btn-rounded.ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-rounded.swal2-styled, .wizard > .actions a.btn-rounded {
     border-radius: 50px; }
   .btn.btn-icons, .ajax-upload-dragdrop .btn-icons.ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-icons.swal2-styled, .wizard > .actions a.btn-icons {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     padding: 10px;
     text-align: center;
     vertical-align: middle; }
@@ -11160,7 +11160,7 @@ pre {
       .card .card-header.header-sm .dropdown .dropdown-toggle i {
         color: #858585; }
   .card .card-body {
-    padding: 1.88rem 1.81rem; }
+    padding: 1rem 1rem; }
     .card .card-body.no-gutter {
       padding: 0; }
     .card .card-body + .card-body {
@@ -13161,7 +13161,7 @@ ul {
     line-height: 1;
     white-space: nowrap;
     height: 35px;
-    padding: 10px 11px; }
+    padding: 7px 7px; }
     .table td img, .jsgrid .jsgrid-table td img,
     .table th img, .jsgrid .jsgrid-table th img {
       border-radius: 100%; }
@@ -15020,7 +15020,8 @@ body.avgrund-active {
       display: none; }
     .dataTables_wrapper .dataTable thead th {
       vertical-align: middle;
-      padding: 12px 11px; }
+      /* padding: 12px 11px;  */
+    }
     .dataTables_wrapper .dataTable tbody td {
       z-index: 10; }
   .dataTables_wrapper .dataTables_paginate {

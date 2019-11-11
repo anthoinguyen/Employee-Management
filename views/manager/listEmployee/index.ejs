@@ -141,12 +141,12 @@
                               <tr>
                                 <th>Hành động</th>
                                 <th>STT</th>
-                                <th>Số hiệu cán bộ</th>
+                                <th>Mã số</th>
                                 <th>Họ và tên</th>
                                 <th>Giới tính</th>
                                 <th>Ngày sinh</th>
-                                <th>Nơi sinh</th>
-                                <th>Chức vụ/Chức danh</th>
+                                <th>Quê quán</th>
+                                <th>Chức vụ</th>
                                 <th>Phòng/Khoa</th>
                                 <th>Số CMND</th>
                                 <th>Email</th>
@@ -232,7 +232,7 @@
                                   data-target="#info"
                                   onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
                                 >
-                                  <%- item.placeBirth ? item.placeBirth.province : null %>
+                                  <%- item.hometown ? item.hometown.province : null %>
                                 </td>
                                 <td
                                   data-toggle="modal"
@@ -286,7 +286,7 @@
                                 <th>Họ và tên</th>
                                 <th>Giới tính</th>
                                 <th>Ngày sinh</th>
-                                <th>Chức vụ/Chức danh</th>
+                                <th>Chức vụ</th>
                                 <th>Phòng/Khoa</th>
                                 <th>Email</th>
                                 <th>Số điện thoại</th>
@@ -347,10 +347,10 @@
                               <tr>
                                 <th>Hành động</th>
                                 <th>STT</th>
-                                <th>Số hiệu cán bộ</th>
+                                <th>Mã số</th>
                                 <th>Họ và tên</th>
                                 <th>Giới tính</th>
-                                <th>Chức vụ/Chức danh</th>
+                                <th>Chức vụ</th>
                                 <th>Phòng/Khoa</th>
                               </tr>
                             </thead>
@@ -432,10 +432,10 @@
                             <thead>
                               <tr>
                                 <th>STT</th>
-                                <th>Số hiệu cán bộ</th>
+                                <th>Mã số</th>
                                 <th>Họ và tên</th>
                                 <th>Giới tính</th>
-                                <th>Chức vụ/Chức danh</th>
+                                <th>Chức vụ</th>
                                 <th>Ngày vào Đoàn</th>
                               </tr>
                             </thead>
@@ -484,11 +484,11 @@
                             <thead>
                               <tr>
                                 <th>STT</th>
-                                <th>Số hiệu cán bộ</th>
+                                <th>Mã số</th>
                                 <th>Số thẻ Đảng</th>
                                 <th>Họ và tên</th>
                                 <th>Giới tính</th>
-                                <th>Chức vụ/Chức danh</th>
+                                <th>Chức vụ</th>
                                 <th>Ngày vào Đảng</th>
                                 <th>Ngày chính thức</th>
                               </tr>
@@ -543,7 +543,7 @@
                           >
                             <thead>
                               <tr>
-                                <th>Số hiệu cán bộ</th>
+                                <th>Mã số</th>
                                 <th>Họ và tên</th>
                                 <th>Giới tính</th>
                                 <th>Ngày sinh</th>
