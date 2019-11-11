@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css" />
+    <link rel="stylesheet" href="/css/style_2.css" />
+    <link rel="stylesheet" href="/css/style_1.css" />
+    <link rel="shortcut icon" href="/images/favicon.png" />
+  </head>
+
+  <body>
+    <div class="container-scroller">
+      <% include ../partials/_navbar %>
+      <div class="container-fluid page-body-wrapper">
+        <% include ../partials/_sidebar %>
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-lg-7 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <h4 class="card-title">Các tin tức mới</h4>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <select
+                                class="form-control"
+                                id="yearId"
+                                name="yearId"
+                                required
+                              >
+                                <option value="">Tin tức mới nhất</option>
+                              </select>
+                            </div>
+                            <div class="col-md-6">
+                              <select
+                                class="form-control"
+                                id="categoryId"
+                                name="categoryId"
+                                required
+                              >
+                                <option value="">Tất cả</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <tbody id="news-upcoming"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% include ./events %>
+            </div>
+          </div>
+          <% include ../partials/_footer %>
+        </div>
+      </div>
+    </div>
+
+    <script src="/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/vendors/js/vendor.bundle.addons.js"></script>
+    <script src="/js/off-canvas.js"></script>
+    <script src="/js/misc.js"></script>
+    <script src="/js/hoverable-collapse.js"></script>
+    <script src="/js/dashboard.js"></script>
+
+    <% include ./modal/showNews %>
+    <% include ../partials/scriptForAll %>
+    <script>
+      var newsCategory = [];
+      var listNews = [];
+    </script>
+    <script>
+      $(document).ready(function() {
+        $.ajax({
+          url: "/tin-tuc/list",
+          method: "GET",
+          success: function(result) {
+            listNews = result.data;
+            if (result.data.length > 0) {
+              result.data.map(item => {
+                $("#news-upcoming").append(
+                  '<tr onclick=showNews("' +
+                    item._id +
+                    '") data-toggle="modal" data-target="#newsInfo" >' +
+                    "<td>" +
+                    item.title +
+                    "</td>" +
+                    "</tr>"
+                );
+              });
+            } else {
+              $("#news-upcoming").append(
+                "<tr>" + "<td>Hiện chưa có tin tức mới</td>" + "</tr>"
+              );
+            }
+          }
+        });
+        $.ajax({
+          url: "/tin-tuc/news-category",
+          method: "GET",
+          success: function(result) {
+            newsCategory = result.data ? result.data.reverse() : [];
+            newsCategory.map(item => {
+              $("#yearId").append(
+                "<option value=" + item._id + ">" + item.year + "</option>"
+              );
+            });
+          }
+        });
+      });
+    </script>
+
+    <script>
+      $("#yearId").on("change", function() {
+        newsCategory.map(item => {
+          if ($(this).find(":selected").val() == "") {
+            $("#categoryId").empty();
+            $("#news-upcoming").empty();
+            $("#categoryId").append('<option value="all">Tất cả</option>');
+            listNews.map(item1 => {
+              $("#news-upcoming").append(
+                '<tr onclick=showNews("' +
+                  item1._id +
+                  '") data-toggle="modal" data-target="#newsInfo" >' +
+                  "<td>" +
+                  item1.title +
+                  "</td>" +
+                  "</tr>"
+              );
+            });
+          }
+          if (item._id === $(this).find(":selected").val()) {
+            $("#categoryId").empty();
+            $("#categoryId").append('<option value="">---</option>');
+            item.category.map(subItem => {
+              $("#categoryId").append(
+                "<option value=" +
+                  subItem._id +
+                  ">" +
+                  subItem.title +
+                  "</option>"
+              );
+            });
+            // $('#categoryId').append('<option value="all">Tất cả</option>');
+          }
+        });
+      });
+      $("#categoryId").on("change", function() {
+        $("#news-upcoming").empty();
+        newsCategory.map(item => {
+          if ( item._id === $("#yearId").find(":selected").val()) {
+            item.category.map(subItem => {
+              if (subItem._id === $(this).find(":selected").val()) {
+                $("#news-upcoming").empty();
+                if (subItem.news.length > 0) {
+                  subItem.news.map(news => {
+                    $("#news-upcoming").append(
+                      '<tr onclick=showNews("' +
+                        news._id +
+                        '") data-toggle="modal" data-target="#newsInfo" >' +
+                        "<td>" +
+                        news.title +
+                        "</td>" +
+                        "</tr>"
+                    );
+                  });
+                } else {
+                  $("#news-upcoming").append(
+                    "<tr>" + "<td>Hiện chưa có tin tức mới</td>" + "</tr>"
+                  );
+                }
+              }
+            });
+          }
+        });
+      });
+    </script>
+
+    <script>
+      function showNews(id) {
+        $.ajax({
+          url: "/tin-tuc/" + id,
+          method: "GET",
+          success: function(result) {
+            if (result.data) {
+              $("#newsTitle").text(result.data.title);
+              document.getElementById("newsBody").innerHTML = result.data.description;
+              if (result.data.attached) {
+                document.getElementById( "newsAttached" ).innerHTML = `<a href='${result.data.attached}'>File đính kèm</a>`;
+              } else {
+                document.getElementById("newsAttached").innerHTML = "";
+              }
+            } else {
+              document.getElementById("newsBody").innerHTML = "Không có dữ liệu hoặc bài viết đã bị xoá";
+            }
+          }
+        });
+      }
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        $.ajax({
+          url: "/he-thong/su-kien-sap-dien-ra",
+          method: "GET",
+          success: function(result) {
+            let { birthdayNext, positionNext, nearlyExpired } = result.data;
+            $("#collapseOne-2-title").text(
+              `Nhân sự sắp sinh nhật (${birthdayNext.length})`
+            );
+            birthdayNext.map(item => {
+              let usersCardNumber = "Không có mã";
+              let belongToDepartment = "Hiện chưa thuộc phòng nào";
+              if (item.usersCardNumber) {
+                usersCardNumber = item.usersCardNumber;
+              }
+              $("#collapseOne-2-row").append(
+                '<div class="row">' +
+                  '<div class="col-md-9">' +
+                  "<p>" +
+                  item.name +
+                  " (" +
+                  usersCardNumber +
+                  ") - " +
+                  (item.belongToDepartment ? item.belongToDepartment.name : belongToDepartment) +
+                  " - ngày: " +
+                  moment(item.birthday).format("DD/MM/YYYY") +
+                  "</p>" +
+                  "</div>" +
+                  "</div>"
+              );
+            });
+            $("#collapseOne-4-title").text(
+              `Nhân sự sắp hết hạn hợp đồng (${nearlyExpired.length})`
+            );
+            nearlyExpired.map(item => {
+              let usersCardNumber = "Không có mã";
+              let belongToDepartment = "Hiện chưa thuộc phòng nào";
+              if (item.usersCardNumber) {
+                usersCardNumber = item.usersCardNumber;
+              }
+              $("#collapseOne-4-row").append(
+                '<div class="row">' +
+                  '<div class="col-md-9">' +
+                  "<p>" +
+                  item.name +
+                  " (" +
+                  usersCardNumber +
+                  ") - " +
+                  (item.belongToDepartment ? item.belongToDepartment.name : belongToDepartment) +
+                  " - ngày: " +
+                  moment(item.birthday).format("DD/MM/YYYY") +
+                  "</p>" +
+                  "</div>" +
+                  "</div>"
+              );
+            });
+            $("#collapseOne-3-title").text(
+              `Nhân sự sắp hết hạn bổ nhiệm (${positionNext.length})`
+            );
+            positionNext.map(item => {
+              let usersCardNumber = "Không có mã";
+              let belongToDepartment = "Hiện chưa thuộc phòng nào";
+              if (item.users[0].usersCardNumber) {
+                usersCardNumber = item.users[0].usersCardNumber;
+              }
+              $("#collapseOne-3-row").append(
+                '<div class="row">' +
+                  '<div class="col-md-9">' +
+                  "<p>" +
+                  item.users[0].name +
+                  " (" +
+                  usersCardNumber +
+                  ") - " +
+                  (item.users[0].belongToDepartment ? item.users[0].belongToDepartment.name : belongToDepartment) +
+                  " - ngày: " +
+                  moment(item.ngayHetHan).format("DD/MM/YYYY") +
+                  "</p>" +
+                  "</div>" +
+                  "</div>"
+              );
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

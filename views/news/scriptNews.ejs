@@ -1,0 +1,109 @@
+<script>
+  var EditId;
+
+  function editNews(id) {
+    $.ajax({
+      url: `/tin-tuc/${id}`,
+      method: "GET",
+      success: function (result) {
+        EditId = id;
+        if (result.success == true) {
+          let data = result.data;
+          console.log(data);
+          if (data.createdDate != "") {
+            var ngaynews = moment(data.createdDate).format('YYYY-MM-DD');
+          } else {
+            var ngaynews = "";
+          }
+          $("#editTitleNews").val(data.title);
+          $('#editsummernoteExample').summernote('code', data.description);
+          $("#editNgaybd").val(ngaynews);
+          if (result.data.attached) {
+            $('#editFileA').attr('href', result.data.attached)
+          } else {
+            $('#editFileA').hide();
+          }
+        } else {
+          console.log("Lỗi")
+        }
+      }
+    })
+  }
+
+  function ChinhsuaNews() {
+    var edittemp = $('#editsummernoteExample').summernote('code');
+    let formdata = new FormData();
+    if ($('#editFiles')[0].files[0] != undefined) {
+      formdata.append('file', $('#editFiles')[0].files[0]);
+    }
+    formdata.append('title', $("#editTitleNews").val());
+    formdata.append('description', edittemp);
+    $.ajax({
+      url: `/tin-tuc/${EditId}`,
+      method: "PUT",
+      // dataType: 'json',
+      contentType: false,
+      // cache : false,
+      processData: false,
+      data: formdata,
+      success: function (result) {
+        if (result.data) {
+          EditId = '';
+          window.location.reload();
+        }
+      }
+    })
+  }
+</script>
+<script>
+  var RemoveId;
+
+  function removeNews(id) {
+    RemoveId = id;
+    console.log(id)
+  }
+
+  function deleteNews() {
+    $.ajax({
+      url: `/tin-tuc/${RemoveId}`,
+      method: "DELETE",
+      success: function (result) {
+        RemoveId = '';
+        alert("Xóa thành công");
+        window.location.reload();
+      }
+    })
+  }
+</script>
+
+<script>
+  $(document).on('click', '#create_news', function () {
+
+    let formdata = new FormData();
+    if ($('#Files')[0].files[0] != undefined) {
+      formdata.append('attached', $('#Files')[0].files[0]);
+    }
+    formdata.append('title', $("#titleNews").val());
+    formdata.append('content', $("#contentNews").val());
+    formdata.append('createdDate', $("#ngaybd").val());
+    let temp = {
+      title: $("#titleNews").val(),
+      content: $("#contentNews").val(),
+      createdDate: $("#ngaybd").val(),
+      attached: $('#Files')[0].files[0]
+    }
+    $.ajax({
+      url: '/tin-tuc',
+      data: formdata,
+      contentType: false,
+      processData: false,
+      method: "POST",
+      success: function (result) {
+        if (result.data) {
+          alert("Tạo thành công");
+          window.location.reload();
+        }
+      }
+    });
+  })
+</script>

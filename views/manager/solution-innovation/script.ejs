@@ -1,0 +1,106 @@
+<script>
+  // giai phap, sang kien
+  var deleteGP;
+
+  function removeGP(id) {
+    deleteGP = id;
+  }
+
+  function delete_GP() {
+    $.ajax({
+      url: `/quan-ly/giai-phap-sang-kien/${deleteGP}`,
+      method: "DELETE",
+      success: function (result) {
+        deleteGP = "";
+        alert("Xóa thành công");
+        window.location.reload();
+      }
+    })
+  }
+
+
+  $(document).on('click', '#create_GP', function () {
+
+    var usersID = [];
+    usersID = $('.case:checkbox:checked').map(function () {
+      return $(this).val();
+    }).get();
+
+    if (usersID == ""  || usersID == undefined  || usersID == null) {
+      alert("Vui lòng chọn nhân sự cần thêm")
+    } else {
+
+      var giaiphap = {
+        users: JSON.stringify(usersID),
+        nam: $('#namgiaiphap').val(),
+        loai: $('#loaiDetai').val(),
+        xepLoai: $('#xepLoai').val(),
+        cap: $('#cap').val(),
+        ten: $('#deTai').val(),
+        ghiChu: $('#ghiChu').val(),
+        confirmed: "1"
+
+      }
+      $.ajax({
+        url: '/quan-ly/giai-phap-sang-kien/them',
+        type: 'POST',
+        dataType: 'json',
+        data: giaiphap,
+        success: function (res) {
+          if (res) {
+            alert("Tạo thành công")
+            window.location.reload();
+          }
+        }
+      })
+    }
+  });
+  var editGP;
+
+  function getGP(id) {
+    $.ajax({
+      url: `/quan-ly/giai-phap-sang-kien/${id}`,
+      method: "GET",
+      success: function (result) {
+        editGP = id;
+        if (result.success == true) {
+          let solution = result.data;
+          $('#editnamgiaiphap').val(solution.nam),
+            $('#editloaiDetai').val(solution.loai),
+            $('#editxepLoai').val(solution.xepLoai),
+            $('#editcap').val(solution.cap),
+            $('#editdeTai').val(solution.ten),
+            $('#editghiChu').val(solution.ghiChu)
+        }
+      }
+    })
+  }
+
+  function edit_GP() {
+
+    var editgiaiphap = {
+      nam: $('#editnamgiaiphap').val(),
+      loai: $('#editloaiDetai').val(),
+      xepLoai: $('#editxepLoai').val(),
+      cap: $('#editcap').val(),
+      ten: $('#editdeTai').val(),
+      ghiChu: $('#editghiChu').val(),
+      confirmed: "1"
+
+    }
+    $.ajax({
+      url: `/quan-ly/giai-phap-sang-kien/${editGP}`,
+      type: "put",
+      dataType: 'json',
+      data: editgiaiphap,
+      success: function (result) {
+        if (result) {
+          editGP = "";
+          alert("Xác nhận thành công");
+          window.location.reload();
+        }
+
+      }
+    })
+  }
+</script>

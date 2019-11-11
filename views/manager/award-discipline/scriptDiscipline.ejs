@@ -1,0 +1,131 @@
+<script>
+  function removeKiluat(id) {
+    KLId = id;
+  }
+
+  function deleteDiscipline() {
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/discipline/${KLId}`,
+      method: "DELETE",
+      success: function (result) {
+        KLId = "";
+        alert("Xóa thành công");
+        window.location.reload();
+      }
+    })
+  }
+</script>
+
+<script>
+  $(document).on('click', '#create_discipline', function () {
+
+    let discipline = [];
+    discipline = $('.caseKL:checkbox:checked').map(function () {
+      return $(this).val();
+    }).get();
+
+    if (discipline == "" || discipline == undefined || discipline == null ) {
+      alert("Vui lòng chọn nhân sự cần thêm")
+    } else {
+
+      var dataD = {
+        users: JSON.stringify(discipline),
+        quyetDinh: JSON.stringify({
+          org: $('#CapKL').val(),
+          number: $('#SoKL').val(),
+          startedDate: $('#Ngayhieuluc').val(),
+          endedDate: $('#Ngayhethieuluc').val(),
+        }),
+        format: $('#HinhthucKL').val(),
+        description: $('#LydoKL').val(),
+        confirmed: "1"
+
+      }
+
+      $.ajax({
+        url: '/quan-ly/khen-thuong-ky-luat/discipline/them',
+        type: 'POST',
+        dataType: 'json',
+        data: dataD,
+        success: function (res) {
+          if (res) {
+            alert("Tạo kỉ luật thành công")
+            window.location.reload();
+          }
+        }
+      })
+    }
+  });
+</script>
+
+<script>
+  var editID2
+
+  function getEditKiLuat(id) {
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/discipline/${id}`,
+      method: "GET",
+      success: function (result) {
+        editID2 = id;
+        if (result.success == true) {
+          var discipline = result.data;
+
+          // if (discipline.quyetDinh.startedDate != "") {
+          //   let datestartQD = moment(discipline.quyetDinh.startedDate).format('YYYY-MM-DD');
+          //   $('#editNgayhieuluc').val(datestartQD);
+          // } else {
+          //   let datestartQD = "";
+          //   $('#editNgayhieuluc').val(datestartQD);
+          // }
+
+          // if (discipline.quyetDinh.endedDate != "") {
+          //   let dateendQD = moment(discipline.quyetDinh.endedDate).format('YYYY-MM-DD');
+          //   $('#editNgayhethieuluc').val(dateendQD);
+          // } else {
+          //   let dateendQD = "";
+          //   $('#editNgayhethieuluc').val(dateendQD);
+          // }
+
+          $('#editNgayhieuluc').val(discipline.quyetDinh ? discipline.quyetDinh.startedDate : null),
+          $('#editNgayhethieuluc').val(discipline.quyetDinh ? discipline.quyetDinh.endedDate : null),
+          $('#editCapKL').val(discipline.quyetDinh ? discipline.quyetDinh.org : null),
+            $('#editSoKL').val(discipline.quyetDinh ? discipline.quyetDinh.number : null),
+            $('#editHinhthucKL').val(discipline.format),
+            $('#editLydoKL').val(discipline.description)
+        }
+      }
+    })
+  }
+
+  function editDiscipline() {
+
+    var dateStart = $('#editNgayhieuluc').val();
+    var dateEnd = $('#editNgayhethieuluc').val();
+
+    var data3 = {
+      quyetDinh: JSON.stringify({
+        org: $('#editCapKL').val(),
+        number: $('#editSoKL').val(),
+        startedDate: dateStart,
+        endedDate: dateEnd,
+      }),
+      format: $('#editHinhthucKL').val(),
+      description: $('#editLydoKL').val(),
+      confirmed: "1"
+
+    }
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/discipline/${editID2}`,
+      method: "PUT",
+      data: data3,
+      success: function (result) {
+        if (result) {
+          editID2 = "";
+          alert("Xác nhận thành công");
+          window.location.reload();
+        }
+
+      }
+    })
+  }
+</script>

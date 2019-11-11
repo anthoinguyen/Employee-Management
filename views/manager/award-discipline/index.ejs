@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Khen thưởng - Kỷ luật</title>
+  <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="/css/style_2.css">
+  <link rel="stylesheet" href="/css/style_1.css">
+  <link rel="shortcut icon" href="/images/favicon.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <% include ../../partials/_navbar %>
+    <div class="container-fluid page-body-wrapper">
+      <% include ../../partials/_sidebar %>
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="tab">
+                    <ul class="nav nav-tabs tab-solid tab-solid-primary" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="tab-5-1" data-toggle="tab" href="#home-5-1" role="tab"
+                          aria-controls="home-5-1" aria-selected="true">Danh sách khen thưởng</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="tab-5-2" data-toggle="tab" href="#profile-5-2" role="tab" aria-controls="profile-5-2"
+                          aria-selected="false">Danh sách kỷ luật</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="tab-content tab-content-solid">
+                    <div class="tab-pane fade show active" id="home-5-1" role="tabpanel" aria-labelledby="tab-5-1">
+                      <div class="row" style="padding:5px">
+
+                        <button style="margin:10px; width: 110px" class="btn btn-primary" type="button" style="margin: auto"
+                          data-toggle="modal" data-target="#createKT">
+                          <span class="icon-holder">
+                            <i class="fa fa-plus"></i>
+                          </span>
+                          <span class="title">Thêm</span>
+                        </button>
+                        <!-- <button style="margin:10px; width: 110px" class="btn btn-primary" aria-controls="dataTable"
+                          type="button" style="margin: auto">
+                          <span class="icon-holder">
+                            <i class="fa fa-print"></i>
+                          </span>
+                          <span class="title">In</span>
+                        </button> -->
+                      </div>
+                      <div class="table-responsive">
+                        <table id="listKT" class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th>Hành động</th>
+                              <th>STT</th>
+                              <th>Số hiệu cán bộ</th>
+                              <th>Họ và tên</th>
+                              <th>Số quyết định</th>
+                              <th>Ngày quyết định</th>
+                              <th>Danh hiệu</th>
+                              <th>Hình thức khen thưởng</th>
+                              <th>Cấp ra quyết định</th>
+                              <th>Thành tích đạt được</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% awards.map((item,index) =>{ %>
+                            <tr>
+                              <td>
+                                <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" onclick="getEditKhenthuong('<%- item._id %>')"
+                                  data-toggle="modal" data-target="#editKT">
+                                  <i class="fa fa-edit"></i>
+                                </button>
+                                <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" onclick="removeKhenthuong('<%- item._id %>')"
+                                  data-toggle="modal" data-target="#deleteKT">
+                                  <i class="fa fa-trash-o"></i>
+                                </button>
+                                <% if(item.confirmed==false){ %>
+                                <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" onclick="getEditKhenthuong('<%- item._id %>')"
+                                  data-toggle="modal" data-target="#editKT">
+                                  <i class="fa fa-check"></i>
+                                </button>
+                                <%}%>
+                              </td>
+                              <td>
+                                <%- index + 1 %>
+                              </td>
+                              <td>
+                                <%- item.user ? item.user.usersCardNumber : null %>
+                              </td>
+                              <td>
+                                <%- item.user ? item.user.name : null %>
+                              </td>
+                              <td>
+                                <%- item.quyetDinh ? item.quyetDinh.number : null %>
+                              </td>
+                              <td>
+                                  <%- item.quyetDinh ? item.quyetDinh.date : null %>
+                              </td>
+                              <td>
+                                <%- item.title %>
+                              </td>
+                              <td>
+                                <%- item.format %>
+                              </td>
+                              <td>
+                                <%- item.quyetDinh ? item.quyetDinh.org : null %>
+                              </td>
+                              <td>
+                                <%- item.description %>
+                              </td>
+                            </tr>
+                            <%})%>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile-5-2" role="tabpanel" aria-labelledby="tab-5-2">
+                      <div class="row" style="padding:5px">
+
+                        <button style="margin:10px; width: 110px" class="btn btn-primary" type="button" style="margin: auto"
+                          data-toggle="modal" data-target="#createKL">
+                          <span class="icon-holder">
+                            <i class="fa fa-plus"></i>
+                          </span>
+                          <span class="title">Thêm</span>
+                        </button>
+
+                        <!-- <button style="margin:10px; width: 110px" class="btn btn-primary" aria-controls="dataTable"
+                          type="button" style="margin: auto">
+                          <span class="icon-holder">
+                            <i class="fa fa-print"></i>
+                          </span>
+                          <span class="title">In</span>
+                        </button> -->
+                      </div>
+                      <div class="table-responsive">
+                        <table id="listKL" class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th>Hành động</th>
+                              <th>STT</th>
+                              <th>Số hiệu cán bộ</th>
+                              <th>Họ và tên</th>
+                              <th>Số quyết định</th>
+                              <th>Ngày hiệu lực</th>
+                              <th>Ngày hết hiệu lực</th>
+                              <th>Hình thức kỷ luật</th>
+                              <th>Cấp ra quyết định</th>
+                              <th>Lý do kỷ luật</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% disciplines.map((item,index) =>{ %>
+                            <tr>
+                              <td>
+                                <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" onclick="getEditKiLuat('<%- item._id %>')"
+                                  data-toggle="modal" data-target="#editKL">
+                                  <i class="fa fa-edit"></i>
+                                </button>
+                                <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" onclick="removeKiluat('<%- item._id %>')"
+                                  data-toggle="modal" data-target="#removeKL">
+                                  <i class="fa fa-trash-o"></i>
+                                </button>
+                                <% if(item.confirmed==false){ %>
+                                <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" onclick="getEditKiLuat('<%- item._id %>')"
+                                  data-toggle="modal" data-target="#editKL">
+                                  <i class="fa fa-check"></i>
+                                </button>
+                                <%}%>
+                              </td>
+                              <td>
+                                <%- index + 1 %>
+                              </td>
+                              <td>
+                                <%- item.user ? item.user.usersCardNumber : null %>
+                              </td>
+                              <td>
+                                <%- item.user ? item.user.name : null %>
+                              </td>
+                              <td>
+                                <%- item.quyetDinh ? item.quyetDinh.number : null %>
+                              </td>
+                              <td>
+                                  <%- item.quyetDinh ? item.quyetDinh.startedDate : null %>
+                                
+                              </td>
+                              <td>
+                                  <%- item.quyetDinh ? item.quyetDinh.endedDate : null %>
+                              </td>
+                              <td>
+                                <%- item.format %>
+                              </td>
+                              <td>
+                                <%- item.quyetDinh ? item.quyetDinh.org : null %>
+                              </td>
+                              <td>
+                                <%- item.description %>
+                              </td>
+                            </tr>
+                            <%})%>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% include ../../partials/_footer %>
+      </div>
+    </div>
+  </div>
+  <!-- Them khen thuong -->
+  <%- include ./ModalAward/Create %>
+  <!-- Them ky luat -->
+  <%- include ./ModalDiscipline/Create %>
+  <!-- Xoa khen thuong-->
+  <%- include ./ModalAward/Delete %>
+  <!-- Xoa ky luat -->
+  <%- include ./ModalDiscipline/Delete %>
+  <!-- Chinh sua -->
+  <%- include ./ModalAward/Edit %>
+  <%- include ./ModalDiscipline/Edit %>
+  <script src="/vendors/js/vendor.bundle.base.js"></script>
+  <script src="/vendors/js/vendor.bundle.addons.js"></script>
+  <script src="/js/off-canvas.js"></script>
+  <script src="/js/misc.js"></script>
+  <script src="/js/hoverable-collapse.js"></script>
+  <script>
+    $('#listKT').DataTable({
+      "scrollX": true
+    });
+    $('#listKL').DataTable({
+      "scrollX": true
+    });
+    $('#SelectKT').DataTable();
+    $('#SelectKL').DataTable();
+  </script>
+
+  <%- include ./scriptAward %>
+  <%- include ./scriptDiscipline %>
+  <% include ../../partials/scriptForAll %>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Làm việc ngoài giờ</title>
+  <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="/css/style_2.css">
+  <link rel="stylesheet" href="/css/style_1.css">
+  <link rel="shortcut icon" href="/images/favicon.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <% include ../../partials/_navbar %>
+    <div class="container-fluid page-body-wrapper">
+      <% include ../../partials/_sidebar %>
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4>DANH SÁCH NHÂN VIÊN LÀM VIỆC NGOÀI GIỜ</h4>
+                  <div class="row" style="padding:5px">
+                    <button style="margin:10px; width: 110px" class="btn btn-primary" type="button" style="margin: auto"
+                      data-toggle="modal" data-target="#addWOT" onclick="getNS()">
+                      <span class="icon-holder">
+                        <i class="c-white-500 ti-plus"></i>
+                      </span>
+                      <span class="title">Thêm</span>
+                    </button>
+
+                  </div>
+                  <div class="table-responsive">
+                    <table id="Table-listWOT" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Hành động</th>
+                          <th>Mã số cán bộ</th>
+                          <th>Họ và tên</th>
+                          
+                          <th>Ngày</th>
+                          <th>Thời gian</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% workOverTime.map((item,index) =>{%>
+                        <% item.userWorkOverTime.map((item1,index) =>{%>
+                        <tr>
+                          <td>
+                            <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" onclick="removeWOT('<%- item._id %>')"
+                              data-toggle="modal" data-target="#deleteWOT">
+                              <i class="fa fa-trash-o"></i>
+                            </button>
+                          </td>
+                          <td>
+                            <%- item1.usersCardNumber %>
+                          </td>
+                          <td>
+                            <%- item1.name %>
+                          </td>
+                          
+                          <td>
+                            <%if(item1.dateWorkOverTime){ %>
+                            <%- moment(item1.dateWorkOverTime).format('DD/MM/YYYY') %> <%}%>
+                          </td>
+                          <td>
+                            <% let time1 = new Date(item1.timeIn) %>
+                            <%- time1.getHours() %>:<%- time1.getMinutes() %> -
+                            <% let time2 = new Date(item1.timeOut) %>
+                            <%- time2.getHours() %>:<%- time2.getMinutes() %>
+                          </td>
+                        </tr>
+                        <%})%>
+                        <%})%>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <% include ../../partials/_footer %>
+      </div>
+    </div>
+  </div>
+  <!-- Them -->
+  <%- include ./Modal/create %>
+  <!-- Xoa -->
+  <%- include ./Modal/delete %>
+ 
+  <script src="/vendors/js/vendor.bundle.base.js"></script>
+  <script src="/vendors/js/vendor.bundle.addons.js"></script>
+  <script src="/js/off-canvas.js"></script>
+  <script src="/js/misc.js"></script>
+  <script src="/js/hoverable-collapse.js"></script>
+  <%- include ./workOverTimeScript %>
+  <% include ../../partials/scriptForAll %>
+  <script>
+    $('#Table-listWOT').DataTable();
+  </script>
+
+</body>
+
+</html>

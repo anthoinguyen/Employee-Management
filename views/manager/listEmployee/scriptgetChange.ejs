@@ -1,0 +1,697 @@
+<script>
+  var changeID;
+
+  function getChange(id) {
+    $.ajax({
+      url: `/quan-ly/thong-tin-thay-doi/${id}`,
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          changeID = id;
+          var data = result.data.newProfiles;
+          var odata = result.data.user;
+          let gender = "";
+
+          if (data.gender != odata.gender) {
+            if (data.gender == true) {
+              gender = "Nam";
+            } else if (data.gender == false) {
+              gender = "Nữ";
+            };
+          }
+
+          if (moment(data.birthday).format('YYYY-MM-DD') != moment(odata.birthday).format('YYYY-MM-DD')) {
+            if (data.birthday != "") {
+              let birthday = moment(data.birthday).format('DD/MM/YYYY');
+              $('#changengaysinh').val(birthday);
+            } else {
+              let birthday = "";
+              $('#changengaysinh').val(birthday);
+            }
+
+          }
+          if (moment(data.army.dateIn).format('YYYY-MM-DD') != moment((odata.army ? odata.army.dateIn : "")).format(
+              'YYYY-MM-DD')) {
+            if (data.army.dateIn != "") {
+              let armydateIn = moment(data.army.dateIn).format('DD/MM/YYYY');
+              $('#changengaynhapngu').val(armydateIn);
+            } else {
+              let armydateIn = "";
+              $('#changengaynhapngu').val(armydateIn);
+            }
+
+          }
+          if (moment(data.army.dateOut).format('YYYY-MM-DD') != moment((odata.army ? odata.army.dateOut : "")).format(
+              'YYYY-MM-DD')) {
+            if (data.army.dateOut != "") {
+              let armydateOut = moment(data.army.dateOut).format('DD/MM/YYYY');
+              $('#changengayxuatngu').val(armydateOut);
+            } else {
+              let armydateOut = "";
+              $('#changengayxuatngu').val(armydateOut);
+            }
+
+          }
+          if (moment(data.ngayThamGiaToChucCTXH[0].dateIn).format('YYYY-MM-DD') != moment((odata.ngayThamGiaToChucCTXH[
+              0] ? odata.ngayThamGiaToChucCTXH[0].dateIn : "")).format('YYYY-MM-DD')) {
+            if (data.ngayThamGiaToChucCTXH[0].dateIn != "") {
+              let ngayThamGiaToChucCTXH = moment(data.ngayThamGiaToChucCTXH[0].dateIn).format('DD/MM/YYYY');
+              $('#changengaythamgiaTCCTXH').val(ngayThamGiaToChucCTXH);
+            } else {
+              let ngayThamGiaToChucCTXH = "";
+              $('#changengaythamgiaTCCTXH').val(ngayThamGiaToChucCTXH);
+            }
+
+          }
+          if (moment(data.communist.officalDate).format('YYYY-MM-DD') != moment((odata.communist ? odata.communist
+              .officalDate : "")).format('YYYY-MM-DD')) {
+            if (data.communist.officalDate != "") {
+              let communistofficalDate = moment(data.communist.officalDate).format('DD/MM/YYYY');
+              $('#changengayvaoDangCT').val(communistofficalDate);
+            } else {
+              let communistofficalDate = "";
+              $('#changengayvaoDangCT').val(communistofficalDate);
+            }
+          }
+
+          if (moment(data.recruitmentDay).format('YYYY-MM-DD') != moment(odata.recruitmentDay).format(
+              'YYYY-MM-DD')) {
+            if (data.recruitmentDay != "") {
+              let recruitmentDay = moment(data.recruitmentDay).format('DD/MM/YYYY');
+              $('#changengayTD').val(recruitmentDay);
+            } else {
+              let recruitmentDay = "";
+              $('#changengayTD').val(recruitmentDay);
+            }
+          }
+          if (moment(data.payday).format('YYYY-MM-DD') != moment(odata.payday).format('YYYY-MM-DD')) {
+            if (data.payday != "") {
+              let payday = moment(data.payday).format('DD/MM/YYYY');
+              $('#changengayhuong').val(payday);
+            } else {
+              let payday = "";
+              $('#changengayhuong').val(payday);
+            }
+          }
+          if (moment(data.communist.dateIn).format('YYYY-MM-DD') != moment((odata.communist ? odata.communist.dateIn :
+              "")).format('YYYY-MM-DD')) {
+            if (data.communist.dateIn != "") {
+              let communistdateIn = moment(data.communist.dateIn).format('DD/MM/YYYY');
+              $('#changengayvaoDang').val(communistdateIn);
+            } else {
+              let communistdateIn = "";
+              $('#changengayvaoDang').val(communistdateIn);
+            }
+          }
+
+          if (moment(data.youthUnion.dateIn).format('YYYY-MM-DD') != moment((odata.youthUnion ? odata.youthUnion.dateIn :
+              "")).format('YYYY-MM-DD')) {
+            if (data.youthUnion.dateIn != "") {
+              let youthUniondateIn = moment(data.youthUnion.dateIn).format('DD/MM/YYYY');
+              $('#changengayvaoDoan').val(youthUniondateIn);
+            } else {
+              let youthUniondateIn = "";
+              $('#changengayvaoDoan').val(youthUniondateIn);
+            }
+          }
+
+          if ((data.youthUnion ? data.youthUnion.yes : "0") == "1") {
+            document.getElementById("changelaDoanVien").checked = true;
+          }
+
+          if ((data.communist ? data.communist.yes : "0") == "1") {
+            document.getElementById("changelaDangVien").checked = true;
+          }
+
+          if (data.usersCardNumber != odata.usersCardNumber) {
+            $('#changetextSoHieu').val(data.usersCardNumber)
+          }
+          if (data.name != odata.name) {
+            $('#changetextTen').val(data.name)
+          }
+          if (data.nickName != odata.nickName) {
+            $('#changetextTenKhac').val(data.nickName)
+          }
+          if (data.phoneNumber != odata.phoneNumber) {
+            $('#changephoneNumber').val(data.phoneNumber)
+          }
+
+          $('#changegioitinh').val(gender)
+
+          if (data.placeBirth.commune != (odata.placeBirth ? odata.placeBirth.commune : null)) {
+            $('#changenoisinhXa').val(data.placeBirth.commune)
+          }
+          if (data.placeBirth.district != (odata.placeBirth ? odata.placeBirth.district : null)) {
+            $('#changenoisinhHuyen').val(data.placeBirth.district)
+          }
+          if (data.placeBirth.province != (odata.placeBirth ? odata.placeBirth.province : null)) {
+            $('#changenoisinhTinh').val(data.placeBirth.province)
+          }
+          if (data.hometown.commune != (odata.hometown ? odata.hometown.commune : null)) {
+            $('#changequequanXa').val(data.hometown.commune)
+          }
+          if (data.hometown.district != (odata.hometown ? odata.hometown.district : null)) {
+            $('#changequequanHuyen').val(data.hometown.district)
+          }
+          if (data.hometown.province != (odata.hometown ? odata.hometown.province : null)) {
+            $('#changequequanTinh').val(data.hometown.province)
+          }
+          if (data.nation != odata.nation) {
+            $('#changedantoc').val(data.nation)
+          }
+          if (data.religion != odata.religion) {
+            $('#changetongiao').val(data.religion)
+          }
+          if (data.registeredPermanentResidence != odata.registeredPermanentResidence) {
+            $('#changeHoKhau').val(data.registeredPermanentResidence)
+          }
+          if (data.registeredTemporaryResidence != odata.registeredTemporaryResidence) {
+            $('#changeAddress').val(data.registeredTemporaryResidence)
+          }
+          if (data.occupationƯwhenRecruited != odata.occupationƯwhenRecruited) {
+            $('#changenghenghiepTD').val(data.occupationƯwhenRecruited)
+          }
+          if (data.employmentAgency != odata.employmentAgency) {
+            $('#changecoquanTDtruoc').val(data.employmentAgency)
+          }
+          if (data.currentPosition != odata.currentPosition) {
+            $('#changechucvuHT').val(data.currentPosition)
+          }
+          if (data.mainJob != odata.mainJob) {
+            $('#changecvchinh').val(data.mainJob)
+          }
+          if (data.scaleOfCivilServant != odata.scaleOfCivilServant) {
+            $('#changengach').val(data.scaleOfCivilServant)
+          }
+          // if (data.salaryLevel != odata.salaryLevel) {
+          //   $('#changebacluong').val(data.salaryLevel)
+          // }
+          // if (data.scaleCode != odata.scaleCode) {
+          //   $('#changemangach').val(data.scaleCode)
+          // }
+          // if (data.coefficient != odata.coefficient) {
+          //   $('#changeheso').val(data.coefficient)
+          // }
+          // if (data.fringeBenefits != odata.fringeBenefits) {
+          //   $('#changephucap').val(data.fringeBenefits)
+          // }
+          // if (data.otherFringeBenefits != odata.otherFringeBenefits) {
+          //   $('#changephucapkhac').val(data.otherFringeBenefits)
+          // }
+          if (data.educationLevel.generalEducationLevel.whichClass != (odata.educationLevel ? odata.educationLevel
+              .generalEducationLevel.whichClass : null)) {
+            $('#changetrinhdoGD').val(data.educationLevel.generalEducationLevel.whichClass)
+          }
+          if (data.educationLevel.highestProfessionalQualification != (odata.educationLevel ? odata.educationLevel
+              .highestProfessionalQualification : null)) {
+            $('#changetrinhdoCM').val(data.educationLevel.highestProfessionalQualification)
+          }
+          if (data.educationLevel.politicalTheory != (odata.educationLevel ? odata.educationLevel.politicalTheory :
+              null)) {
+            $('#changelyluanCT').val(data.educationLevel.politicalTheory)
+          }
+          if (data.educationLevel.stateManagement != (odata.educationLevel ? odata.educationLevel.stateManagement :
+              null)) {
+            $('#changequanlinhanuoc').val(data.educationLevel.stateManagement)
+          }
+          if (data.educationLevel.languageLevel.language != (odata.educationLevel ? odata.educationLevel.languageLevel
+              .language : null)) {
+            $('#changengoaingu').val(data.educationLevel.languageLevel.language)
+          }
+          if (data.educationLevel.languageLevel.level != (odata.educationLevel ? odata.educationLevel.languageLevel
+              .level : null)) {
+            $('#changetrinhDoNN').val(data.educationLevel.languageLevel.level)
+          }
+          if (data.educationLevel.languageLevel.description != (odata.educationLevel ? odata.educationLevel.languageLevel
+              .description : null)) {
+            $('#changemoTaNN').val(data.educationLevel.languageLevel.description)
+          }
+          if (data.educationLevel.computerSkill.level != (odata.educationLevel ? odata.educationLevel.computerSkill
+              .level : null)) {
+            $('#changetinhoc').val(data.educationLevel.computerSkill.level)
+          }
+          if (data.educationLevel.computerSkill.description != (odata.educationLevel ? odata.educationLevel.computerSkill
+              .description : null)) {
+            $('#changemoTaTH').val(data.educationLevel.computerSkill.description)
+          }
+          if (data.ngayThamGiaToChucCTXH[0].name != (odata.ngayThamGiaToChucCTXH[0] ? odata.ngayThamGiaToChucCTXH[
+              0].name : null)) {
+            $('#changeTCCTXH').val(data.ngayThamGiaToChucCTXH[0].name)
+          }
+          if (data.army.rank != (odata.army ? odata.army.rank : null)) {
+            $('#changequanham').val(data.army.rank)
+          }
+          if (data.army.highestAward != (odata.army ? odata.army.highestAward : null)) {
+            $('#changedanhhieu').val(data.army.highestAward)
+          }
+          if (data.forte != odata.forte) {
+            $('#changesotruong').val(data.forte)
+          }
+
+          if ((data.communist ? data.communist.number : null) != (odata.communist ? odata.communist.number : null)) {
+            $('#changesoTheDang').val(data.communist ? data.communist.number : null)
+          }
+
+          if (data.health.status != (odata.health ? odata.health.status : null)) {
+            $('#changesuckhoe').val(data.health.status)
+          }
+          if (data.health.heigth != (odata.health ? odata.health.heigth : null)) {
+            $('#changechieucao').val(data.health.heigth)
+          }
+          if (data.health.weight != (odata.health ? odata.health.weight : null)) {
+            $('#changecannang').val(data.health.weight)
+          }
+          if (data.health.bloodGroup != (odata.health ? odata.health.bloodGroup : null)) {
+            $('#changenhommau').val(data.health.bloodGroup)
+          }
+          if (data.IDCard.number != (odata.IDCard ? odata.IDCard.number : null)) {
+            $('#changecmnd').val(data.IDCard.number)
+          }
+          if (moment(data.IDCard.dateRange).format('YYYY-MM-DD') != moment((odata.IDCard ? odata.IDCard.dateRange :
+              "")).format('YYYY-MM-DD')) {
+            if (data.IDCard.dateRange != "") {
+              let dateIDCard = moment(data.IDCard.dateRange).format('DD/MM/YYYY');
+              $('#changengaycapcmnd').val(dateIDCard);
+            } else {
+              let dateIDCard = "";
+              $('#changengaycapcmnd').val(dateIDCard);
+            }
+          }
+          if (data.socialInsuranceNumber != odata.socialInsuranceNumber) {
+            $('#changebhxh').val(data.socialInsuranceNumber)
+          }
+          if (data.veterans.type != (odata.veterans ? odata.veterans.type : null)) {
+            $('#changethuongbinh').val(data.veterans.type)
+          }
+          if (data.familyPolicy != odata.familyPolicy) {
+            $('#changeconlietsi').val(data.familyPolicy)
+          }
+          if (data.personalHistory[0].question1 != (odata.personalHistory[0] ? odata.personalHistory[0].question1 :
+              null)) {
+            $('#changequestion1').val(data.personalHistory[0].question1)
+          }
+          if (data.personalHistory[0].question2 != (odata.personalHistory[0] ? odata.personalHistory[0].question2 :
+              null)) {
+            $('#changequestion2').val(data.personalHistory[0].question2)
+          }
+          if (data.personalHistory[0].question3 != (odata.personalHistory[0] ? odata.personalHistory[0].question3 :
+              null)) {
+            $('#changequestion3').val(data.personalHistory[0].question3)
+          }
+          if (data.evaluate != odata.evaluate) {
+            $('#changenhanxet').val(data.evaluate)
+          }
+
+          // $.each(data.course, function (index, item) {
+          //   if (item.fromDate != null) {
+          //     let fromDate = new Date(item.fromDate);
+          //     var fromDate1 = (fromDate.getDate() + "/" + (fromDate.getMonth() +
+          //       1) + "/" + fromDate.getFullYear());
+          //   } else {
+          //     var fromDate1 = "";
+          //   }
+
+          //   if (item.toDate != null) {
+          //     let toDate = new Date(item.toDate);
+          //     var toDate1 = (toDate.getDate() + "/" + (toDate.getMonth() +
+          //       1) + "/" + toDate.getFullYear());
+          //   } else {
+          //     var toDate1 = "";
+          //   }
+          //   $('.courses .dao-tao').append(
+          //     '<div class="row tempcourse">' +
+          //     '<div class="card-body p-20">' +
+          //     '<div class="row">' +
+          //     '<div class="col-md-6">' +
+          //     '<div class="form-group">' +
+          //     '<label for="">Tên trường</label>' +
+          //     '<input id="truongdaotao" disabled type="text" value="' + item.schoolName +
+          //     '" class="text form-control">' +
+          //     '</div>' +
+          //     '<div class="row">' +
+          //     '<div class="col-sm-12">' +
+          //     '<div class="form-group">' +
+          //     '<label for="">Từ ngày</label>' +
+          //     '<div class="row ">' +
+          //     '<div class="col-sm-12">' +
+          //     '<input id="ngaydaotao" disabled type="text" value="' + fromDate1 +
+          //     '" class="text form-control">' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '<div class="form-group">' +
+          //     '<label for="">Văn bằng, chứng chỉ, trình độ</label>' +
+          //     '<input id="vanbangdaotao"  disabled type="text"  value="' + item.diploma +
+          //     '" class="form-control">' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '<div class="col-md-6">' +
+          //     '<div class="row">' +
+          //     '<div class="col-lg-12">' +
+          //     '<div class="form-group">' +
+          //     '<label for="" class="col-sm-12 control-label">Chuyên ngành đào tạo, bồi dưỡng</label>' +
+          //     '<div class="col-sm-12">' +
+          //     '<input id="chuyenmondaotao"  disabled type="text"  value="' + item.specializedTraining +
+          //     '" class="form-control">' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '<div class="col-sm-12">' +
+          //     '<div class="form-group">' +
+          //     '<label for="">Đến ngày</label>' +
+          //     '<div class="row ">' +
+          //     '<div class="col-sm-12">' +
+          //     '<input id="ngayhetdaotao" disabled type="text" value="' + toDate1 +
+          //     '" class="text form-control">' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '<div class="row">' +
+          //     '<div class="col-lg-12">' +
+          //     '<div class="form-group">' +
+          //     '<label for="" class="col-sm-12 control-label">Hình thức đào tạo</label>' +
+          //     '<div class="col-sm-12">' +
+          //     '<input id="hinhthucdaotao"  disabled type="text" value="' + item.formsOfTraining +
+          //     '" class="form-control">' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>' +
+          //     '</div>'
+          //   )
+          // })
+
+          $.each(data.workingProccess, function (index, item) {
+
+            if (item.fromDate != null) {
+              var fromDate2 = moment(item.fromDate).format('DD/MM/YYYY')
+            } else {
+              var fromDate2 = "";
+            }
+
+            if (item.toDate != null) {
+              var toDate2 = moment(item.toDate).format('DD/MM/YYYY')
+            } else {
+              var toDate2 = "";
+            }
+            $('.workingProccess .cong-tac').append(
+              '<div class="row tempproccess">' +
+              '<div class="card-body p-20">' +
+              '<div class="row">' +
+              '<div class="col-md-12">' +
+              '<div class="row">' +
+              '<div class="col-sm-6">' +
+              '<div class="form-group">' +
+              '<label for="">Từ ngày</label>' +
+              '<div class="row ">' +
+              '<div class="col-sm-12">' +
+              '<input id="ngaycongtac" disabled type="text" value="' + fromDate2 +
+              '" class="text form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="col-sm-6">' +
+              '<div class="form-group">' +
+              '<label for="">Đến ngày</label>' +
+              '<div class="row ">' +
+              '<div class="col-sm-12">' +
+              '<input id="ngayhetcongtac" disabled type="text" value="' + toDate2 +
+              '" class="text form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="row">' +
+              '<div class="col-sm-12">' +
+              '<div class="form-group">' +
+              '<label for="">' +
+              '<p>Chức danh, chức vụ, đơn vị công tác (đảng, chính quyền, đoàn thể, tổ chức xã hội), kể cả thời gian được đào tạo, bồi dưỡng về chuyên môn, nghiệp vụ,......</p>' +
+              '</label>' +
+              '<input type="text" disabled class="form-control" value="' + item.description +
+              '" rows="3">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>'
+            )
+          })
+
+          $.each(data.familyRelationship.aboutMyself, function (index, item) {
+
+            if (item.birthday != null) {
+              let birthday = new Date(item.birthday);
+              var birthday1 = (birthday.getFullYear());
+            } else {
+              var birthday1 = "";
+            }
+            $('.banthan .ban-than').append(
+              '<div class="row tempbanthan">' +
+              '<div class="col-sm-6">' +
+              '<div class="row">' +
+              '<div class="col-lg-12">' +
+              '<div class="form-group">' +
+              '<label for="" class="col-sm-12 control-label">Mối quan hệ</label>' +
+              '<div class="col-sm-12">' +
+              '<input id="moiQH" type="text" value="' + item.type +
+              '"  disabled class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="row">' +
+              '<div class="col-lg-8">' +
+              '<div class="form-group">' +
+              '<label for="" class="col-sm-12 control-label" style="margin-bottom: 15px">Họ và tên</label>' +
+              '<div class="col-sm-12">' +
+              '<input id="tenQH" type="text" disabled value="' + item.name +
+              '"  class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="col-lg-4">' +
+              '<div class="col-lg-12">' +
+              '<label for="" class="col-sm-12 control-label">' +
+              '<p style="margin-bottom: 0px">Năm sinh</p>' +
+              '</label>' +
+              '<input id="namsinhQH" type="text" value="' + birthday1 +
+              '" disabled class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="col-sm-6">' +
+              '<div class="row">' +
+              '<div class="col-sm-12">' +
+              '<div class="form-group">' +
+              '<label for="">Quê quán, nghề nghiệp, chức danh, chức vụ, đơn vị công tác, học tập, nơi ở (trong, ngoài nước); thành viên các tổ chức chính trị - xã hội ...)</label>' +
+              '<textarea id="mieutaQH" type="text" disabled class="text_field contact_form_message col-sm-12" rows="5">' +
+              item.description +
+              '</textarea>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>'
+            )
+          })
+
+          $.each(data.familyRelationship.aboutOther, function (index, item) {
+
+            if (item.birthday != null) {
+              let birthday = new Date(item.birthday);
+              var birthday2 = (birthday.getFullYear());
+            } else {
+              var birthday2 = "";
+            }
+            $('.vochong .vo-chong').append(
+              '<div class="row tempvochong">' +
+              '<div class="col-sm-6">' +
+              '<div class="row">' +
+              '<div class="col-lg-12">' +
+              '<div class="form-group">' +
+              '<label for="" class="col-sm-12 control-label">Mối quan hệ</label>' +
+              '<div class="col-sm-12">' +
+              '<input id="moiQHkhac" type="text" value="' + item.type +
+              '"  disabled class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="row">' +
+              '<div class="col-lg-8">' +
+              '<div class="form-group">' +
+              '<label for="" class="col-sm-12 control-label" style="margin-bottom: 15px">Họ và tên</label>' +
+              '<div class="col-sm-12">' +
+              '<input id="tenQHkhac" type="text" disabled value="' + item.name +
+              '"  class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="col-lg-4">' +
+              '<div class="col-lg-12">' +
+              '<label for="" class="col-sm-12 control-label">' +
+              '<p style="margin-bottom: 0px">Năm sinh</p>' +
+              '</label>' +
+              '<input id="namsinhQHkhac" type="text" value="' + birthday2 +
+              '" disabled class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="col-sm-6">' +
+              '<div class="row">' +
+              '<div class="col-sm-12">' +
+              '<div class="form-group">' +
+              '<label for="">Quê quán, nghề nghiệp, chức danh, chức vụ, đơn vị công tác, học tập, nơi ở (trong, ngoài nước); thành viên các tổ chức chính trị - xã hội ...)</label>' +
+              '<textarea id="mieutaQHkhac" type="text" disabled class="text_field contact_form_message col-sm-12" rows="5">' +
+              item.description +
+              '</textarea>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>'
+            )
+          })
+
+          $.each(data.wageMovements, function (index, item) {
+
+            if (item.date != null) {
+              let dateWage = new Date(item.date);
+              var date2 = (dateWage.getMonth() + 1);
+              var year2 = (dateWage.getFullYear());
+            } else {
+              var date2 = "";
+              var year2 = "";
+            }
+
+            $('.qtluong .qt-luong').append(
+              '<div class="row templuong">' +
+              '<div class="col-md-12">' +
+              '<div class="form-group">' +
+              '<div class="row ">' +
+              '<div class="col-sm-3">' +
+              '<div class="row ">' +
+              '<div class="col-sm-6">' +
+              '<label for="" class="col-sm-12 control-label">' +
+              '<p style="margin-bottom: 0px">Tháng</p>' +
+              '</label>' +
+              '<input id="ngayluong" type="text" value="' + date2 +
+              '" disabled class="form-control">' +
+              '</div>' +
+              '<div class="col-sm-6">' +
+              '<label for="" class="col-sm-12 control-label">' +
+              '<p style="margin-bottom: 0px">Năm</p>' +
+              '</label>' +
+              '<input id="thangluong" type="text" value="' + year2 +
+              '" disabled class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="col-lg-5">' +
+              '<div class="form-group">' +
+              '<label for="" class="col-sm-12 control-label">Ngạch (Mã ngạch)</label>' +
+              '<div class="col-sm-12">' +
+              '<input id="mangachwage" disabled type="text" value="' + item.scaleCode +
+              '" class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="col-lg-2">' +
+              '<div class="form-group">' +
+              '<label for="" class="col-sm-12 control-label">Bậc</label>' +
+              '<div class="col-sm-12">' +
+              '<input id="bacwage" disabled type="text" value="' + item.salaryLevel +
+              '" class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="col-lg-2">' +
+              '<div class="form-group">' +
+              '<label for="" class="col-sm-12 control-label">Hệ số lương</label>' +
+              '<div class="col-sm-12">' +
+              '<input id="hesowage" disabled type="text" value="' + item.coefficient +
+              '" class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>'
+            )
+          })
+
+        } else {
+          console.log("abc")
+        }
+      }
+    })
+  }
+</script>
+<script>
+  $(".closes").click(function () {
+    $('.courses .dao-tao').each(function () {
+      $(this).find('.tempcourse').remove();
+    });
+    $('.workingProccess .cong-tac').each(function () {
+      $(this).find('.tempproccess').remove();
+    });
+    $('.banthan .ban-than').each(function () {
+      $(this).find('.tempbanthan').remove();
+    });
+    $('.vochong .vo-chong').each(function () {
+      $(this).find('.tempvochong').remove();
+    });
+    $('.qtluong .qt-luong').each(function () {
+      $(this).find('.templuong').remove();
+    });
+  });
+</script>
+<script>
+  function AcceptProfile() {
+    $.ajax({
+      url: `/quan-ly/thong-tin-thay-doi/${changeID}`,
+      type: 'PUT',
+      dataType: 'json',
+      data: {},
+      success: function (res) {
+        if (res) {
+          user = "";
+          alert("Duyệt hồ sơ thành công");
+          window.location.reload();
+        }
+      }
+    })
+  }
+</script>
+<script>
+  var removeChangeID;
+
+  function removeChange(id) {
+    removeChangeID = id;
+  }
+
+  function deleteChange() {
+    $.ajax({
+      url: `/quan-ly/thong-tin-thay-doi/${removeChangeID}`,
+      method: "DELETE",
+      success: function (result) {
+        alert("Xóa hồ sơ chờ duyệt thành công");
+        window.location.reload();
+      }
+    })
+  }
+</script>

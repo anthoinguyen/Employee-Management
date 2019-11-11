@@ -1,0 +1,779 @@
+<div class="modal fade" id="accept" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Thông tin chỉnh sửa cán bộ</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body abcef">
+        <div class="content-wrapper" style="padding-top: 0px; padding-bottom: 0px">
+          <div class="row">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="margin-top: 10px">
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-general-tab1" data-toggle="pill" href="#pills-general1" role="tab"
+                  aria-controls="pills-general1" aria-selected="true">Thông tin chung</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" id="pills-courses-tab1" data-toggle="pill" href="#pills-courses1" role="tab"
+                  aria-controls="pills-courses1" aria-selected="false">Đào tạo, bồi dưỡng</a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link" id="pills-work-tab1" data-toggle="pill" href="#pills-work1" role="tab"
+                  aria-controls="pills-work1" aria-selected="false">Quá trình công tác</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab1" data-toggle="pill" href="#pills-profile1" role="tab"
+                  aria-controls="pills-profile1" aria-selected="false">Lý lịch bản thân</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-family-tab1" data-toggle="pill" href="#pills-family1" role="tab"
+                  aria-controls="pills-family1" aria-selected="false">Quan hệ gia đình</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-salary-tab1" data-toggle="pill" href="#pills-salary1" role="tab"
+                  aria-controls="pills-salary1" aria-selected="false">Diễn biến quá trình lương</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-comment-tab1" data-toggle="pill" href="#pills-comment1" role="tab"
+                  aria-controls="pills-comment1" aria-selected="false">Nhận xét, đánh giá</a>
+              </li>
+            </ul>
+
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-general1" role="tabpanel" aria-labelledby="pills-general-tab1">
+                      <div class="mT-30">
+                        <div class="row">
+                          <!-- <div class="col-md-12">
+                            <div class=" m-t-10 w-100">
+                              <label style="margin-left: 20px" class="col-sm-12 control-label">Hình nền</label>
+                              <div class="col-sm-12">
+                                <img src="https://znews-photo-td.zadn.vn/w1024/Uploaded/ofh_fdmzsofw/2017_05_09/18386481_437476439951053_1928659744_n.jpg"
+                                  width="120px" height="160px" style="margin: 20px">
+                              </div>
+                            </div>
+                          </div> -->
+                          <div class="col-md-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label ">Số hiệu cán bộ, công chức</label>
+                                  <div class="col-sm-12">
+                                    <input id="changetextSoHieu" type="text" class="form-control " disabled>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label ">Số điện thoại</label>
+                                  <div class="col-sm-12">
+                                    <input id="changephoneNumber" type="number" class="form-control " disabled>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Họ và tên khai sinh (Viết chữ in hoa)</label>
+                                  <div class="col-sm-12">
+                                    <input id="changetextTen" type="text" class="form-control " disabled>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Tên gọi khác</label>
+                                  <div class="col-sm-12">
+                                    <input id="changetextTenKhac" type="text" class="form-control" disabled>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Ngày tháng năm sinh</label>
+                                  <div class="col-sm-12">
+                                    <div class="row ">
+                                      <div class="col-sm-12">
+                                        <input id="changengaysinh" type="text" class="text form-control " disabled>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Giới tính</label>
+                                  <div class="col-sm-12">
+                                    <input id="changegioitinh" type="text" class="text form-control" disabled>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="" class="col-sm-6 control-label">Nơi sinh</label>
+                              <div class="col-sm-12">
+                                <div class="row ">
+                                  <div class="col-sm-4">
+                                    <input id="changenoisinhXa" type="text" class="form-control" disabled>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <input id="changenoisinhHuyen" type="text" class="form-control" disabled>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <input id="changenoisinhTinh" type="text" class="form-control" disabled>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="" class="col-sm-6 control-label">Quê quán</label>
+                              <div class="col-sm-12">
+                                <div class="row ">
+                                  <div class="col-sm-4">
+                                    <input id="changequequanXa" type="text" class="form-control" disabled>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <input id="changequequanHuyen" type="text" class="form-control" disabled>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <input id="changequequanTinh" type="text" class="form-control" disabled>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Dân tộc</label>
+                                  <div class="col-sm-12">
+                                    <input id="changedantoc" type="text" class="form-control " disabled>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Tôn giáo</label>
+                                  <div class="col-sm-12">
+                                    <input id="changetongiao" type="text" class="form-control " disabled>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Nơi đăng ký hộ khẩu thường trú</label>
+                                  <div class="col-sm-12">
+                                    <input id="changeHoKhau" type="text" class="form-control " disabled>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Nơi ở hiện nay</label>
+                                  <div class="col-sm-12">
+                                    <input id="changeAddress" type="text" disabled class="form-control ">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Nghề nghiệp khi được tuyển dụng</label>
+                                  <div class="col-sm-12">
+                                    <input id="changenghenghiepTD" type="text" disabled class="form-control ">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Ngày vào cơ quan hiện tại</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengayTD" type="text" disabled class="text form-control ">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="" class="col-sm-12 control-label">Cơ quan tuyển dụng</label>
+                              <div class="col-sm-12">
+                                <input id="changecoquanTDtruoc" type="text" disabled class="form-control">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="" class="col-sm-12 control-label">Chức vụ (chức danh) hiện tại</label>
+                              <div class="col-sm-12">
+                                <input id="changechucvuHT" type="text" disabled class="form-control ">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="" class="col-sm-12 control-label">Công việc chính được giao</label>
+                              <div class="col-sm-12">
+                                <input id="changecvchinh" type="text" disabled class="form-control">
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Ngạch công chức (viên chức)</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengach" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Mã ngạch</label>
+                                  <div class="col-sm-12">
+                                    <input id="changemangach" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <!-- <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Bậc lương</label>
+                                  <div class="col-sm-12">
+                                    <input id="changebacluong" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Hệ số</label>
+                                  <div class="col-sm-12">
+                                    <input id="changeheso" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div> -->
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Ngạch công chức (viên chức)</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengach" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Ngày hưởng</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengayhuong" type="text" disabled class="text form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Phụ cấp chức vụ</label>
+                                  <div class="col-sm-12">
+                                    <input id="changephucap" type="text" disabled class="form-control  ">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Phụ cấp khác</label>
+                                  <div class="col-sm-12">
+                                    <input id="changephucapkhac" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Trình độ giáo dục phổ thông</label>
+                                  <div class="col-sm-12">
+                                    <input id="changetrinhdoGD" type="text" disabled class="form-control ">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Trình độ chuyên môn cao nhất</label>
+                                  <div class="col-sm-12">
+                                    <input id="changetrinhdoCM" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Lý luận chính trị</label>
+                                  <div class="col-sm-12">
+                                    <input id="changelyluanCT" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Quản lý nhà nước</label>
+                                  <div class="col-sm-12">
+                                    <input id="changequanlinhanuoc" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Ngoại ngữ</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengoaingu" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Trình độ</label>
+                                  <div class="col-sm-12">
+                                    <input id="changetrinhDoNN" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Mô tả</label>
+                                  <div class="col-sm-12">
+                                    <input id="changemoTaNN" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Trình độ tin học</label>
+                                  <div class="col-sm-12">
+                                    <input id="changetinhoc" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Mô tả</label>
+                                  <div class="col-sm-12">
+                                    <input id="changemoTaTH" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <div class="col-sm-12">
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input type="checkbox" id="changelaDangVien" value="1" class="form-check-input">
+                                        Đang là Đảng
+                                        viên
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Số thẻ Đảng</label>
+                                  <div class="col-sm-12">
+                                    <input id="changesoTheDang" disabled type="text" class="text form-control"
+                                      placeholder="">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Ngày vào Đảng Cộng sản Việt Nam</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengayvaoDang" type="text" disabled class="text form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Ngày chính thức</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengayvaoDangCT" type="text" disabled class="text form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <div class="col-sm-12">
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input type="checkbox" value="1" id="changelaDoanVien" class="form-check-input">
+                                        Đang là Đoàn
+                                        viên
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Ngày vào Đoàn</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengayvaoDoan" disabled type="text" class="text form-control"
+                                      placeholder="">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Ngày tham gia tổ chức chính trị - xã
+                                    hội</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengaythamgiaTCCTXH" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Tổ chức chính trị - xã
+                                    hội</label>
+                                  <div class="col-sm-12">
+                                    <input id="changeTCCTXH" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Ngày nhập ngũ</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengaynhapngu" type="text" disabled class="text form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Ngày xuất ngũ</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengayxuatngu" type="text" disabled class="text form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Quân hàm cao nhất</label>
+                                  <div class="col-sm-12">
+                                    <input id="changequanham" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Danh hiệu được phong tặng cao nhất</label>
+                                  <div class="col-sm-12">
+                                    <input id="changedanhhieu" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="" class="col-sm-12 control-label">Sở trường công tác</label>
+                              <div class="col-sm-12">
+                                <textarea id="changesotruong" disabled value="" class="form-control text" rows="4"></textarea>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Tình trạng sức khỏe</label>
+                                  <div class="col-sm-12">
+                                    <input id="changesuckhoe" disabled type="text" class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Chiều cao</label>
+                                  <div class="col-sm-12">
+                                    <input id="changechieucao" disabled type="text" class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Cân nặng</label>
+                                  <div class="col-sm-12">
+                                    <input id="changecannang" type="text" disabled class="form-control  ">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Nhóm máu</label>
+                                  <div class="col-sm-12">
+                                    <input id="changenhommau" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Là thương binh hạng</label>
+                                  <div class="col-sm-12">
+                                    <input id="changethuongbinh" type="text" disabled class="form-control  ">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Là con gia đình chính sách</label>
+                                  <div class="col-sm-12">
+                                    <input id="changeconlietsi" type="text" disabled class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-12 control-label">Số chứng minh nhân dân</label>
+                                  <div class="col-sm-12">
+                                    <input id="changecmnd" type="number" disabled class="form-control ">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label">Ngày cấp</label>
+                                  <div class="col-sm-12">
+                                    <input id="changengaycapcmnd" type="text" disabled class="text form-control ">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="" class="col-sm-12 control-label">Số sổ bảo hiểm xã hội</label>
+                              <div class="col-sm-12">
+                                <input id="changebhxh" type="text" disabled class="form-control">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="tab-pane fade courses" id="pills-courses1" role="tabpanel" aria-labelledby="pills-courses-tab1">
+                      <div class="mT-30 dao-tao">
+
+                      </div>
+                    </div> -->
+
+                    <div class="tab-pane fade workingProccess" id="pills-work1" role="tabpanel" aria-labelledby="pills-work-tab1">
+                      <div class="mT-30 cong-tac">
+
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-profile1" role="tabpanel" aria-labelledby="pills-profile-tab1">
+                      <div class="mT-30">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="" class="col-sm-12 control-label">Khai rõ: bị bắt, bị tù (từ ngày tháng năm
+                                nào
+                                đến
+                                ngày tháng năm nào, ở đâu), đã khai báo cho
+                                ai, những vấn đề gì? Bản thân có làm việc trong chế độ cũ (cơ quan, đơn vị nào, địa
+                                điểm,
+                                chức
+                                danh, chức vụ, thời gian làm việc ...)</label>
+                              <div class="col-sm-12">
+                                <textarea id="changequestion1" type="text" disabled class="form-control text" rows="4"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="" class="col-sm-12 control-label">Tham gia hoặc có quan hệ với các tổ chức
+                                chính
+                                trị, kinh tế, xã hội nào ở nước ngoài (làm gì,
+                                tổ chức nào, đặt trụ sở ở đâu ...?)</label>
+                              <div class="col-sm-12">
+                                <textarea id="changequestion2" type="text" disabled class="form-control text" rows="4"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group">
+                              <label for="" class="col-sm-12 control-label">Có thân nhân (Cha, Mẹ, Vợ, Chồng, con, anh
+                                chị em ruột) ở nước ngoài (làm gì, địa chỉ)?</label>
+                              <div class="col-sm-12">
+                                <textarea id="changequestion3" type="text" disabled class="form-control text" rows="4"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-family1" role="tabpanel" aria-labelledby="pills-family-tab1">
+                      <div class="mT-30">
+
+                        <div class="row">
+                          <div class="card-body p-20">
+                            <h6>Về bản thân: Cha, Mẹ, Vợ (hoặc chồng), các con, anh chị em ruột</h6>
+                            <div class="insert-block banthan">
+                              <div class="card-body ban-than p-20">
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="card-body p-20">
+                          <h6>Về bên vợ (hoặc chồng): Cha, Mẹ, anh chị em ruột</h6>
+                          <div class="insert-block vochong">
+                            <div class="card-body vo-chong p-20">
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade qtluong" id="pills-salary1" role="tabpanel" aria-labelledby="pills-salary-tab1">
+                      <div class="mT-30 qt-luong">
+
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-comment1" role="tabpanel" aria-labelledby="pills-comment-tab1">
+                      <div class="card-body">
+                        <div class="mT-30">
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div class="form-group">
+                                <textarea class="form-control text" id="changenhanxet" value="" disabled rows="4"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" style="width: 100px;" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="button" style="width: 100px;" class="btn btn-primary" onclick="AcceptProfile()">Có</button>
+      </div>
+    </div>
+  </div>
+</div>

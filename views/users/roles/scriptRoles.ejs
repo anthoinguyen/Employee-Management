@@ -1,0 +1,69 @@
+<script>
+  function getNS() {
+    $('.listNS').empty();
+    $.ajax({
+      url: `/quan-ly/danh-sach-nhan-su/list`,
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          result.data.map((item, index) => {
+            $('.listNS').append(
+              '<tr class="temp">' +
+              '<td><input class="case" type="checkbox" value="'+item._id+'" />' +
+              '</td>' +
+              '<td>' + item.usersCardNumber +
+              '</td>' +
+              '<td>' + item.name +
+              '</td>' +
+              '<td>' + (item.belongToDepartment ? item.belongToDepartment.name : null) +
+              '</td>' +
+              '</tr>'
+            )
+          })
+        }
+        $('#Table-listNS').DataTable();
+      }
+    })
+  }
+
+  $(".closes").click(function () {
+    $('.listNS').each(function () {
+      $(this).find('.temp').remove();
+    });
+  })
+</script>
+<script>
+  $(document).on('click', '#create-Roles', function () {
+
+    var usersList1 = []
+    usersList1 = $('.case:checkbox:checked').map(function () {
+      return $(this).val();
+    }).get();
+    var roles1 = []
+    roles1 = $('.caseRoles:checkbox:checked').map(function () {
+      return $(this).val();
+    }).get();
+
+    if (roles1 == null || roles1 == "" || roles1 == undefined || usersList1 == null || usersList1 == "" ||usersList1 == undefined) {
+      alert("Vui lòng kiểm tra lại thông tin")
+    } else {
+      var data1 = {
+        usersList: JSON.stringify(usersList1),
+        roles: JSON.stringify(roles1),
+      }
+      console.log(data1)
+      $.ajax({
+        url: '/users/roles',
+        type: 'POST',
+        dataType: 'json',
+        data: data1,
+
+        success: function (res) {
+          if (res) {
+            window.location.reload();
+          }
+        }
+      })
+    }
+  });
+</script>

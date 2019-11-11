@@ -1,0 +1,1422 @@
+<script>
+  function getSalary(id) {
+    $.ajax({
+      url: `/quan-ly/luong-phu-cap/user/${id}`,
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          var salary = result.data;
+          $('#bacluong').append(
+              '<option value="' + salary.bacHeso + '">' + salary.bacHeso + '</option>'
+            ),
+            $('#mangach').append(
+              '<option value="' + salary.ngach._id + '">' + salary.ngach.maNgach + '</option>'
+            )
+          salary.ngach.bacHeso.map((item1, index) => {
+            if (salary.bacHeso == item1.bac) {
+              $('#heso').append(
+                '<option value="' + item1.heso + '">' + item1.heso + '</option>'
+              )
+            }
+          })
+
+          $.each(salary.phuCap, function (index, item) {
+
+            $('#phucap').append(
+              '<div class="col-lg-12">' +
+              '<div class="row">' +
+              '<div class="col-lg-6">' +
+              '<div class="form-group">' +
+              '<label for="" class="col-sm-12 control-label">Tên phụ cấp</label>' +
+              '<div class="col-sm-12">' +
+              '<input id="phucap" type="text" value="' + item.moTa + '" disabled class="form-control  ">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="col-lg-6">' +
+              '<div class="form-group">' +
+              '<label for="" class="col-sm-6 control-label">Số tiền</label>' +
+              '<div class="col-sm-12">' +
+              '<input id="phucapkhac" type="text" value="' + (item.soTien).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +
+              '" disabled class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>'
+            )
+          })
+
+
+        }
+      }
+    })
+  }
+</script>
+
+<script>
+  $("#themdaotao").click(function () {
+    $('#daotao').append(
+      '<div class="card dao-tao radius-16"> <div class="card-header abc"> <button class="btn btn-link float-left" style="font-size: 15px" type="button" data-toggle="collapse-next"> <i class="fa fa-align-justify"></i> </button> <button class="btn btn-link xoa-daotao float-right" type="button"> <i class="fa fa-times"></i> </button> </div> <div class="card-body p-20"> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label for="">Tên trường</label> <input id="truongdaotao" type="text" class="text form-control" placeholder=""> </div> <div class="row"> <div class="col-sm-12"> <div class="form-group"> <label for="">Từ ngày</label> <div class="row "> <div class="col-sm-12"> <input id="ngaydaotao" type="text" class="text form-control" placeholder=""> </div> </div> </div> </div> </div> <div class="form-group"> <label for="">Văn bằng, chứng chỉ, trình độ gì</label> <input id="vanbangdaotao" type="text" class="form-control" placeholder="TSKH, TS, Ths, Cử nhân, Kỹ sư ..."> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-lg-12"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Chuyên ngành đào tạo, bồi dưỡng</label> <div class="col-sm-12"> <input id="chuyenmondaotao" type="text" class="form-control" placeholder=""> </div> </div> </div> </div> <div class="col-sm-12"> <div class="form-group"> <label for="">Đến ngày</label> <div class="row "> <div class="col-sm-12"> <input id="ngayhetdaotao" type="text" class="text form-control" placeholder=""> </div> </div> </div> </div> <div class="row"> <div class="col-lg-12"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Hình thức đào tạo</label> <div class="col-sm-12"> <input id="hinhthucdaotao" type="text" class="form-control" placeholder="Chính quy, tại chức, chuyên tu, bồi dưỡng ..."> </div> </div> </div> </div> </div> </div> </div> </div>'
+    );
+    $('html').animate({
+      scrollTop: $("#themdaotao").parent().siblings().children().last().prev().offset().top
+    }, 500);
+  });
+
+  $("#themphucap").click(function () {
+    $('#phucap').append(
+      '<div class="card phu-cap radius-16"> <div class="card-header abc"> <button class="btn btn-link xoa-phucap float-right" type="button"> <i class="fa fa-times"></i> </button> </div> <div class="row"> <div class="col-lg-6"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Tên phụ cấp</label> <div class="col-sm-12"> <input id="phucap" type="text" class="form-control " placeholder=""> </div> </div> </div> <div class="col-lg-6"> <div class="form-group"> <label for="" class="col-sm-6 control-label">Số tiền</label> <div class="col-sm-12"> <input id="phucapkhac" type="text" class="form-control" placeholder=""> </div> </div> </div> </div> </div>'
+    );
+    $('html').animate({
+      scrollTop: $("#themphucap").parent().siblings().children().last().prev().offset().top
+    }, 500);
+  });
+
+  $("#themcongtac").click(function () {
+    $('#congtac').append(
+      '<div class="card cong-tac radius-16"> <div class="card-header abc"> <button class="btn btn-link float-left" type="button" data-toggle="collapse-next"> <i class="fa fa-align-justify"></i> </button> <button class="btn btn-link xoa-congtac float-right" type="button"> <i class="fa fa-times"></i> </button> </div> <div class="card-body p-20"> <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-sm-6"> <div class="form-group"> <label for="">Từ ngày</label> <div class="row "> <div class="col-sm-12"> <input id="ngaycongtac" type="date" class="text form-control" placeholder=""> </div> </div> </div> </div> <div class="col-sm-6"> <div class="form-group"> <label for="">Đến ngày</label> <div class="row "> <div class="col-sm-12"> <input id="ngayhetcongtac" type="date" class="text form-control" placeholder=""> </div> </div> </div> </div> </div> <div class="row"> <div class="col-sm-12"> <div class="form-group"> <label for=""> <p>Chức danh, chức vụ, đơn vị công tác (đảng, chính quyền, đoàn thể, tổ chức xã hội), kể cả thời gian được đào tạo, bồi dưỡng về chuyên môn, nghiệp vụ,......</p> </label> <textarea id="chucdanhCT" class="form-control text " rows="2" placeholder=""></textarea> </div> </div> </div> </div> </div> </div> </div>'
+    );
+    $('html').animate({
+      scrollTop: $("#themcongtac").parent().siblings().children().last().prev().offset().top
+    }, 500);
+  });
+
+  $("#themqtluong").click(function () {
+    $('#qtluong').append(
+      '<div class="card qt-luong radius-16"> <div class="card-header abc"> <button class="btn btn-link float-left" type="button" data-toggle="collapse-next"> <i class="fa fa-align-justify"></i> </button> <button class="btn btn-link xoa-qtluong float-right" type="button"> <i class="fa fa-times"></i> </button> </div> <div class="card-body p-20"> <div class="row"> <div class="col-md-12"> <div class="row "> <div class="col-lg-3"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Ngày hưởng </label> <input id="ngayluong" type="date" class="form-control" placeholder=""> </div> </div> <div class="col-lg-5"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Ngạch (Mã ngạch)</label> <div class="col-sm-12"> <input id="mangachwage" type="text" class="form-control " placeholder="Chuyên viên cao cấp (01.001)"> </div> </div> </div> <div class="col-lg-2"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Bậc</label> <div class="col-sm-12"> <input id="bacwage" type="text" class="form-control " placeholder=""> </div> </div> </div> <div class="col-lg-2"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Hệ số lương</label> <div class="col-sm-12"> <input id="hesowage" type="text" class="form-control " placeholder=""> </div> </div> </div> </div> </div> </div> </div> </div>'
+    );
+    $('html').animate({
+      scrollTop: $("#themqtluong").parent().siblings().children().last().prev().offset().top
+    }, 500);
+  });
+
+  $("#themvochong").click(function () {
+    $('#vochong').append(
+      '<div class="card vo-chong radius-16"> <div class="card-header abc"> <button class="btn btn-link float-left" type="button" data-toggle="collapse-next"> <i class="fa fa-align-justify"></i> </button> <button class="btn btn-link xoa-vochong float-right" type="button"> <i class="fa fa-times"></i> </button> </div> <div class="card-body p-20"> <div class="row"> <div class="col-sm-6"> <div class="row"> <div class="col-lg-12"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Mối quan hệ</label> <div class="col-sm-12"> <input id="moiQHkhac" type="text" class="form-control " placeholder=""> </div> </div> </div> </div> <div class="row"> <div class="col-lg-8"> <div class="form-group"> <label for="" class="col-sm-12 control-label" style="margin-bottom: 15px">Họ và tên</label> <div class="col-sm-12"> <input id="tenQHkhac" type="text" class="form-control" placeholder=""> </div> </div> </div> <div class="col-sm-4"> <div class="col-sm-12"> <label for="" class="col-sm-12 control-label"> <p style="margin-bottom: 0px">Năm sinh</p> </label> <select id="namsinhQHkhac" class="text custom-select form-control"> <option value="">Năm</option> <%for( let i = 1900; i <= timeYear; i ++ ) {%> <option value="<%- i %>"> <%- i %> </option> <%}%> </select> </div> </div> </div> </div> <div class="col-sm-6"> <div class="row"> <div class="col-sm-12"> <div class="form-group"> <label for="">Quê quán, nghề nghiệp, chức danh, chức vụ, đơn vị công tác, học tập, nơi ở (trong, ngoài nước); thành viên các tổ chức chính trị - xã hội ...)</label> <textarea id="mieutaQHkhac" class="form-control text " rows="4" placeholder=""></textarea> </div> </div> </div> </div> </div> </div> </div>'
+    );
+    $('html').animate({
+      scrollTop: $("#themvochong").parent().siblings().children().last().prev().offset().top
+    }, 500);
+  });
+
+  $("#thembanthan").click(function () {
+    $('#banthan').append(
+      '<div class="card ban-than radius-16"> <div class="card-header abc"> <button class="btn btn-link float-left" type="button" data-toggle="collapse-next"> <i class="fa fa-align-justify"></i> </button> <button class="btn btn-link xoa-banthan float-right" type="button"> <i class="fa fa-times"></i> </button> </div> <div class="card-body p-20"> <div class="row"> <div class="col-sm-6"> <div class="row"> <div class="col-lg-12"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Mối quan hệ</label> <div class="col-sm-12"> <input id="moiQH" type="text" class="form-control " placeholder=""> </div> </div> </div> </div> <div class="row"> <div class="col-lg-8"> <div class="form-group"> <label for="" class="col-sm-12 control-label" style="margin-bottom: 15px">Họ và tên</label> <div class="col-sm-12"> <input id="tenQH" type="text" class="form-control" placeholder=""> </div> </div> </div> <div class="col-lg-4"> <div class="col-lg-12"> <label for="" class="col-sm-12 control-label"> <p style="margin-bottom: 0px">Năm sinh</p> </label> <select id="namsinhQH" class="text custom-select form-control"> <option value="">Năm</option> <% for( let i = 1900; i <= timeYear; i ++ ) {%> <option value="<%- i %>"> <%- i %> </option> <%}%> </select> </div> </div> </div> </div> <div class="col-sm-6"> <div class="row"> <div class="col-sm-12"> <div class="form-group"> <label for="">Quê quán, nghề nghiệp, chức danh, chức vụ, đơn vị công tác, học tập, nơi ở (trong, ngoài nước); thành viên các tổ chức chính trị - xã hội ...)</label> <textarea id="mieutaQH" class="form-control text " rows="4" placeholder=""></textarea> </div> </div> </div> </div> </div> </div> </div>'
+    );
+    $('html').animate({
+      scrollTop: $("#thembanthan").parent().siblings().children().last().prev().offset().top
+    }, 500);
+  });
+
+
+  $(document).on('click', 'button.xoa-daotao', function () {
+    $(this).parent().parent().remove();
+    $('html').animate({
+      scrollTop: $("#them-daotao").parent().siblings().children().last().prev().prev().offset().top
+    }, 500);
+  });
+
+  $(document).on('click', 'button.xoa-congtac', function () {
+    $(this).parent().parent().remove();
+    $('html').animate({
+      scrollTop: $("#them-congtac").parent().siblings().children().last().prev().prev().offset().top
+    }, 500);
+  });
+
+  $(document).on('click', 'button.xoa-vochong', function () {
+    $(this).parent().parent().remove();
+    $('html').animate({
+      scrollTop: $("#them-vochong").parent().siblings().children().last().prev().prev().offset().top
+    }, 500);
+  });
+
+  $(document).on('click', 'button.xoa-phucap', function () {
+    $(this).parent().parent().remove();
+  });
+
+  $(document).on('click', 'button.xoa-banthan', function () {
+    $(this).parent().parent().remove();
+    $('html').animate({
+      scrollTop: $("#them-banthan").parent().siblings().children().last().prev().prev().offset().top
+    }, 500);
+  });
+
+  $(document).on('click', 'button.xoa-qtluong', function () {
+    $(this).parent().parent().remove();
+    $('html').animate({
+      scrollTop: $("#them-qtluong").parent().siblings().children().last().prev().prev().offset().top
+    }, 500);
+  });
+
+
+  var userId;
+
+  function getid(id) {
+    userId = id;
+  }
+
+  // window.onload = function getMaNgach() {
+
+  //   $.ajax({
+  //     url: `/he-thong/luong/list`,
+  //     method: "GET",
+  //     success: function (result) {
+  //       if (result.success == true) {
+  //         result.data.map((item, index) => {
+  //           $('#mangach').append(
+  //             '<option value="' + item._id + '">' + item.maNgach + '</option>'
+  //           )
+  //         })
+  //       }
+  //     }
+  //   })
+
+
+  // }
+
+
+
+  // $('#mangach').change(function () {
+  //   var selectMangach = $('#mangach').val();
+  //   $('#bacluong').empty();
+  //   $('#heso').empty();
+  //   $('#bacluong').append('<option value=""></option>');
+  //   $.ajax({
+  //     url: `/he-thong/luong/list`,
+  //     method: 'GET',
+  //     success: function (result) {
+  //       result.data.map(item => {
+  //         if (item._id === selectMangach) {
+  //           item.bacHeso.map(item1 => {
+  //             if (item1.heso != "") {
+  //               $('#bacluong').append('<option value="' + item1.bac + '">' + item1.bac +
+  //                 '</option>')
+  //             }
+  //           })
+  //         }
+  //       })
+  //     }
+  //   })
+  // })
+
+  // $('#bacluong').change(function () {
+  //   $('#heso').empty();
+  //   var selectMangach = $('#mangach').val();
+  //   var selectBac = $('#bacluong').val();
+
+  //   $.ajax({
+  //     url: `/he-thong/luong/list`,
+  //     method: 'GET',
+  //     success: function (result) {
+  //       result.data.map(item2 => {
+  //         if (item2.maNgach === selectMangach) {
+  //           item2.bacHeso.map(item3 => {
+  //             if (selectBac == item3.bac) {
+  //               $('#heso').append('<option value="' +
+  //                 item3.heso + '">' + item3.heso +
+  //                 '</option>')
+  //             }
+  //           })
+  //         }
+  //       })
+  //     }
+  //   })
+  // })
+
+
+
+  // Submit button
+  $(document).on('click', '#edit-button', function (e) {
+    validateInput(function (flag) {
+      if (!flag) {
+        alert('Vui lòng nhập đủ thông tin !')
+      } else {
+        // var arrayCourses = [];
+        // $('div.dao-tao').each(function (index, val) {
+        //   arrayCourses.push({
+        //     schoolName: $(this).find('#truongdaotao').val(),
+        //     specializedTraining: $(this).find('#chuyenmondaotao').val(),
+        //     fromDate: $(this).find('#ngaydaotao').val(),
+        //     toDate: $(this).find('#ngayhetdaotao').val(),
+        //     formsOfTraining: $(this).find('#hinhthucdaotao').val(),
+        //     diploma: $(this).find('#vanbangdaotao').val(),
+        //   });
+        // })
+
+        var arrayWorkingProccess = [];
+        $('div.cong-tac').each(function (index, val) {
+          arrayWorkingProccess.push({
+            fromDate: $(this).find('#ngaycongtac').val(),
+            toDate: $(this).find('#ngayhetcongtac').val(),
+            description: $(this).find('#chucdanhCT').val(),
+          });
+        })
+
+        var arrayAboutMyself = [];
+        $('div.ban-than').each(function (index, val) {
+          arrayAboutMyself.push({
+            type: $(this).find('#moiQH').val(),
+            name: $(this).find('#tenQH').val(),
+            birthday: new Date($(this).find('#namsinhQH').val()),
+            description: $(this).find('#mieutaQH').val(),
+          });
+        })
+
+        var arrayAboutOther = [];
+        $('div.vo-chong').each(function (index, val) {
+          arrayAboutOther.push({
+            type: $(this).find('#moiQHkhac').val(),
+            name: $(this).find('#tenQHkhac').val(),
+            birthday: new Date($(this).find('#namsinhQHkhac').val()),
+            description: $(this).find('#mieutaQHkhac').val(),
+          });
+        })
+
+        var arrayWageMovements = [];
+        $('div.qt-luong').each(function (index, val) {
+          arrayWageMovements.push({
+            date: $(this).find('#ngayluong').val(),
+            salaryLevel: $(this).find('#bacwage').val(),
+            scaleCode: $(this).find('#mangachwage').val(),
+            coefficient: $(this).find('#hesowage').val(),
+          });
+        })
+
+        var placeBirth1 = {};
+        placeBirth1 = {
+          commune: $('#noisinhXa').val(),
+          district: $('#noisinhHuyen').val(),
+          province: $('#noisinhTinh').val()
+        }
+
+        var hometown1 = {};
+        hometown1 = {
+          commune: $('#quequanXa').val(),
+          district: $('#quequanHuyen').val(),
+          province: $('#quequanTinh').val()
+        }
+
+        var educationLevel1 = {};
+        educationLevel1 = {
+          generalEducationLevel: {
+            whichClass: $('#trinhdoGD').val(),
+          },
+          highestProfessionalQualification: $("#trinhdoCM").val(),
+          politicalTheory: $("#lyluanCT").val(),
+          stateManagement: $("#quanlinhanuoc").val(),
+          languageLevel: {
+            language: $('#ngoaingu').val(),
+            level: $('#trinhDoNN').val(),
+            description: $('#moTaNN').val()
+          },
+          computerSkill: {
+            level: $('#tinhoc').val(),
+            description: $('#moTaTH').val()
+          }
+        }
+
+        var laDangVien = $('#laDangVien:checkbox:checked').val();
+        if (laDangVien == undefined) {
+          laDangVien = "0"
+        }
+
+        var communist1 = {};
+        communist1 = {
+          dateIn: $('#ngayvaoDang').val(),
+          officalDate: $('#ngayvaoDangCT').val(),
+          number: $('#soTheDang').val(),
+          yes: laDangVien,
+        }
+
+        var laDoanVien = $('#laDoanVien:checkbox:checked').val();
+        if (laDoanVien == undefined) {
+          laDoanVien = "0"
+        }
+
+        var youthUnion1 = {};
+        youthUnion1 = {
+          dateIn: $('#ngayvaoDoan').val(),
+          yes: laDoanVien,
+        }
+
+        var cuuNV = $('#cuuNhanVien:checkbox:checked').val();
+        if (cuuNV == undefined) {
+          cuuNV = "0"
+        }
+
+        var ngayThamGiaToChucCTXH1 = [];
+        ngayThamGiaToChucCTXH1.push({
+          name: $('#TCCTXH').val(),
+          dateIn: $('#ngaythamgiaTCCTXH').val(),
+        })
+
+        var army1 = {};
+        army1 = {
+          dateIn: $('#ngaynhapngu').val(),
+          dateOut: $('#ngayxuatngu').val(),
+          rank: $('#quanham').val(),
+          highestAward: $('#danhhieu').val(),
+        }
+
+        var health1 = {};
+        health1 = {
+          status: $('#suckhoe').val(),
+          heigth: $('#chieucao').val(),
+          weight: $('#cannang').val(),
+          bloodGroup: $('#nhommau').val(),
+        }
+
+        var IDCard1 = {};
+        IDCard1 = {
+          number: $('#cmnd').val(),
+          dateRange: $('#ngaycapcmnd').val(),
+        }
+
+        var personalHistory1 = [];
+        personalHistory1 = [{
+          question1: $('#question1').val(),
+          question2: $('#question2').val(),
+          question3: $('#question3').val(),
+        }]
+
+        var veterans1 = {};
+        veterans1 = {
+          type: $('#thuongbinh').val(),
+        }
+
+        var familyRelationship1 = {};
+        familyRelationship1 = {
+          aboutMyself: arrayAboutMyself,
+          aboutOther: arrayAboutOther,
+        }
+
+        // var award1 = [];
+        // award1 = {
+        //   type: $('#khenthuong').val(),
+        //   year: $('#namkhenthuong').val(),
+        //   level: $('#capkhenthuong').val(),
+        // }
+        // var discipline1 = [];
+        // discipline1 = {
+        //   type: $('#kyluat').val(),
+        //   year: $('#namkyluat').val(),
+        //   level: $('#capkyluat').val(),
+        // }
+
+
+
+        var data = {
+          email: $('#email').val(),
+          // password: $('#password').val(),
+          usersCardNumber: $('#textSoHieu').val(),
+          name: $('#textTen').val(),
+          phoneNumber: $('#phoneNumber').val(),
+          nickName: $('#textTenKhac').val(),
+          birthday: $('#ngaysinh').val(),
+          gender: $('#gioitinh').val(),
+          placeBirth: JSON.stringify(placeBirth1),
+          hometown: JSON.stringify(hometown1),
+          nation: document.getElementById("dantoc2").value,
+          religion: document.getElementById("tongiao2").value,
+          registeredPermanentResidence: $('#HoKhau').val(),
+          registeredTemporaryResidence: $('#Address').val(),
+          occupationƯwhenRecruited: $('#nghenghiepTD').val(),
+          recruitmentDay: $('#ngayTD').val(),
+          employmentAgency: $('#coquanTDtruoc').val(),
+          // currentPosition: $('#chucvuHT').val(),
+          mainJob: $('#cvchinh').val(),
+          scaleOfCivilServant: $('#ngach').val(),
+          // salaryLevel: $('#bacluong').val(),
+          // scaleCode: $('#mangach').val(),
+          // coefficient: $('#heso').val(),
+          payday: $('#ngayhuong').val(),
+          // fringeBenefits: $('#phucap').val(),
+          // otherFringeBenefits: $('#phucapkhac').val(),
+          educationLevel: JSON.stringify(educationLevel1),
+          communist: JSON.stringify(communist1),
+          youthUnion: JSON.stringify(youthUnion1),
+          ngayThamGiaToChucCTXH: JSON.stringify(ngayThamGiaToChucCTXH1),
+          // mainJobToChucCTXH: $('#textTenMe').val(),
+          army: JSON.stringify(army1),
+          forte: $('#sotruong').val(),
+          // award: JSON.stringify(award1),
+          // discipline: JSON.stringify(discipline1),
+          health: JSON.stringify(health1),
+          IDCard: JSON.stringify(IDCard1),
+          socialInsuranceNumber: $('#bhxh').val(),
+          veterans: JSON.stringify(veterans1),
+          familyPolicy: $('#conlietsi').val(),
+          evaluate: $('#nhanxet').val(),
+          personalHistory: JSON.stringify(personalHistory1),
+          // course: JSON.stringify(arrayCourses),
+          workingProccess: JSON.stringify(arrayWorkingProccess),
+          familyRelationship: JSON.stringify(familyRelationship1),
+          wageMovements: JSON.stringify(arrayWageMovements),
+          cuuNhanVien: cuuNV
+        }
+
+        $.ajax({
+          url: `/quan-ly/chinh-sua-ho-so/${userId}`,
+          type: 'put',
+          dataType: 'json',
+          data: data,
+          success: function (res) {
+            if (res) {
+
+
+              // var arrayPhucap = [];
+              // $('div.phu-cap').each(function (index, val) {
+              //   arrayPhucap.push({
+              //     moTa: $(this).find('#phucap').val(),
+              //     soTien: $(this).find('#phucapkhac').val()
+              //   });
+              // })
+
+              // var editluong = {
+              //   user: res.data._id,
+              //   bacHeso: $('#bacluong').val(),
+              //   ngach: $('#mangach').val(),
+              //   phuCap: JSON.stringify(arrayPhucap)
+              // }
+
+              // $.ajax({
+              //   url: '/quan-ly/luong-phu-cap/them',
+              //   type: 'PUT',
+              //   dataType: 'json',
+              //   data: editluong,
+              //   success: function (res) {}
+              // });
+
+              alert("Chỉnh sửa thành công");
+              window.location.replace("/quan-ly/danh-sach-nhan-su");
+            }
+          }
+        })
+      }
+    })
+  });
+
+
+
+
+  // Kiểm tra các fiedl
+  function validateInput(callback) {
+    let flag = true;
+    $('input, textarea, select').filter('[required]:visible').each(function (index, val) {
+      let _this = this;
+      if ($(this).val() == '') {
+        flag = false;
+        makeInputDanger(_this);
+      }
+    })
+    callback(flag);
+  }
+  // báo hiệu các field chưa nhập
+  $(document).on('focusout', 'input.required, textarea.required, select.required',
+    function () {
+      if ($(this).val() == "") {
+        makeInputDanger(this);
+      } else {
+        makeInputDefault(this);
+      }
+    })
+
+  $(document).on('click', '[data-toggle=collapse-next]', function () {
+    var $target = $(this).parent().next()
+    $target.collapse('toggle');
+  });
+</script>
+
+<script>
+  function getCourses(id) {
+    $('#listDT').empty();
+    $.ajax({
+      url: `/quan-ly/dao-tao/user/${id}`,
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          var data1 = result.data;
+
+          $.each(data1, function (index, item) {
+
+            // if (item.ngayBatDau != null) {
+            //   var ngayBatDau = moment(item.ngayBatDau).format('DD/MM/YYYY');
+            // } else {
+            //   var ngayBatDau = "";
+            // }
+            // if (item.ngayKetThuc != null) {
+            //   var ngayKetThuc = moment(item.ngayKetThuc).format('DD/MM/YYYY');
+            // } else {
+            //   var ngayKetThuc = "";
+            // }
+
+            $('#listDT').append(
+              '<tr>' +
+              '<td>' +
+              '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#editCourses" onclick=editCourses("' +
+              item._id + '")>' +
+              '<i class="fa fa-edit"></i>' +
+              '</button>' +
+              '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#removeCourses" onclick=removeCourses("' +
+              item._id + '")>' +
+              '<i class="fa fa-trash-o"></i>' +
+              '</button>' +
+              '</td>' +
+              '<td>' + (index + 1) +
+              '</td>' +
+              '<td>' + item.ngayBatDau + '-' + item.ngayKetThuc +
+              '</td>' +
+              '<td>' + item.diaDiem +
+              '</td>' +
+              '<td>' + item.noiDung +
+              '</td>' +
+              '<td>' + item.trinhDo +
+              '</td>' +
+              '<td>' + item.hinhThuc +
+              '</td>' +
+              '</tr>'
+            )
+          })
+
+        } else {
+          console.log("abc")
+        }
+      }
+    })
+  }
+</script>
+
+<script>
+  function getAward(id) {
+    $('#listKT').empty();
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/awards/user/${id}`,
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          var data2 = result.data;
+
+          $.each(data2, function (index, item) {
+
+            // if (item.quyetDinh.date != null) {
+            //   var ngayQĐ1 = moment(item.quyetDinh.date).format('DD/MM/YYYY');
+            // } else {
+            //   var ngayQĐ1 = "";
+            // }
+
+            $('#listKT').append(
+              '<tr>' +
+              '<td>' +
+              '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#editKT" onclick=getEditKhenthuong("' +
+              item._id + '")>' +
+              '<i class="fa fa-edit"></i>' +
+              '</button>' +
+              '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#deleteKT" onclick=removeKhenthuong("' +
+              item._id + '")>' +
+              '<i class="fa fa-trash-o"></i>' +
+              '</button>' +
+              '</td>' +
+              '<td>' + (index + 1) +
+              '</td>' +
+              '<td>' + item.quyetDinh.number +
+              '</td>' +
+              '<td>' + item.quyetDinh.date +
+              '</td>' +
+              '<td>' + item.quyetDinh.org +
+              '</td>' +
+              '<td>' + item.title +
+              '</td>' +
+              '<td>' + item.format +
+              '</td>' +
+              '<td>' + item.description +
+              '</td>' +
+              '</tr>'
+            )
+          })
+
+        } else {
+          console.log("abc")
+        }
+      }
+    })
+  }
+</script>
+
+<script>
+  function getDiscipline(id) {
+    $('#listKL').empty();
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/discipline/user/${id}`,
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          var data3 = result.data;
+
+          $.each(data3, function (index, item) {
+
+            // if (item.quyetDinh.startedDate != null) {
+            //   var startedDate = moment(item.quyetDinh.startedDate).format('DD/MM/YYYY');
+            // } else {
+            //   var startedDate = "";
+            // }
+            // if (item.quyetDinh.endedDate != null) {
+            //   var endedDate = moment(item.quyetDinh.endedDate).format('DD/MM/YYYY');
+            // } else {
+            //   var endedDate = "";
+            // }
+
+            $('#listKL').append(
+              '<tr>' +
+              '<td>' +
+              '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#editKL" onclick=getEditKiLuat("' +
+              item._id + '")>' +
+              '<i class="fa fa-edit"></i>' +
+              '</button>' +
+              '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#removeKL" onclick=removeKiluat("' +
+              item._id + '")>' +
+              '<i class="fa fa-trash-o"></i>' +
+              '</button>' +
+              '</td>' +
+              '<td>' + (index + 1) +
+              '</td>' +
+              '<td>' + item.quyetDinh.number +
+              '</td>' +
+              '<td>' + item.quyetDinh.startedDate + '-' + item.quyetDinh.endedDate +
+              '</td>' +
+              '<td>' + item.quyetDinh.org +
+              '</td>' +
+              '<td>' + item.format +
+              '</td>' +
+              '<td>' + item.description +
+              '</td>' +
+              '</tr>'
+            )
+          })
+
+        } else {
+          console.log("abc")
+        }
+      }
+    })
+  }
+</script>
+
+<script>
+  function getSolution(id) {
+    $('#listGP').empty();
+    $.ajax({
+      url: `/quan-ly/giai-phap-sang-kien/user/${id}`,
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          var data4 = result.data;
+
+          $.each(data4, function (index, item) {
+
+            $('#listGP').append(
+              '<tr>' +
+              '<td>' +
+              '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#editGP" onclick=getGP("' +
+              item._id + '")>' +
+              '<i class="fa fa-edit"></i>' +
+              '</button>' +
+              '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#removeGP" onclick=removeGP("' +
+              item._id + '")>' +
+              '<i class="fa fa-trash-o"></i>' +
+              '</button>' +
+              '</td>' +
+              '<td>' + (index + 1) +
+              '</td>' +
+              '<td>' + item.nam +
+              '</td>' +
+              '<td>' + item.loai +
+              '</td>' +
+              '<td>' + item.ten +
+              '</td>' +
+              '<td>' + item.xepLoai +
+              '</td>' +
+              '<td>' + item.cap +
+              '</td>' +
+              '<td>' + item.ghiChu +
+              '</td>' +
+              '</tr>'
+            )
+          })
+
+        } else {
+          console.log("abc")
+        }
+      }
+    })
+  }
+</script>
+
+
+<script>
+  //Them khoa dao tao
+
+  var createDTID;
+
+  function createDT(id) {
+    createDTID = id;
+  }
+
+  function createCourse() {
+
+
+    var daotao = {
+      users: JSON.stringify([createDTID]),
+      ten: $('#khoadaotao').val(),
+      loai: $('#loaidaotao').val(),
+      noiDung: $('#NDdaotao').val(),
+      trinhDo: $('#trinhdodaotao').val(),
+      ngayBatDau: $('#thoigiandaotao').val(),
+      ngayKetThuc: $('#thoigianhetdaotao').val(),
+      diaDiem: $('#noidaotao').val(),
+      hinhThuc: $('#hinhthucdaotao').val(),
+      confirmed: "1"
+    }
+
+    $.ajax({
+      url: '/quan-ly/dao-tao/them',
+      type: 'POST',
+      dataType: 'json',
+      data: daotao,
+
+      success: function (res) {
+        if (res) {
+          $('#listDT').empty();
+          $.ajax({
+            url: `/quan-ly/dao-tao/user/${createDTID}`,
+            method: "GET",
+            success: function (result) {
+              if (result.success == true) {
+                var data1 = result.data;
+
+                $.each(data1, function (index, item) {
+
+                  // if (item.ngayBatDau != null) {
+                  //   var ngayBatDau = moment(item.ngayBatDau).format('DD/MM/YYYY');
+                  // } else {
+                  //   var ngayBatDau = "";
+                  // }
+                  // if (item.ngayKetThuc != null) {
+                  //   var ngayKetThuc = moment(item.ngayKetThuc).format('DD/MM/YYYY');
+                  // } else {
+                  //   var ngayKetThuc = "";
+                  // }
+
+                  $('#listDT').append(
+                    '<tr>' +
+                    '<td>' +
+                    '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#editCourses" onclick=editCourses("' +
+                    item._id + '")>' +
+                    '<i class="fa fa-edit"></i>' +
+                    '</button>' +
+                    '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#removeCourses" onclick=removeCourses("' +
+                    item._id + '")>' +
+                    '<i class="fa fa-trash-o"></i>' +
+                    '</button>' +
+                    '</td>' +
+                    '<td>' + (index + 1) +
+                    '</td>' +
+                    '<td>' + item.ngayBatDau + '-' + item.ngayKetThuc +
+                    '</td>' +
+                    '<td>' + item.diaDiem +
+                    '</td>' +
+                    '<td>' + item.noiDung +
+                    '</td>' +
+                    '<td>' + item.trinhDo +
+                    '</td>' +
+                    '<td>' + item.hinhThuc +
+                    '</td>' +
+                    '</tr>'
+                  )
+                })
+
+              } else {
+                console.log("abc")
+              }
+            }
+          })
+          alert("Tạo thành công");
+        }
+      }
+    })
+  };
+
+  // Chinh sua khoa dao tao
+  var EditId;
+
+  function editCourses(id) {
+    $.ajax({
+      url: `/quan-ly/dao-tao/${id}`,
+      method: "GET",
+      success: function (result) {
+        EditId = id;
+        if (result.success == true) {
+          var course = result.data;
+
+          // if (course.ngayBatDau != "") {
+          //   let ngayBatDau = moment(course.ngayBatDau).format('YYYY-MM-DD');
+          //   $('#editthoigiandaotao').val(ngayBatDau);
+          // } else {
+          //   let ngayBatDau = "";
+          //   $('#editthoigiandaotao').val(ngayBatDau);
+          // }
+
+          // if (course.ngayKetThuc != "") {
+          //   let ngayKetThuc = moment(course.ngayKetThuc).format('YYYY-MM-DD');
+          //   $('#editthoigianhetdaotao').val(ngayKetThuc);
+          // } else {
+          //   let ngayKetThuc = "";
+          //   $('#editthoigianhetdaotao').val(ngayKetThuc);
+          // }
+
+          $('#editthoigiandaotao').val(course.ngayBatDau),
+          $('#editthoigianhetdaotao').val(course.ngayKetThuc),
+          $('#editkhoadaotao').val(course.ten),
+            $('#editloaidaotao').val(course.loai),
+            $('#editNDdaotao').val(course.noiDung),
+            $('#edittrinhdodaotao').val(course.trinhDo),
+            $('#editnoidaotao').val(course.diaDiem),
+            $('#edithinhthucdaotao').val(course.hinhThuc)
+        } else {
+          console.log("Lỗi")
+        }
+      }
+    })
+  }
+
+  function ChinhsuaCourses() {
+
+    var ngayBatDau1 = $('#editthoigiandaotao').val();
+    var ngayKetThuc1 = $('#editthoigianhetdaotao').val()
+
+    $.ajax({
+      url: `/quan-ly/dao-tao/${EditId}`,
+      type: 'put',
+      dataType: 'json',
+      data: {
+        ten: $('#editkhoadaotao').val(),
+        loai: $('#editloaidaotao').val(),
+        noiDung: $('#editNDdaotao').val(),
+        trinhDo: $('#edittrinhdodaotao').val(),
+        ngayBatDau: ngayBatDau1,
+        ngayKetThuc: ngayKetThuc1,
+        diaDiem: $('#editnoidaotao').val(),
+        hinhThuc: $('#edithinhthucdaotao').val(),
+        confirmed: "1"
+      },
+      success: function (res) {
+        if (res) {
+          EditId = "";
+          alert("Chỉnh sửa thành công");
+
+        }
+      }
+    })
+  };
+
+  var DeleteDT;
+
+  function removeCourses(id) {
+    DeleteDT = id;
+  }
+
+  function deleteCourses() {
+    $.ajax({
+      url: `/quan-ly/dao-tao/${DeleteDT}`,
+      method: "DELETE",
+      success: function (result) {
+        DeleteDT = "";
+        alert("Xóa thành công");
+
+      }
+    })
+  }
+</script>
+
+<script>
+  // Khen thuong
+  var DeleteKT;
+
+  function removeKhenthuong(id) {
+    DeleteKT = id;
+  }
+
+  function deleteAward() {
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/awards/${DeleteKT}`,
+      method: "DELETE",
+      success: function (result) {
+        DeleteKT = '';
+        alert("Xóa thành công");
+      }
+    })
+  }
+
+  var createID;
+
+  function createKhenthuong(id) {
+    createID = id;
+  }
+
+  function createAward() {
+
+    var khenthuong = {
+      users: JSON.stringify([createID]),
+      quyetDinh: JSON.stringify({
+        org: $('#CapKT').val(),
+        number: $('#SoKT').val(),
+        date: $('#Ngayquyetdinh').val(),
+      }),
+      title: $('#DanhhieuKT').val(),
+      format: $('#HinhthucKT').val(),
+      description: $('#ThanhtichKT').val(),
+      confirmed: "1"
+    }
+
+    $.ajax({
+      url: '/quan-ly/khen-thuong-ky-luat/awards/them',
+      type: 'POST',
+      dataType: 'json',
+      data: khenthuong,
+      success: function (res) {
+        if (res) {
+          $('#listKT').empty();
+          $.ajax({
+            url: `/quan-ly/khen-thuong-ky-luat/awards/user/${createID}`,
+            method: "GET",
+            success: function (result) {
+              if (result.success == true) {
+                var data2 = result.data;
+
+                $.each(data2, function (index, item) {
+
+                  // if (item.quyetDinh.date != null) {
+                  //   var ngayQĐ1 = moment(item.quyetDinh.date).format('DD/MM/YYYY');
+                  // } else {
+                  //   var ngayQĐ1 = "";
+                  // }
+
+                  $('#listKT').append(
+                    '<tr>' +
+                    '<td>' +
+                    '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#editKT" onclick=getEditKhenthuong("' +
+                    item._id + '")>' +
+                    '<i class="fa fa-edit"></i>' +
+                    '</button>' +
+                    '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#deleteKT" onclick=removeKhenthuong("' +
+                    item._id + '")>' +
+                    '<i class="fa fa-trash-o"></i>' +
+                    '</button>' +
+                    '</td>' +
+                    '<td>' + (index + 1) +
+                    '</td>' +
+                    '<td>' + item.quyetDinh.number +
+                    '</td>' +
+                    '<td>' + item.quyetDinh.date +
+                    '</td>' +
+                    '<td>' + item.quyetDinh.org +
+                    '</td>' +
+                    '<td>' + item.title +
+                    '</td>' +
+                    '<td>' + item.format +
+                    '</td>' +
+                    '<td>' + item.description +
+                    '</td>' +
+                    '</tr>'
+                  )
+                })
+
+              } else {
+                console.log("abc")
+              }
+            }
+          })
+          alert("Tạo khen thưởng thành công");
+        }
+      }
+    })
+  };
+  var editKT;
+
+  function getEditKhenthuong(id) {
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/awards/${id}`,
+      method: "GET",
+      success: function (result) {
+        editKT = id;
+        if (result.success == true) {
+          var award = result.data;
+
+          // if (award.quyetDinh.date != "") {
+          //   let dateQD = moment(award.quyetDinh.date).format('YYYY-MM-DD');
+          //   $('#editNgayquyetdinh').val(dateQD);
+          // } else {
+          //   let dateQD = "";
+          //   $('#editNgayquyetdinh').val(dateQD);
+          // }
+
+          $('#editNgayquyetdinh').val(award.quyetDinh ? award.quyetDinh.date : null),
+          $('#editCapKT').val(award.quyetDinh ? award.quyetDinh.org : null),
+            $('#editSoKT').val(award.quyetDinh ? award.quyetDinh.number : null),
+            $('#editDanhhieuKT').val(award.title),
+            $('#editHinhthucKT').val(award.format),
+            $('#editThanhtichKT').val(award.description)
+        }
+      }
+    })
+  }
+
+  function editAward() {
+
+    var dateQuyetdinh = $('#editNgayquyetdinh').val();
+
+    var editkhenthuong = {
+      quyetDinh: JSON.stringify({
+        org: $('#editCapKT').val(),
+        number: $('#editSoKT').val(),
+        date: dateQuyetdinh,
+      }),
+      title: $('#editDanhhieuKT').val(),
+      format: $('#editHinhthucKT').val(),
+      description: $('#editThanhtichKT').val(),
+      confirmed: "1"
+    }
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/awards/${editKT}`,
+      method: "PUT",
+      data: editkhenthuong,
+      success: function (result) {
+        if (result) {
+          editKT = "";
+          alert("Chỉnh sửa khen thưởng thành công");
+        }
+      }
+    })
+  }
+</script>
+
+<script>
+  // Ki luat
+  var deleteKL;
+
+  function removeKiluat(id) {
+    deleteKL = id;
+  }
+
+  function deleteDiscipline() {
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/discipline/${deleteKL}`,
+      method: "DELETE",
+      success: function (result) {
+        deleteKL = "";
+        alert("Xóa thành công");
+      }
+    })
+  }
+
+  var createKLID;
+
+  function createKiLuat(id) {
+    createKLID = id;
+  }
+
+  function createDiscipline() {
+
+    var kiluat = {
+      users: JSON.stringify([createKLID]),
+      quyetDinh: JSON.stringify({
+        org: $('#CapKL').val(),
+        number: $('#SoKL').val(),
+        startedDate: $('#Ngayhieuluc').val(),
+        endedDate: $('#Ngayhethieuluc').val(),
+      }),
+      format: $('#HinhthucKL').val(),
+      description: $('#LydoKL').val(),
+      confirmed: "1"
+    }
+
+    $.ajax({
+      url: '/quan-ly/khen-thuong-ky-luat/discipline/them',
+      type: 'POST',
+      dataType: 'json',
+      data: kiluat,
+      success: function (res) {
+        if (res) {
+          $('#listKL').empty();
+          $.ajax({
+            url: `/quan-ly/khen-thuong-ky-luat/discipline/user/${createKLID}`,
+            method: "GET",
+            success: function (result) {
+              if (result.success == true) {
+                var data3 = result.data;
+
+                $.each(data3, function (index, item) {
+
+                  // if (item.quyetDinh.startedDate != null) {
+                  //   var startedDate = moment(item.quyetDinh.startedDate).format('DD/MM/YYYY');
+                  // } else {
+                  //   var startedDate = "";
+                  // }
+                  // if (item.quyetDinh.endedDate != null) {
+                  //   var endedDate = moment(item.quyetDinh.endedDate).format('DD/MM/YYYY');
+                  // } else {
+                  //   var endedDate = "";
+                  // }
+
+                  $('#listKL').append(
+                    '<tr>' +
+                    '<td>' +
+                    '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#editKL" onclick=getEditKiLuat("' +
+                    item._id + '")>' +
+                    '<i class="fa fa-edit"></i>' +
+                    '</button>' +
+                    '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#removeKL" onclick=removeKiluat("' +
+                    item._id + '")>' +
+                    '<i class="fa fa-trash-o"></i>' +
+                    '</button>' +
+                    '</td>' +
+                    '<td>' + (index + 1) +
+                    '</td>' +
+                    '<td>' + item.quyetDinh.number +
+                    '</td>' +
+                    '<td>' + item.quyetDinh.startedDate + '-' + item.quyetDinh.endedDate +
+                    '</td>' +
+                    '<td>' + item.quyetDinh.org +
+                    '</td>' +
+                    '<td>' + item.format +
+                    '</td>' +
+                    '<td>' + item.description +
+                    '</td>' +
+                    '</tr>'
+                  )
+                })
+
+              } else {
+                console.log("abc")
+              }
+            }
+          })
+          alert("Tạo kỉ luật thành công");
+        }
+      }
+    })
+  };
+  var editKL;
+
+  function getEditKiLuat(id) {
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/discipline/${id}`,
+      method: "GET",
+      success: function (result) {
+        editKL = id;
+        if (result.success == true) {
+          var discipline = result.data;
+
+          // if (discipline.quyetDinh.startedDate != "") {
+          //   let datestartQD = moment(discipline.quyetDinh.startedDate).format('YYYY-MM-DD');
+          //   $('#editNgayhieuluc').val(datestartQD);
+          // } else {
+          //   let datestartQD = "";
+          //   $('#editNgayhieuluc').val(datestartQD);
+          // }
+
+          // if (discipline.quyetDinh.endedDate != "") {
+          //   let dateendQD = moment(discipline.quyetDinh.endedDate).format('YYYY-MM-DD');
+          //   $('#editNgayhethieuluc').val(dateendQD);
+          // } else {
+          //   let dateendQD = "";
+          //   $('#editNgayhethieuluc').val(dateendQD);
+          // }
+
+          $('#editNgayhieuluc').val(discipline.quyetDinh ? discipline.quyetDinh.startedDate : null),
+          $('#editNgayhethieuluc').val(discipline.quyetDinh ? discipline.quyetDinh.endedDate : null),
+          $('#editCapKL').val(discipline.quyetDinh ? discipline.quyetDinh.org : null),
+            $('#editSoKL').val(discipline.quyetDinh ? discipline.quyetDinh.number : null),
+            $('#editHinhthucKL').val(discipline.format),
+            $('#editLydoKL').val(discipline.description)
+        }
+      }
+    })
+  }
+
+  function editDiscipline() {
+
+    var dateStart = $('#editNgayhieuluc').val();
+    var dateEnd = $('#editNgayhethieuluc').val();
+
+    var editkiluat = {
+      quyetDinh: JSON.stringify({
+        org: $('#editCapKL').val(),
+        number: $('#editSoKL').val(),
+        startedDate: dateStart,
+        endedDate: dateEnd,
+      }),
+      format: $('#editHinhthucKL').val(),
+      description: $('#editLydoKL').val(),
+      confirmed: "1"
+    }
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/discipline/${editKL}`,
+      method: "PUT",
+      data: editkiluat,
+      success: function (result) {
+        if (result) {
+          editKL = "";
+          alert("Chỉnh sửa kỉ luật thành công");
+        }
+
+      }
+    })
+  }
+</script>
+
+<script>
+  // giai phap, sang kien
+  var deleteGP;
+
+  function removeGP(id) {
+    deleteGP = id;
+  }
+
+  function delete_GP() {
+    $.ajax({
+      url: `/quan-ly/giai-phap-sang-kien/${deleteGP}`,
+      method: "DELETE",
+      success: function (result) {
+        deleteGP = "";
+        alert("Xóa thành công");
+        // window.location.reload();
+      }
+    })
+  }
+
+  var createGPID;
+
+  function createGP(id) {
+    createGPID = id;
+  }
+
+
+  $(document).on('click', '#create_GP', function () {
+
+    var giaiphap = {
+      users: JSON.stringify([createGPID]),
+      nam: $('#namgiaiphap').val(),
+      loai: $('#loaiDetai').val(),
+      xepLoai: $('#xepLoai').val(),
+      cap: $('#cap').val(),
+      ten: $('#deTai').val(),
+      ghiChu: $('#ghiChu').val(),
+      confirmed: "1"
+    }
+
+    $.ajax({
+      url: `/quan-ly/giai-phap-sang-kien/them`,
+      type: 'POST',
+      dataType: 'json',
+      data: giaiphap,
+      success: function (res) {
+        if (res) {
+          $('#listGP').empty();
+          $.ajax({
+            url: `/quan-ly/giai-phap-sang-kien/user/${createGPID}`,
+            method: "GET",
+            success: function (result) {
+              if (result.success == true) {
+                var data4 = result.data;
+
+                $.each(data4, function (index, item) {
+
+                  $('#listGP').append(
+                    '<tr>' +
+                    '<td>' +
+                    '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#editGP" onclick=getGP("' +
+                    item._id + '")>' +
+                    '<i class="fa fa-edit"></i>' +
+                    '</button>' +
+                    '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#removeGP" onclick=removeGP("' +
+                    item._id + '")>' +
+                    '<i class="fa fa-trash-o"></i>' +
+                    '</button>' +
+                    '</td>' +
+                    '<td>' + (index + 1) +
+                    '</td>' +
+                    '<td>' + item.nam +
+                    '</td>' +
+                    '<td>' + item.loai +
+                    '</td>' +
+                    '<td>' + item.ten +
+                    '</td>' +
+                    '<td>' + item.xepLoai +
+                    '</td>' +
+                    '<td>' + item.cap +
+                    '</td>' +
+                    '<td>' + item.ghiChu +
+                    '</td>' +
+                    '</tr>'
+                  )
+                })
+
+              } else {
+                console.log("abc")
+              }
+            }
+          })
+          alert("Tạo thành công")
+          // window.location.reload();
+        }
+      }
+    })
+  });
+  var editGP;
+
+  function getGP(id) {
+    $.ajax({
+      url: `/quan-ly/giai-phap-sang-kien/${id}`,
+      method: "GET",
+      success: function (result) {
+        editGP = id;
+        if (result.success == true) {
+          let editSolution = result.data;
+          $('#editnamgiaiphap').val(editSolution.nam),
+            $('#editloaiDetai').val(editSolution.loai),
+            $('#editxepLoai').val(editSolution.xepLoai),
+            $('#editcap').val(editSolution.cap),
+            $('#editdeTai').val(editSolution.ten),
+            $('#editghiChu').val(editSolution.ghiChu)
+        }
+      }
+    })
+  }
+
+  function edit_GP() {
+
+    var editgiaiphap = {
+      nam: $('#editnamgiaiphap').val(),
+      loai: $('#editloaiDetai').val(),
+      xepLoai: $('#editxepLoai').val(),
+      cap: $('#editcap').val(),
+      ten: $('#editdeTai').val(),
+      ghiChu: $('#editghiChu').val(),
+      confirmed: "1"
+    }
+    $.ajax({
+      url: `/quan-ly/giai-phap-sang-kien/${editGP}`,
+      method: "PUT",
+      data: editgiaiphap,
+      success: function (result) {
+        if (result) {
+          editGP = "";
+          alert("Chỉnh sửa thành công");
+          // window.location.reload();
+        }
+
+      }
+    })
+  }
+</script>

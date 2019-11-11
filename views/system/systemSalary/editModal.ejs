@@ -1,0 +1,171 @@
+<div class="modal fade" id="editSalary" role="dialog">
+  <div class="modal-dialog" style="max-width: 700px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Chỉnh sửa danh mục lương</h4>
+        <button type="button" class="close closes" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Tên ngạch</label>
+              <input id="edittenNgach" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Mã ngạch</label>
+              <input id="editmaNgach" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Bảng lương</label>
+              <input type="text" class="form-control" id="editbangLuong1" list="editbangLuong" />
+              <datalist id="editbangLuong">
+                <option value="1">
+                <option value="2">
+                <option value="3">
+                <option value="4">
+              </datalist>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Loại</label>
+              <input type="text" class="form-control" id="editloaiLuong1" list="editloaiLuong" />
+              <datalist id="editloaiLuong">
+                <option value="A0">
+                <option value="A1">
+                <option value="A2.1">
+                <option value="A2.2">
+                <option value="A3.1">
+                <option value="A3.2">
+                <option value="B">
+                <option value="C1">
+                <option value="C2">
+                <option value="C3">
+              </datalist>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Năm giữ bậc</label>
+              <input id="editnamGiubac" type="number" class="form-control" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <p>Hệ số lương</p>
+          </div>
+        </div>
+        <div class="row HSL">
+          <!-- <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="1">Bậc 1</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="2">Bậc 2</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="3">Bậc 3</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="4">Bậc 4</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="5">Bậc 5</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="6">Bậc 6</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="7">Bậc 7</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="8">Bậc 8</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="9">Bậc 9</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="10">Bậc 10</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="11">Bậc 11</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-2 hesoluong">
+            <div class="form-group">
+              <select class="form-control" id="editbac">
+                <option value="12">Bậc 12</option>
+              </select>
+              <input id="editheso" type="text" class="form-control" placeholder="">
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary closes" data-dismiss="modal">Đóng</button>
+        <button type="submit" class="btn btn-primary" onclick="editSalary()">Chỉnh sửa</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="modal fade" id="searchProfile" role="dialog">
+  <div class="modal-dialog" style="max-width: 700px">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Tìm kiếm</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row" style="margin: 4px">
+          <div class="col-lg-4"><input id="Ten" type="text" class="form-control" placeholder="Họ và tên"></div>
+          <div class="col-lg-4"> <select class="form-control" id="gioitinh">
+              <option value="">Giới tính</option>
+              <option value="Nam">Nam</option>
+              <option value="Nữ">Nữ</option>
+            </select></div>
+          <div class="col-lg-4"><input id="Ngaysinh" type="date" class="form-control" placeholder="Ngày sinh"></div>
+        </div>
+        <div class="row" style="margin: 4px">
+          <div class="col-lg-4"><input id="cmnd" type="number" class="form-control" placeholder="Số CMND"></div>
+          <div class="col-lg-4"><input id="phongkhoa" type="text" class="form-control" placeholder="Phòng/Khoa"></div>
+          <div class="col-lg-4"><input id="bacluong" type="text" class="form-control" placeholder="Bậc lương"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" style="width: 100px;" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="button" id="search-button" style="width: 100px;" class="btn btn-primary" data-dismiss="modal">Tìm kiếm</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<script>
+  $.ajax({
+    url: "/he-thong/thong-bao",
+    method: "GET",
+    success: function (res) {
+      $('#notify_Count').text(res.data ? res.data.length : 0);
+      res.data.length > 0 ? res.data.map(item => {
+        $('#notify_Body').append(
+          '<div class="dropdown-divider"></div>' +
+          '<a class="dropdown-item preview-item">' +
+          '<div class="preview-thumbnail">' +
+          '<div class="preview-icon bg-success">' +
+          '<i class="mdi mdi-alert-circle-outline mx-0"></i>' +
+          '</div>' +
+          '</div>' +
+          '<div class="preview-item-content">' +
+          '<h6 class="preview-subject font-weight-medium text-dark">' + item.title + '</h6>' +
+          '<p class="font-weight-light small-text">' +
+          item.content +
+          '</p>' +
+          '</div>' +
+          '</a>'
+        )
+      }) : null;
+    }
+  })
+</script>
+<script>
+  var buttonMenu = true;
+  $('#button-menu').on('click', function() {
+    if (buttonMenu) {
+      $('body').addClass('sidebar-icon-only');
+    } else {
+      $('body').removeClass('sidebar-icon-only');
+    };
+    buttonMenu = !buttonMenu;
+  })
+</script>

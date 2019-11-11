@@ -1,0 +1,187 @@
+<div class="modal fade" id="addCourses" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Thêm khóa đào tạo</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="table-responsive">
+              <table id="Table-listNS" class="table table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Số hiệu cán bộ</th>
+                    <th>Họ và tên</th>
+                    <th>Khoa/phòng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% users.map((item,index) =>{%>
+                  <% if(item.cuuNhanVien == false){%>
+                  <tr>
+                    <td><input class="case" type="checkbox" value="<%- item._id %>" />
+                    </td>
+                    <td>
+                      <%- item.usersCardNumber %>
+                    </td>
+                    <td>
+                      <%- item.name %>
+                    </td>
+                    <td>
+                      <%- (item.belongToDepartment ? item.belongToDepartment.name : null) %>
+                    </td>
+                  </tr>
+                  <%}%>
+                  <%})%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="" class="col-sm-12 control-label">Tên khóa đào tạo</label>
+                <div class="col-sm-12">
+                  <input id="khoadaotao" type="text" class="form-control  " placeholder="">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="" class="col-sm-12 control-label">Loại đào tạo</label>
+                <div class="col-sm-12">
+                  <input id="loaidaotao" type="text" class="form-control" placeholder="Trong nước, Nước ngoài">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="" class="col-sm-12 control-label">Nội dung đào tạo</label>
+                <div class="col-sm-12">
+                  <input id="NDdaotao" type="text" class="form-control " placeholder="">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="" class="col-sm-12 control-label">Trình độ</label>
+                <div class="col-sm-12">
+                  <input id="trinhdodaotao" type="text" class="form-control " placeholder="">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="" class="col-sm-12 control-label">Thời gian đào tạo từ</label>
+                <div class="col-lg-12">
+                  <input id="thoigiandaotao" type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="" class="col-sm-12 control-label">Đến</label>
+                <div class="col-lg-12">
+                  <input id="thoigianhetdaotao" type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="" class="col-sm-12 control-label">Nơi đào tạo</label>
+                <div class="col-sm-12">
+                  <input id="noidaotao" type="text" class="form-control " placeholder="">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="" class="col-sm-12 control-label">Hình thức đào tạo</label>
+                <div class="col-sm-12">
+                  <input id="hinhthucdaotao" type="text" class="form-control " placeholder="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Số quyết định</label>
+              <div class="col-sm-12">
+                <input id="soquyetdinh" type="text" class="form-control " placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Cơ quan ra quyết định</label>
+              <div class="col-sm-12">
+                <input id="coquanquyetdinh" type="text" class="form-control " placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Người ký quyết định</label>
+              <div class="col-sm-12">
+                <input id="nguoikyquyetdinh" type="text" class="form-control " placeholder="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Chức vụ/Chức danh người ký</label>
+              <div class="col-sm-12">
+                <input id="chucvunguoiky" type="text" class="form-control " placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Số lượng nhân sự dự kiến</label>
+              <div class="col-sm-12">
+                <input id="soluong" type="number" class="form-control " placeholder="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Nguồn kinh phí</label>
+              <div class="col-sm-12">
+                <input id="nguonkinhphi" type="text" class="form-control " placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="" class="col-sm-12 control-label">Số tiền</label>
+              <div class="col-sm-12">
+                <input id="sotien" type="text" class="form-control " placeholder="">
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" style="width: 100px;" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          <button type="button" id="create-courses" style="width: 160px;" class="btn btn-primary">Lưu khóa đào tạo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

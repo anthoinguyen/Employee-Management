@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Lương - Phụ cấp</title>
+  <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="/css/style_2.css">
+  <link rel="stylesheet" href="/css/style_1.css">
+  <link rel="shortcut icon" href="/images/favicon.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <% include ../../partials/_navbar %>
+    <div class="container-fluid page-body-wrapper">
+      <% include ../../partials/_sidebar %>
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4>DANH SÁCH LƯƠNG - PHỤ CẤP CỦA NHÂN VIÊN</h4>
+                  <div class="row" style="padding:5px">
+                    <button style="margin:10px; width: 110px" class="btn btn-primary" type="button" style="margin: auto"
+                      data-toggle="modal" data-target="#addSalary" onclick="getEmployee(); getMaNgach()">
+                      <span class="icon-holder">
+                        <i class="c-white-500 ti-plus"></i>
+                      </span>
+                      <span class="title">Thêm</span>
+                    </button>
+                  </div>
+                  <div class="table-responsive">
+                    <table id="Table-listSalary" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Hành động</th>
+                          <th>STT</th>
+                          <th>Số hiệu cán bộ</th>
+                          <th>Họ và tên</th>
+                          <th>Phòng - Khoa</th>
+                          <th>Mã ngạch</th>
+                          <th>Bậc</th>
+                          <th>Hệ số</th>
+                          <th>Ngày bắt đầu</th>
+                          <th>Ngày kết thúc</th>
+                          <th>Lương</th>
+                          <th>Phụ cấp</th>
+                          <th>Tổng cộng</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% salary.map((item,index) =>{%>
+                        <tr>
+                          <td>
+                            <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" onclick="getSalary('<%- item._id %>'); getMaNgach1()"
+                              data-toggle="modal" data-target="#editSalary">
+                              <i class="fa fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" onclick="removeSalary('<%- item._id %>')"
+                              data-toggle="modal" data-target="#deleteSalary">
+                              <i class="fa fa-trash-o"></i>
+                            </button>
+                          </td>
+                          <td>
+                            <%- index + 1 %>
+                          </td>
+                          <td>
+                            <%- (item.user ? item.user.usersCardNumber : null) %>
+                          </td>
+                          <td>
+                            <%- (item.user ? item.user.name : null) %>
+                          </td>
+                          <td>
+                            <%- (item.user ? (item.user.belongToDepartment ? item.user.belongToDepartment.name : null) : null) %>
+                          </td>
+                          <td>
+                            <%- item.ngach.maNgach %>
+                          </td>
+                          <td>
+                            <%- item.bacHeso %>
+                          </td>
+                          <td>
+                            <% item.ngach.bacHeso.map((item1,index) =>{%>
+                            <%if(item.bacHeso == item1.bac){%>
+                            <%- item1.heso %>
+                            <%}%>
+                            <%})%>
+                          </td>
+                          <td>
+                          <% if(item.ngayBatDau && item.ngayBatDau!="" ){%>
+                            <%- moment(item.ngayBatDau).utc(0).format('DD/MM/YYYY') %>
+                            <%}%>
+                          </td>
+                          <td>
+                            <% if(item.ngayKetThuc && item.ngayKetThuc!="" ){%>
+                            <%- moment(item.ngayKetThuc).utc(0).format('DD/MM/YYYY') %>
+                            <%}%>
+                          </td>
+                          <td>
+                            <% item.ngach.bacHeso.map((item1,index) =>{%>
+                            <%if(item.bacHeso == item1.bac){%>
+                            <%- (Math.round(item1.heso * item.luongCoBan)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %>
+                            <%}%>
+                            <%})%>
+                          </td>
+                          <td><% var phucap = 0 %>
+                            <% item.phuCap.map((item1,index) =>{%>
+                            <% phucap = phucap + item1.soTien %>
+                            <%})%>
+                            <%- Math.round(phucap).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %>
+                          </td>
+                          <td>
+                            <%- (Math.round(item.tongLuong)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %>
+                          </td>
+                        </tr>
+                        <%})%>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <% include ../../partials/_footer %>
+      </div>
+    </div>
+  </div>
+  <!-- Them -->
+  <%- include ./Modal/create %>
+  <!-- Chinh sua -->
+  <%- include ./Modal/edit %>
+  <!-- Xoa -->
+  <%- include ./Modal/delete %>
+  <script src="/vendors/js/vendor.bundle.base.js"></script>
+  <script src="/vendors/js/vendor.bundle.addons.js"></script>
+  <script src="/js/off-canvas.js"></script>
+  <script src="/js/misc.js"></script>
+  <script src="/js/hoverable-collapse.js"></script>
+  <script src="/js/dropzone.js"></script>
+  <script src="/js/custom.min.js"></script>
+
+  <%- include ./salaryScript %>
+  <% include ../../partials/scriptForAll %>
+  <script>
+    $('#Table-listSalary').DataTable({
+      "scrollX": true
+    });
+  </script>
+
+  <script>
+    $('.closes').click(function () {
+      $('.listEmployee').each(function () {
+        $(this).find('.temp1').remove();
+      });
+    })
+    $('.closes').click(function () {
+      $('#maNgach').each(function () {
+        $(this).find('.maNgach1').remove();
+      });
+    })
+    $('.closes').click(function () {
+      $('#bacLuong').each(function () {
+        $(this).find('.bacLuong1').remove();
+      });
+    })
+  </script>
+
+</body>
+
+</html>

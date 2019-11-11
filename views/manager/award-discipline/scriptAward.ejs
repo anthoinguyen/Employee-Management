@@ -1,0 +1,122 @@
+<script>
+  var KTId;
+
+  function removeKhenthuong(id) {
+    KTId = id;
+  }
+
+  function deleteAward() {
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/awards/${KTId}`,
+      method: "DELETE",
+      success: function (result) {
+        KLId = '';
+        alert("Xóa thành công");
+        window.location.reload();
+      }
+    })
+  }
+</script>
+
+<script>
+  $(document).on('click', '#create_award', function () {
+
+    let award = [];
+    award = $('.caseKT:checkbox:checked').map(function () {
+      return $(this).val();
+    }).get();
+    if (award == "" || award == undefined || award == null ) {
+      alert("Vui lòng chọn nhân sự cần thêm")
+    } else {
+
+      var dataA = {
+        users: JSON.stringify(award),
+        quyetDinh: JSON.stringify({
+          org: $('#CapKT').val(),
+          number: $('#SoKT').val(),
+          date: $('#Ngayquyetdinh').val(),
+        }),
+        title: $('#DanhhieuKT').val(),
+        format: $('#HinhthucKT').val(),
+        description: $('#ThanhtichKT').val(),
+        confirmed: "1"
+
+      }
+
+      $.ajax({
+        url: '/quan-ly/khen-thuong-ky-luat/awards/them',
+        type: 'POST',
+        dataType: 'json',
+        data: dataA,
+        success: function (res) {
+          if (res) {
+            alert("Tạo khen thưởng thành công");
+            window.location.reload();
+          }
+        }
+      })
+    }
+  })
+</script>
+
+<script>
+  var editID1;
+
+  function getEditKhenthuong(id) {
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/awards/${id}`,
+      method: "GET",
+      success: function (result) {
+        editID1 = id;
+        if (result.success == true) {
+          var award = result.data;
+          
+          // if (award.quyetDinh.date != "") {
+          //   let dateQD = moment(award.quyetDinh.date).format('YYYY-MM-DD');
+          //   $('#editNgayquyetdinh').val(dateQD);
+          // } else {
+          //   let dateQD = "";
+          //   $('#editNgayquyetdinh').val(dateQD);
+          // }
+
+          $('#editNgayquyetdinh').val(award.quyetDinh ? award.quyetDinh.date : null),
+          $('#editCapKT').val(award.quyetDinh ? award.quyetDinh.org : null),
+            $('#editSoKT').val(award.quyetDinh ? award.quyetDinh.number : null),
+            $('#editDanhhieuKT').val(award.title),
+            $('#editHinhthucKT').val(award.format),
+            $('#editThanhtichKT').val(award.description)
+        }
+      }
+    })
+  }
+
+  function editAward() {
+
+    var dateQuyetdinh = $('#editNgayquyetdinh').val();
+
+    var data2 = {
+      quyetDinh: JSON.stringify({
+        org: $('#editCapKT').val(),
+        number: $('#editSoKT').val(),
+        date: dateQuyetdinh,
+      }),
+      title: $('#editDanhhieuKT').val(),
+      format: $('#editHinhthucKT').val(),
+      description: $('#editThanhtichKT').val(),
+      confirmed: "1"
+
+    }
+    $.ajax({
+      url: `/quan-ly/khen-thuong-ky-luat/awards/${editID1}`,
+      method: "PUT",
+      data: data2,
+      success: function (result) {
+        if (result) {
+          editID1 = "";
+          alert("Xác nhận thành công");
+          window.location.reload();
+        }
+      }
+    })
+  }
+</script>

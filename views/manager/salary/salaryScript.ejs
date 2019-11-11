@@ -1,0 +1,401 @@
+<script>
+  function getEmployee() {
+    $(".listEmployee").empty();
+    $.ajax({
+      url: `/quan-ly/danh-sach-nhan-su/list`,
+      method: "GET",
+      success: function(result) {
+        if (result.success == true) {
+          result.data.map((item, index) => {
+            $(".listEmployee").append(
+              '<tr class="temp1">' +
+                '<td><input class="case" type="checkbox" value="' +
+                item._id +
+                '" />' +
+                "</td>" +
+                "<td>" +
+                item.usersCardNumber +
+                "</td>" +
+                "<td>" +
+                item.name +
+                "</td>" +
+                "</tr>"
+            );
+          });
+        }
+        $("#Table-listNS").DataTable();
+      }
+    });
+  }
+
+  function getMaNgach() {
+    $("#maNgach").empty();
+    $("#maNgach").append('<option value=""></option>');
+    $.ajax({
+      url: `/he-thong/luong/list`,
+      method: "GET",
+      success: function(result) {
+        if (result.success == true) {
+          result.data.map((item, index) => {
+            $("#maNgach").append(
+              '<option class="maNgach1" value="' +
+                item._id +
+                '">' +
+                item.maNgach +
+                "</option>"
+            );
+          });
+        }
+      }
+    });
+  }
+
+  $("#maNgach").change(function() {
+    var selectMangach = $("#maNgach").val();
+    $("#bacLuong").empty();
+    $("#bacLuong").append('<option value=""></option>');
+    $.ajax({
+      url: `/he-thong/luong/list`,
+      method: "GET",
+      success: function(result) {
+        result.data.map(item => {
+          if (item._id === selectMangach) {
+            item.bacHeso.map(item1 => {
+              if (item1.heso != "") {
+                $("#bacLuong").append(
+                  '<option class="bacLuong1" value="' +
+                    item1.bac +
+                    '">' +
+                    item1.bac +
+                    "</option>"
+                );
+              }
+            });
+          }
+        });
+      }
+    });
+  });
+
+  $("#bacLuong").change(function() {
+    var selectMangach = $("#maNgach").val();
+    var selectBac = $("#bacLuong").val();
+    $("#heSo").empty();
+
+    $.ajax({
+      url: `/he-thong/luong/list`,
+      method: "GET",
+      success: function(result) {
+        result.data.map(item2 => {
+          if (item2._id === selectMangach) {
+            item2.bacHeso.map(item3 => {
+              if (selectBac == item3.bac) {
+                $("#heSo").append(
+                  '<option class="heSo1" value="' +
+                    item3.heso +
+                    '">' +
+                    item3.heso +
+                    "</option>"
+                );
+              }
+            });
+          }
+        });
+      }
+    });
+  });
+
+  $(".closess").click(function() {
+    $("#bacLuong").each(function() {
+      $(this)
+        .find(".bacLuong1")
+        .remove();
+    });
+  });
+</script>
+<script>
+  $(document).on("click", "#create-salary", function() {
+    validateInput(function(flag) {
+      if (!flag) {
+        alert("Vui lòng nhập đủ thông tin !");
+      } else {
+        let usersList1 = $(".case:checkbox:checked").val();
+
+        var phucap1 = [];
+        $(".tempPhucap").each(function(index, val) {
+          phucap1.push({
+            soTien: $(this)
+              .find("#soTien")
+              .val(),
+            moTa: $(this)
+              .find("#moTa")
+              .val()
+          });
+        });
+
+        if (usersList1 != "" && usersList1 != undefined) {
+          var data = {
+            user: usersList1,
+            ngach: $("#maNgach").val(),
+            bacHeso: $("#bacLuong").val(),
+            ngayBatDau: $("#ngayBatDau").val(),
+            ngayKetThuc: $("#ngayKetThuc").val(),
+            phuCap: JSON.stringify(phucap1)
+          };
+
+          $.ajax({
+            url: `/quan-ly/luong-phu-cap/them`,
+            type: "POST",
+            dataType: "json",
+            data: data,
+            success: function(res) {
+              if (res) {
+                user = "";
+                alert("Tạo thành công");
+                window.location.reload();
+              }
+            }
+          });
+        } else {
+          alert("Vui lòng chọn nhân viên !!!");
+        }
+      }
+    });
+  });
+</script>
+<script>
+  $("#themphucap").click(function() {
+    $(".phucap").append(
+      '<div class="card tempPhucap radius-16"> <div class="card-header" style="padding-top:5px; padding-bottom:5px; background-color:#b5becc; margin-top:5px"> <button class="btn btn-link xoa-themphucap float-right" type="button"> <i class="fa fa-times"></i> </button> </div> <div class="card-body p-20" style="background-color: #f2f8f9"> <div class="row"> <div class="col-md-12"> <div class="row "> <div class="col-lg-12"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Số tiền</label> <div class="col-sm-12"> <input id="soTien" type="number" class="form-control " placeholder=""> </div> </div> </div> <div class="col-lg-12"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Mô tả</label> <div class="col-sm-12"> <input id="moTa" type="text" class="form-control " placeholder=""> </div> </div> </div> </div> </div> </div> </div> </div>'
+    );
+  });
+</script>
+<script>
+  $("#editthemphucap").click(function() {
+    $(".editphucap").append(
+      '<div class="card tempPhucap1 radius-16"> <div class="card-header" style="padding-top:5px; padding-bottom:5px; background-color:#b5becc;margin-top:5px "> <button class="btn btn-link xoa-themphucap float-right" type="button"> <i class="fa fa-times"></i> </button> </div> <div class="card-body p-20" style="background-color: #f2f8f9"> <div class="row"> <div class="col-md-12"> <div class="row "> <div class="col-lg-4"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Số tiền</label> <div class="col-sm-12"> <input id="editsoTien" type="number" class="form-control " placeholder=""> </div> </div> </div> <div class="col-lg-8"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Mô tả</label> <div class="col-sm-12"> <input id="editmoTa" type="text" class="form-control " placeholder=""> </div> </div> </div> </div> </div> </div> </div> </div>'
+    );
+  });
+
+  $(document).on("click", "button.xoa-themphucap", function() {
+    $(this).parent().parent().remove();
+  });
+</script>
+
+<script>
+  var DeleteId;
+
+  function removeSalary(id) {
+    DeleteId = id;
+  }
+
+  function deleteSalary() {
+    $.ajax({
+      url: `/quan-ly/luong-phu-cap/${DeleteId}`,
+      method: "DELETE",
+      success: function(result) {
+        DeleteId = "";
+        alert("Xóa thành công");
+        window.location.reload();
+      }
+    });
+  }
+</script>
+<script>
+  function getMaNgach1() {
+    $("#editmaNgach").empty();
+    $("#editmaNgach").append('<option value=""></option>');
+    $.ajax({
+      url: `/he-thong/luong/list`,
+      method: "GET",
+      success: function(result) {
+        if (result.success == true) {
+          result.data.map((item, index) => {
+            $("#editmaNgach").append(
+              '<option class="editmaNgach1" value="' +
+                item._id +
+                '">' +
+                item.maNgach +
+                "</option>"
+            );
+          });
+        }
+      }
+    });
+  }
+
+  $("#editmaNgach").change(function() {
+    var selectMangach5 = $("#editmaNgach").val();
+    $("#editbacLuong").empty();
+    $("#editbacLuong").append('<option value=""></option>');
+    $.ajax({
+      url: `/he-thong/luong/list`,
+      method: "GET",
+      success: function(result) {
+        result.data.map(item => {
+          if (item._id === selectMangach5) {
+            item.bacHeso.map(item1 => {
+              if (item1.heso != "") {
+                $("#editbacLuong").append(
+                  '<option class="editbacLuong1" value="' +
+                    item1.bac +
+                    '">' +
+                    item1.bac +
+                    "</option>"
+                );
+              }
+            });
+          }
+        });
+      }
+    });
+  });
+
+  $("#editbacLuong").change(function() {
+    var selectMangach5 = $("#editmaNgach").val();
+    var selectBac5 = $("#editbacLuong").val();
+    $("#editheSo").empty();
+
+    $.ajax({
+      url: `/he-thong/luong/list`,
+      method: "GET",
+      success: function(result) {
+        result.data.map(item2 => {
+          if (item2._id === selectMangach5) {
+            item2.bacHeso.map(item3 => {
+              if (selectBac5 == item3.bac) {
+                $("#editheSo").append(
+                  '<option class="editheSo1" value="' +
+                    item3.heso +
+                    '">' +
+                    item3.heso +
+                    "</option>"
+                );
+              }
+            });
+          }
+        });
+      }
+    });
+  });
+</script>
+<script>
+  var editID;
+
+  function getSalary(id) {
+    editID = id;
+    $(".editphucap").empty();
+    $("#editnhanSu").empty();
+    $.ajax({
+      url: `/quan-ly/luong-phu-cap/${id}`,
+      method: "GET",
+      success: function(result) {
+        if (result.success == true) {
+          $("#editnhanSu").append(
+            ' <option value="' +
+              result.data.user._id +
+              '">' +
+              result.data.user.name +
+              " </option>"
+          );
+          if (result.data.ngayBatDau && result.data.ngayBatDau != "") {
+            let getngayBD = moment(result.data.ngayBatDau).format(
+              "YYYY-MM-DD"
+            );
+            $("#editngayBatDau").val(getngayBD);
+          } else {
+            let getngayBD = "";
+            $("#editngayBatDau").val(getngayBD);
+          }
+          if (result.data.ngayKetThuc && result.data.ngayKetThuc != "") {
+            let getngayKT = moment(result.data.ngayKetThuc).format(
+              "YYYY-MM-DD"
+            );
+            $("#editngayKetThuc").val(getngayKT);
+          } else {
+            let getngayKT = "";
+            $("#editngayKetThuc").val(getngayKT);
+          }
+          $.each(result.data.phuCap, function(index, item) {
+            $(".editphucap").append(
+              '<div class="card tempPhucap1 radius-16"> <div class="card-header" style="padding-top:5px; padding-bottom:5px; background-color:#b5becc;margin-top:5px "> <button class="btn btn-link xoa-themphucap float-right" type="button"> <i class="fa fa-times"></i> </button> </div> <div class="card-body p-20" style="background-color: #f2f8f9"> <div class="row"> <div class="col-md-12"> <div class="row "> <div class="col-lg-4"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Số tiền</label> <div class="col-sm-12"> <input id="editsoTien" type="number" class="form-control" value="' +
+                item.soTien +
+                '" placeholder=""> </div> </div> </div> <div class="col-lg-8"> <div class="form-group"> <label for="" class="col-sm-12 control-label">Mô tả</label> <div class="col-sm-12"> <input id="editmoTa" type="text" value="' +
+                item.moTa +
+                '" class="form-control " placeholder=""> </div> </div> </div> </div> </div> </div> </div> </div>'
+            );
+          });
+        }
+      }
+    });
+  }
+
+  $(document).on("click", "#edit-Salary", function() {
+    validateInput(function(flag) {
+      if (!flag) {
+        alert("Vui lòng nhập đủ thông tin !");
+      } else {
+        let usersList0 = $("#editnhanSu").val();
+
+        var phucap2 = [];
+        $(".tempPhucap1").each(function(index, val) {
+          phucap2.push({
+            soTien: $(this).find("#editsoTien").val(),
+            moTa: $(this).find("#editmoTa").val()
+          });
+        });
+
+        var data = {
+          user: usersList0,
+          ngach: $("#editmaNgach").val(),
+          bacHeso: $("#editbacLuong").val(),
+          ngayBatDau: $("#editngayBatDau").val(),
+          ngayKetThuc: $("#editngayKetThuc").val(),
+          phuCap: JSON.stringify(phucap2)
+        };
+        console.log("a", data);
+
+        $.ajax({
+          url: `/quan-ly/luong-phu-cap/${editID}`,
+          type: "PUT",
+          dataType: "json",
+          data: data,
+          success: function(res) {
+            if (res) {
+              user = "";
+              alert("Chỉnh sửa thành công");
+              window.location.reload();
+            }
+          }
+        });
+      }
+    });
+  });
+
+  // Kiểm tra các fiedl
+  function validateInput(callback) {
+    let flag = true;
+    $("input, textarea, select")
+      .filter("[required]:visible")
+      .each(function(index, val) {
+        let _this = this;
+        if ($(this).val() == "") {
+          flag = false;
+          makeInputDanger(_this);
+        }
+      });
+    callback(flag);
+  }
+  // báo hiệu các field chưa nhập
+  $(document).on(
+    "focusout",
+    "input.required, textarea.required, select.required",
+    function() {
+      if ($(this).val() == "") {
+        makeInputDanger(this);
+      } else {
+        makeInputDefault(this);
+      }
+    }
+  );
+</script>

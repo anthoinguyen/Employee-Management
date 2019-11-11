@@ -1,0 +1,71 @@
+<div class="modal fade" id="addNgaynghi" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Thêm ngày nghỉ</h4>
+        <button type="button" class="close closes" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="table-responsive">
+                  <table id="Table-listNS" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Số hiệu cán bộ</th>
+                        <th>Họ và tên</th>
+                        <th>Khoa/phòng</th>
+                      </tr>
+                    </thead>
+                    <tbody class="listNS">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Ngày nghỉ</label>
+                  <div class="col-sm-12">
+                    <input id="ngayNghi" type="date" class="form-control" placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Trạng thái</label>
+                  <div class="col-sm-12">
+                    <select class="form-control" id="trangThai">
+                      <option value="1">Có phép</option>
+                      <option value="0">Không phép</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Lý do</label>
+                  <div class="col-sm-12">
+                    <textarea id="lyDo" class="form-control text" rows="4" placeholder=""></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary closes" data-dismiss="modal">Đóng</button>
+        <button type="submit" id="createDayOff" class="btn btn-primary">Tạo</button>
+      </div>
+    </div>
+  </div>
+</div>

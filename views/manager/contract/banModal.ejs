@@ -1,0 +1,34 @@
+<div class="modal fade bd-example-modal-lg" id="banModal" tabindex="-1" role="dialog" aria-labelledby="banModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn cấp dứt hợp đồng không</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="name">Tên nhân sự</label>
+              <input type="text" class="form-control name" id="name" aria-describedby="name" readonly>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="departmentName">Phòng ban</label>
+              <input type="text" class="form-control departmentName" id="departmentName" aria-describedby="departmentName" readonly>
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          <button class="btn btn-primary" id="submit" onclick="ban()" data-dismiss="modal">Chấm dứt hợp đồng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

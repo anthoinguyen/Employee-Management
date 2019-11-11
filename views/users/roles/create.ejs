@@ -1,0 +1,68 @@
+<div class="modal fade" id="add" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Thêm thông tin làm ngoài giờ</h4>
+        <button type="button" class="close closes" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="table-responsive">
+                  <table id="Table-listNS" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Số hiệu cán bộ</th>
+                        <th>Họ và tên</th>
+                        <th>Khoa\phòng</th>
+                      </tr>
+                    </thead>
+                    <tbody class="listNS">
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Quyền truy cập</label>
+                  <div class="col-sm-12">
+                    <table id="Table-listRole" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Chọn</th>
+                          <th>Quyền truy cập</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input class="caseRoles" type="checkbox" value="ADMIN" /></td>
+                          <td>ADMIN</td>
+                        </tr>
+                        <tr>
+                          <td><input class="caseRoles" type="checkbox" value="USER" /></td>
+                          <td>USER</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary closes" data-dismiss="modal">Đóng</button>
+        <button type="submit" id="create-Roles" class="btn btn-primary">Tạo</button>
+      </div>
+    </div>
+  </div>
+</div>

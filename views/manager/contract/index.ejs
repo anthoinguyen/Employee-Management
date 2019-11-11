@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Quản lý Hợp đồng Lao động</title>
+  <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css">
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"> -->
+  <link rel="stylesheet" href="/css/style_2.css">
+  <link rel="stylesheet" href="/css/style_1.css">
+  <link rel="shortcut icon" href="images/favicon.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <% include ../../partials/_navbar %>
+    <div class="container-fluid page-body-wrapper">
+      <% include ../../partials/_sidebar %>
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                    aria-controls="pills-home" aria-selected="true">Đang hiệu lực</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Sắp hết hạn</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                    aria-controls="pills-contact" aria-selected="false">Đã hết hạn</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6 text-right">
+              <button type="button" class="btn btn-primary btn-fw" data-toggle="modal" data-target="#renewModalFull">Gia
+                hạn hợp đồng</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <h4 class="card-title">Danh sách các hợp đồng lao động</h4>
+                        </div>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="table">
+                          <thead>
+                            <tr>
+                              <th>
+                                #
+                              </th>
+                              <th>
+                                Số hiệu cán bộ
+                              </th>
+                              <th>
+                                Họ và tên
+                              </th>
+                              <th>
+                                Phòng ban
+                              </th>
+                              <th>
+                                Ngày hết hạn
+                              </th>
+                              <th>
+                                Hành động
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% current.map((item, index) => { %>
+                            <% if (item.detail.length > 0) { %>
+                            <tr>
+                              <td class="py-1">
+                                <%- index + 1 %>
+                              </td>
+                              <td>
+                                <%- item._doc.usersCardNumber %>
+                              </td>
+                              <td>
+                                <%- item._doc.name %>
+                              </td>
+                              <td>
+                                <%- item._doc.departmentName %>
+                              </td>
+                              <td>
+                                <% if(item.detail[item.detail.length - 1].dateExpired) { %>
+                                  <% let time = new Date(item.detail[item.detail.length - 1].dateExpired) %>
+                                  <%- time.getDate() %>/
+                                  <%- time.getMonth() + 1 %>/
+                                  <%- time.getFullYear() %>
+                                <% } else { %>
+                                  Không thời hạn
+                                <% } %>
+                              </td>
+                              <td>
+                                <a href="<%- item.detail[item.detail.length - 1].fileLink %>" download>
+                                  <button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="tooltip"
+                                    data-placement="top" title="Tải hợp đồng">
+                                    <i class="fa fa-download"></i>
+                                  </button>
+                                </a>
+                                <button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="modal"
+                                  data-target="#renewModal" onclick="selectContract('<%- item._doc.usersId %>')"
+                                  data-toggle="tooltip" data-placement="top" title="Gia hạn hợp đồng">
+                                  <i class="fa fa-edit"></i>
+                                </button>
+                                <button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="modal"
+                                  data-target="#banModal" onclick="selectContract('<%- item._doc.usersId %>')"
+                                  data-toggle="tooltip" data-placement="top" title="Chấm dứt hợp đồng lao động">
+                                  <i class="fa fa-ban"></i>
+                                </button>
+                              </td>
+                            </tr>
+                            <% } %>
+                            <% }) %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <h4 class="card-title">Danh sách các hợp đồng lao động</h4>
+                        </div>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="table1">
+                          <thead>
+                            <tr>
+                              <th>
+                                #
+                              </th>
+                              <th>
+                                Số hiệu cán bộ
+                              </th>
+                              <th>
+                                Họ và tên
+                              </th>
+                              <th>
+                                Phòng ban
+                              </th>
+                              <th>
+                                Ngày hết hạn
+                              </th>
+                              <th>
+                                Hành động
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% nearlyExpired.map((item, index) => { %>
+                            <% if (item.detail.length > 0) { %>
+                            <tr>
+                              <td class="py-1">
+                                <%- index + 1 %>
+                              </td>
+                              <td>
+                                <%- item._doc.usersCardNumber %>
+                              </td>
+                              <td>
+                                <%- item._doc.name %>
+                              </td>
+                              <td>
+                                <%- item._doc.departmentName %>
+                              </td>
+                              <td>
+                                <% let time = new Date(item.detail[item.detail.length - 1].dateExpired) %>
+                                <%- time.getDate() %>/
+                                <%- time.getMonth() + 1 %>/
+                                <%- time.getFullYear() %>
+                              </td>
+                              <td>
+                                <a href="<%- item.detail[item.detail.length - 1].fileLink %>" download>
+                                  <button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="tooltip"
+                                    data-placement="top" title="Tải hợp đồng">
+                                    <i class="fa fa-download"></i>
+                                  </button>
+                                </a>
+                                <button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="modal"
+                                  data-target="#renewModal" onclick="selectContract('<%- item._doc.usersId %>')"
+                                  data-toggle="tooltip" data-placement="top" title="Gia hạn hợp đồng">
+                                  <i class="fa fa-edit"></i>
+                                </button>
+                              </td>
+                            </tr>
+                            <% } %>
+                            <% }) %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <h4 class="card-title">Danh sách các hợp đồng lao động</h4>
+                        </div>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="table2">
+                          <thead>
+                            <tr>
+                              <th>
+                                #
+                              </th>
+                              <th>
+                                Số hiệu cán bộ
+                              </th>
+                              <th>
+                                Họ và tên
+                              </th>
+                              <th>
+                                Phòng ban
+                              </th>
+                              <th>
+                                Ngày hết hạn
+                              </th>
+                              <th>
+                                Hành động
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% expired.map((item, index) => { %>
+                            <% if (item.detail.length > 0) { %>
+                            <tr>
+                              <td class="py-1">
+                                <%- index + 1 %>
+                              </td>
+                              <td>
+                                <%- item._doc.usersCardNumber %>
+                              </td>
+                              <td>
+                                <%- item._doc.name %>
+                              </td>
+                              <td>
+                                <%- item._doc.departmentName %>
+                              </td>
+                              <td>
+                                <% let time = new Date(item.detail[item.detail.length - 1].dateExpired) %>
+                                <%- time.getDate() %>/<%- time.getMonth() + 1 %>/<%- time.getFullYear() %>
+                              </td>
+                              <td>
+                                <a href="<%- item.detail[item.detail.length - 1].fileLink %>" download>
+                                  <button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="tooltip"
+                                    data-placement="top" title="Tải hợp đồng">
+                                    <i class="fa fa-download"></i>
+                                  </button>
+                                </a>
+                                <button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="modal"
+                                  data-target="#renewModal" onclick="selectContract('<%- item._doc.usersId %>')"
+                                  data-toggle="tooltip" data-placement="top" title="Gia hạn hợp đồng">
+                                  <i class="fa fa-edit"></i>
+                                </button>
+                              </td>
+                            </tr>
+                            <% } %>
+                            <% }) %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% include ../../partials/_footer %>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script> -->
+  <script src="/vendors/js/vendor.bundle.base.js"></script>
+  <script src="/vendors/js/vendor.bundle.addons.js"></script>
+  <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script> -->
+  <script src="/js/off-canvas.js"></script>
+  <script src="/js/misc.js"></script>
+  <script src="/js/hoverable-collapse.js"></script>
+
+  <% include ./renewModal %>
+  <% include ./banModal %>
+  <% include ./renewModalFull %>
+  <% include ../../partials/scriptForAll %>
+  <script>
+    $(document).ready(function () {
+      $('#table').DataTable();
+      $('#table1').DataTable();
+      $('#table2').DataTable();
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: '/quan-ly/hop-dong-lao-dong/fetch-data',
+        method: 'GET',
+        success: function (result) {
+          if (result.data) {
+            result.data.term.map(item => {
+              $('.contractTerm').append(`<option value='${item}'>${item}</option>`);
+            });
+            result.data.type.map(item => {
+              $('.typeOfContract').append(`<option value='${item}'>${item}</option>`);
+            })
+          }
+        },
+      });
+    })
+  </script>
+  <script>
+    var selectContract;
+
+    function selectContract(id) {
+      selectContract = id;
+      $('#submitReNew').val(id)
+      $.ajax({
+        url: `/quan-ly/hop-dong-lao-dong/${id}`,
+        method: "GET",
+        success: function (result) {
+          if (result.data) {
+            $('.name').val(result.data.name);
+            $('.departmentName').val(result.data.departmentName)
+          }
+        }
+      })
+    };
+  </script>
+  <script>
+    function ban() {
+      $.ajax({
+        url: '/quan-ly/hop-dong-lao-dong/end/' + selectContract,
+        method: "DELETE",
+        success: function (result) {
+          if (result) {
+            window.location.reload()
+          }
+        }
+      })
+    }
+  </script>
+  <script>
+    $('#boNhiemCheckBox').click(function() {
+      let thisCheck = $(this);
+      if (thisCheck.is(':checked')) {
+        $('#positionFull').show();
+      } else {
+        $('#positionFull').hide();
+      }
+    })
+    $('#boNhiemCheckBoxPart').click(function() {
+      let thisCheck = $(this);
+      if (thisCheck.is(':checked')) {
+        $('#positionPart').show();
+      } else {
+        $('#positionPart').hide();
+      }
+    })
+  </script>
+  <script>
+    $('#userCardFull').on('input', function() {
+      $.ajax({
+        url: '/quan-ly/hop-dong-lao-dong/users/' + $('#userCardFull').val(),
+        method: "GET",
+        success: function (result) {
+          if (result.data) {
+            $('#nameFull').val(result.data.name)
+          }
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

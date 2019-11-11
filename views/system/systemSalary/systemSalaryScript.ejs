@@ -1,0 +1,133 @@
+<script>
+  $(document).on('click', '#create-Salary', function () {
+
+    var arrayBacheso = [];
+    $('div.hesoluong').each(function (index, val) {
+      arrayBacheso.push({
+        bac: $(this).find('#bac').val(),
+        heso: $(this).find('#heso').val()
+      });
+    })
+
+    data = {
+      tenNgach: $('#tenNgach').val(),
+      maNgach: $('#maNgach').val(),
+      bangLuong: $('#bangLuong').val(),
+      loai: $('#loaiLuong').val(),
+      nam: $('#namGiubac').val(),
+      bacHeso: JSON.stringify(arrayBacheso)
+    }
+    console.log(data)
+    $.ajax({
+      url: '/he-thong/luong/them',
+      method: "POST",
+      dataType: 'json',
+      data: data,
+      success: function (result) {
+        if (result) {
+          alert("Tạo thành công");
+          window.location.reload();
+        }
+      }
+    });
+  })
+</script>
+
+<script>
+  var DeleteId;
+
+  function removeSalary(id) {
+    DeleteId = id;
+  }
+
+  function deleteSalary() {
+    $.ajax({
+      url: `/he-thong/luong/${DeleteId}`,
+      method: "DELETE",
+      success: function (result) {
+        DeleteId = "";
+        alert("Xóa thành công");
+        window.location.reload();
+      }
+    })
+  }
+</script>
+
+<script>
+  var EditId;
+
+  function getSalary(id) {
+    $.ajax({
+      url: `/he-thong/luong/${id}`,
+      method: "GET",
+      success: function (result) {
+        EditId = id;
+        if (result.success == true) {
+          var systemSalary = result.data;
+
+          $('#edittenNgach').val(systemSalary.tenNgach),
+            $('#editmaNgach').val(systemSalary.maNgach),
+            $('#editbangLuong1').val(systemSalary.bangLuong),
+            $('#editloaiLuong1').val(systemSalary.loai),
+            $('#editnamGiubac').val(systemSalary.nam)
+
+          $.each(systemSalary.bacHeso, function (index, item) {
+            $('.HSL').append(
+              '<div class="col-lg-2 hesoluong1 temp">' +
+              '<div class="form-group">' +
+              '<select class="form-control" id="editbac">' +
+              '<option value="'+ item.bac +'">Bậc'+ item.bac + '</option>' +
+              '</select>' +
+              '<input id="editheso" type="number" value="'+ item.heso +'" class="form-control" placeholder="">' +
+              '</div>' +
+              '</div>'
+            )
+          })
+
+        } else {
+          console.log("Lỗi")
+        }
+      }
+    })
+  }
+
+   $(".closes").click(function () {
+    $('.HSL ').each(function () {
+      $(this).find('.temp').remove();
+    });
+  })
+
+  function editSalary() {
+
+    var arrayBacheso1 = [];
+    $('div.hesoluong1').each(function (index, val) {
+      arrayBacheso1.push({
+        bac: $(this).find('#editbac').val(),
+        heso: $(this).find('#editheso').val()
+      });
+    })
+
+    data1 = {
+      tenNgach: $('#edittenNgach').val(),
+      maNgach: $('#editmaNgach').val(),
+      bangLuong: document.getElementById("editbangLuong1").value,
+      loai: document.getElementById("editloaiLuong1").value,
+      nam: $('#editnamGiubac').val(),
+      bacHeso: JSON.stringify(arrayBacheso1)
+    }
+
+    $.ajax({
+      url: `/he-thong/luong/${EditId}`,
+      type: 'PUT',
+      dataType: 'JSON',
+      data: data1,
+      success: function (res) {
+        if (res) {
+          EditId = "";
+          alert("Chỉnh sửa thành công");
+          window.location.reload();
+        }
+      }
+    })
+  };
+</script>

@@ -1,0 +1,241 @@
+<script>
+  function getCourses() {
+    $('#listDT').empty();
+    $.ajax({
+      url: '/thong-tin-ca-nhan/dao-tao',
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          var data1 = result.data;
+
+          $.each(data1, function (index, item) {
+
+            // if (item.ngayBatDau != null) {
+            //   var ngayBatDau = moment(item.ngayBatDau).format('DD/MM/YYYY');
+            // } else {
+            //   var ngayBatDau = "";
+            // }
+            // if (item.ngayKetThuc != null) {
+            //   var ngayKetThuc = moment(item.ngayKetThuc).format('DD/MM/YYYY');
+            // } else {
+            //   var ngayKetThuc = "";
+            // }
+
+            if (item.confirmed == true) {
+              $('#listDT').append(
+                '<tr>' +
+                '<td>' + (index + 1) +
+                '</td>' +
+                '<td>' + item.ngayBatDau + '-' + item.ngayKetThuc +
+                '</td>' +
+                '<td>' + item.diaDiem +
+                '</td>' +
+                '<td>' + item.noiDung +
+                '</td>' +
+                '<td>' + item.trinhDo +
+                '</td>' +
+                '<td>' + item.hinhThuc +
+                '</td>' +
+                '</tr>'
+              )
+            }
+          })
+
+        } else {
+          console.log("abc")
+        }
+      }
+    })
+  }
+</script>
+
+<script>
+  function getAward() {
+    $('#listKT').empty();
+    $.ajax({
+      url: '/thong-tin-ca-nhan/khen-thuong',
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          var data2 = result.data;
+
+          $.each(data2, function (index, item) {
+
+            // if (item.quyetDinh.date != null) {
+            //   var ngayQĐ1 = moment(item.quyetDinh.date).format('DD/MM/YYYY');
+            // } else {
+            //   var ngayQĐ1 = "";
+            // }
+
+            if (item.confirmed == true) {
+              $('#listKT').append(
+                '<tr>' +
+                '<td>' + (index + 1) +
+                '</td>' +
+                '<td>' + item.quyetDinh.number +
+                '</td>' +
+                '<td>' + item.quyetDinh.date +
+                '</td>' +
+                '<td>' + item.quyetDinh.org +
+                '</td>' +
+                '<td>' + item.title +
+                '</td>' +
+                '<td>' + item.format +
+                '</td>' +
+                '<td>' + item.description +
+                '</td>' +
+                '</tr>'
+              )
+            }
+          })
+
+        } else {
+          console.log("abc")
+        }
+      }
+    })
+  }
+</script>
+
+<script>
+  function getDiscipline() {
+    $('#listKL').empty();
+    $.ajax({
+      url: '/thong-tin-ca-nhan/ky-luat',
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          var data3 = result.data;
+
+          $.each(data3, function (index, item) {
+
+            // if (item.quyetDinh.startedDate != null) {
+            //   var startedDate = moment(item.quyetDinh.startedDate).format('DD/MM/YYYY');
+            // } else {
+            //   var startedDate = "";
+            // }
+            // if (item.quyetDinh.endedDate != null) {
+            //   var endedDate = moment(item.quyetDinh.endedDate).format('DD/MM/YYYY');
+            // } else {
+            //   var endedDate = "";
+            // }
+            
+            if (item.confirmed == true) {
+              $('#listKL').append(
+                '<tr>' +
+                '<td>' + (index + 1) +
+                '</td>' +
+                '<td>' + item.quyetDinh.number +
+                '</td>' +
+                '<td>' + item.quyetDinh.startedDate + '-' + item.quyetDinh.endedDate +
+                '</td>' +
+                '<td>' + item.quyetDinh.org +
+                '</td>' +
+                '<td>' + item.format +
+                '</td>' +
+                '<td>' + item.description +
+                '</td>' +
+                '</tr>'
+              )
+            }
+          })
+
+        } else {
+          console.log("abc")
+        }
+      }
+    })
+  }
+</script>
+
+<script>
+  function getGP() {
+    $('#listGP').empty();
+    $.ajax({
+      url: '/thong-tin-ca-nhan/giai-phap-sang-kien',
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          var data4 = result.data;
+
+          $.each(data4, function (index, item) {
+            if (item.confirmed == true) {
+              $('#listGP').append(
+                '<tr>' +
+                '<td>' + (index + 1) +
+                '</td>' +
+                '<td>' + item.nam +
+                '</td>' +
+                '<td>' + item.loai +
+                '</td>' +
+                '<td>' + item.ten +
+                '</td>' +
+                '<td>' + item.xepLoai +
+                '</td>' +
+                '<td>' + item.cap +
+                '</td>' +
+                '<td>' + item.ghiChu +
+                '</td>' +
+                '</tr>'
+              )
+            }
+          })
+
+        } else {
+          console.log("abc")
+        }
+      }
+    })
+  }
+</script>
+
+<script>
+  window.onload = function getSalary() {
+    $('#bacluong').val("0"),
+      $('#mangach').val("0"),
+      $('#heso').val("0")
+    $.ajax({
+      url: `/thong-tin-ca-nhan/luong-phu-cap`,
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          var salary = result.data;
+          $('#bacluong').val(salary.bacHeso),
+            $('#mangach').val(salary.ngach.maNgach),
+            salary.ngach.bacHeso.map((item1, index) => {
+              if (salary.bacHeso == item1.bac) {
+                $('#heso').val(item1.heso)
+              }
+            })
+
+          $.each(salary.phuCap, function (index, item) {
+
+            $('#phucap').append(
+              '<div class="col-lg-12">' +
+              '<div class="row">' +
+              '<div class="col-lg-6">' +
+              '<div class="form-group">' +
+              '<label for="" class="col-sm-12 control-label">Tên phụ cấp</label>' +
+              '<div class="col-sm-12">' +
+              '<input id="phucap" type="text" value="' + item.moTa + '" disabled class="form-control  ">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '<div class="col-lg-6">' +
+              '<div class="form-group">' +
+              '<label for="" class="col-sm-6 control-label">Số tiền</label>' +
+              '<div class="col-sm-12">' +
+              '<input id="phucapkhac" type="text" value="' + (item.soTien).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +
+              '" disabled class="form-control">' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>'
+            )
+          })
+        }
+      }
+    })
+  }
+</script>

@@ -1,0 +1,187 @@
+<div
+  class="modal fade bd-example-modal-lg"
+  id="renewModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="renewModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Gia hạn hợp đồng</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form
+          action="/quan-ly/hop-dong-lao-dong/renew"
+          enctype="multipart/form-data"
+          method="POST"
+        >
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Tên nhân sự</label>
+                <input
+                  type="text"
+                  class="form-control name"
+                  id="name"
+                  aria-describedby="name"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="departmentName">Phòng ban</label>
+                <input
+                  type="text"
+                  class="form-control departmentName"
+                  id="departmentName"
+                  aria-describedby="departmentName"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="departmentName">Thời gian gia hạn</label>
+                <select
+                  class="form-control contractTerm"
+                  id="contractTerm"
+                  name="contractTerm"
+                  required
+                >
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="departmentName">Loại hợp đồng</label>
+                <select
+                  class="form-control typeOfContract"
+                  id="typeOfContract"
+                  name="typeOfContract"
+                  required
+                >
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Ngày bắt đầu</label>
+                <input
+                  type="date"
+                  class="form-control name"
+                  id="daySigned"
+                  name="daySigned"
+                  aria-describedby="name"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-check form-check-flat">
+                <label class="form-check-label">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="boNhiemCheckBoxPart"
+                    name="boNhiemCheckBoxPart"
+                  />
+                  Bổ nhiệm chức vụ
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" id="positionPart" style="display: none">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Vị trí chức vụ</label>
+                <input
+                  type="text"
+                  class="form-control name"
+                  id="namePart"
+                  name="namePart"
+                  aria-describedby="name"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Mô tả</label>
+                <input
+                  type="text"
+                  class="form-control name"
+                  id="descriptionPart"
+                  name="descriptionPart"
+                  aria-describedby="name"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Ngày bổ nhiệm</label>
+                <input
+                  type="date"
+                  class="form-control name"
+                  id="ngayBoNhiemPart"
+                  name="ngayBoNhiemPart"
+                  aria-describedby="name"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Ngày hết hạn</label>
+                <input
+                  type="date"
+                  class="form-control name"
+                  id="ngayHetHanPart"
+                  name="ngayHetHanPart"
+                  aria-describedby="name"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Nhập file</label>
+            <input
+              type="file"
+              class="form-control-file"
+              name="editDocuments"
+              id="editFile"
+              required
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Đóng
+            </button>
+            <button
+              class="btn btn-primary"
+              id="submitReNew"
+              type="submit"
+              value=""
+              name="id"
+            >
+              Gia hạn hợp đông
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

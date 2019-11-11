@@ -1,0 +1,90 @@
+<div class="modal fade" id="editSalary" role="dialog">
+  <div class="modal-dialog" style="max-width: 900px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Chỉnh sửa lương - phụ cấp</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Nhân sự</label>
+                  <div class="col-sm-12">
+                    <select class="form-control" disabled id="editnhanSu">
+                     
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Mã ngạch</label>
+                  <div class="col-sm-12">
+                    <select class="form-control closess required" required id="editmaNgach">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Bậc lương</label>
+                  <div class="col-sm-12">
+                    <select class="form-control required" required id="editbacLuong">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Hệ số</label>
+                  <div class="col-sm-12">
+                    <select class="form-control required" required id="editheSo">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Ngày bắt đầu hưởng</label>
+                  <div class="col-sm-12">
+                    <input id="editngayBatDau" type="date" class="form-control" placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Đến ngày</label>
+                  <div class="col-sm-12">
+                    <input id="editngayKetThuc" type="date" class="form-control" placeholder="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <center>
+                  <button id="editthemphucap" class="btn btn-primary" type="button">
+                    <span class="icon-holder">
+                      <i class="fa fa-plus"></i>
+                    </span>
+                    <span class="title">Thêm phụ cấp</span>
+                  </button>
+                </center>
+              </div>
+            </div>
+            <div class="insert-block editphucap">
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="submit" id="edit-Salary" class="btn btn-primary">Chỉnh sửa</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Thông tin cá nhân</title>
+    <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css" />
+    <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/vendors/icheck/skins/all.css" />
+    <link rel="stylesheet" href="/css/style_2.css" />
+    <link rel="stylesheet" href="/css/style_1.css" />
+    <link rel="stylesheet" href="/css/styleProfile.css" />
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <link rel="stylesheet" href="/css/dropzone.css" />
+    <style>
+      .form-control {
+        border: 0px solid #9b9ea3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-scroller">
+      <% include ../partials/_navbar %>
+      <div class="container-fluid page-body-wrapper">
+        <% include ../partials/_sidebar %>
+        <div class="main-panel">
+          <div class="content-wrapper" style="padding-top: 0px">
+            <div class="row">
+              <ul
+                class="nav nav-pills mb-3"
+                id="pills-tab"
+                role="tablist"
+                style="margin-top: 10px"
+              >
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    id="pills-general-tab"
+                    data-toggle="pill"
+                    href="#pills-general"
+                    role="tab"
+                    aria-controls="pills-general"
+                    aria-selected="true"
+                    >
+                    Thông tin chung
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="pills-courses-tab"
+                    data-toggle="pill"
+                    href="#pills-courses"
+                    role="tab"
+                    aria-controls="pills-courses"
+                    aria-selected="false"
+                    onclick="getCourses()"
+                    >Đào tạo, bồi dưỡng</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="pills-work-tab"
+                    data-toggle="pill"
+                    href="#pills-work"
+                    role="tab"
+                    aria-controls="pills-work"
+                    aria-selected="false"
+                    >Quá trình công tác</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="pills-profile-tab"
+                    data-toggle="pill"
+                    href="#pills-profile"
+                    role="tab"
+                    aria-controls="pills-profile"
+                    aria-selected="false"
+                    >Lý lịch bản thân</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="pills-family-tab"
+                    data-toggle="pill"
+                    href="#pills-family"
+                    role="tab"
+                    aria-controls="pills-family"
+                    aria-selected="false"
+                    >Quan hệ gia đình</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="pills-salary-tab"
+                    data-toggle="pill"
+                    href="#pills-salary"
+                    role="tab"
+                    aria-controls="pills-salary"
+                    aria-selected="false"
+                    >Quá trình lương</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="pills-award-tab"
+                    data-toggle="pill"
+                    href="#pills-award"
+                    role="tab"
+                    aria-controls="pills-award"
+                    aria-selected="false"
+                    onclick="getAward()"
+                    >Khen thưởng</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="pills-discipline-tab"
+                    data-toggle="pill"
+                    href="#pills-discipline"
+                    role="tab"
+                    aria-controls="pills-discipline"
+                    aria-selected="false"
+                    onclick="getDiscipline()"
+                    >Kỉ luật</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="pills-giaiphap-tab"
+                    data-toggle="pill"
+                    href="#pills-giaiphap"
+                    role="tab"
+                    aria-controls="pills-giaiphap"
+                    aria-selected="false"
+                    onclick="getGP()"
+                    >Giải pháp, sáng kiến</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="pills-comment-tab"
+                    data-toggle="pill"
+                    href="#pills-comment"
+                    role="tab"
+                    aria-controls="pills-comment"
+                    aria-selected="false"
+                    >Nhận xét, đánh giá</a
+                  >
+                </li>
+              </ul>
+              <div class="col-12 grid-margin">
+                <div class="align-center pull-right">
+                  <a href="./thong-tin-ca-nhan/chinh-sua">
+                    <button
+                      class="btn btn-primary"
+                      type="submit"
+                      id="edit-button"
+                      onclick="getid('<%- user._id %>')"
+                    >
+                      Chỉnh sửa thông tin
+                    </button>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body" style="overflow-x:scroll">
+                    <div class="tab-content" id="pills-tabContent">
+                      <div
+                        class="tab-pane fade show active"
+                        id="pills-general"
+                        role="tabpanel"
+                        aria-labelledby="pills-general-tab"
+                      >
+                        <div class="mT-30">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <center>
+                                    <div class="form-group">
+                                      <label
+                                        for=""
+                                        class="col-sm-12 control-label"
+                                        >Ảnh đại diện</label
+                                      >
+                                      <div class="col-sm-12 images_upload">
+                                        <% if(user.userImage != null){%>
+                                        <img
+                                          src="<%- user.userImage %>"
+                                          style="max-height: 180px; width: 120px; margin:5px 0px; border: 1px solid black; border-radius: 10px"
+                                        />
+                                        <%}%>
+                                      </div>
+                                    </div>
+                                  </center>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Email</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="email"
+                                        type="text"
+                                        value="<%- user.email %>"
+                                        class="form-control required"
+                                        placeholder=""
+                                        required
+                                        disabled
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label "
+                                      >Số hiệu cán bộ, công chức</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="textSoHieu"
+                                        value="<%- user.usersCardNumber %>"
+                                        type="text"
+                                        class="form-control required"
+                                        disabled
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label "
+                                      >Số điện thoại</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="phoneNumber"
+                                        value="<%- user.phoneNumber %>"
+                                        type="number"
+                                        class="form-control required"
+                                        disabled
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label">
+                                      Họ và tên khai sinh (Viết chữ in hoa)
+                                    </label>
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="textTen"
+                                        type="text"
+                                        class="form-control required"
+                                        value="<%- user.name %>"
+                                        disabled
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Tên gọi khác</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="textTenKhac"
+                                        type="text"
+                                        class="form-control"
+                                        value="<%- user.nickName %>"
+                                        disabled
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Ngày tháng năm sinh</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <div class="row ">
+                                        <div class="col-sm-12">
+                                          <input
+                                            id="ngaysinh"
+                                            type="text"
+                                            class="text form-control required"
+                                            value="<% if(user.birthday!=null){ %><%- moment(user.birthday).utc(0).format('DD/MM/YYYY') %> <%}%>"
+                                            disabled
+                                            required
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Giới tính</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="gioitinh"
+                                        type="text"
+                                        class="form-control required"
+                                        value=" <% if(user.gender==true){ %> Nam
+                                      <% } else if(user.gender==false) { %> Nữ
+                                      <% } %>"
+                                        required
+                                        disabled
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Nơi sinh</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <div class="row ">
+                                        <div class="col-sm-4">
+                                          <input
+                                            id="noisinhXa"
+                                            type="text"
+                                            class="form-control"
+                                            value="<%- user.placeBirth ? user.placeBirth.commune : null %>"
+                                            disabled
+                                          />
+                                        </div>
+                                        <div class="col-sm-4">
+                                          <input
+                                            id="noisinhHuyen"
+                                            type="text"
+                                            class="form-control"
+                                            value="<%-  user.placeBirth ? user.placeBirth.district : null %>"
+                                            disabled
+                                          />
+                                        </div>
+                                        <div class="col-sm-4">
+                                          <input
+                                            id="noisinhTinh"
+                                            type="text"
+                                            class="form-control"
+                                            value="<%-  user.placeBirth ? user.placeBirth.province : null %>"
+                                            disabled
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Quê quán</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <div class="row ">
+                                        <div class="col-sm-4">
+                                          <input
+                                            id="quequanXa"
+                                            type="text"
+                                            class="form-control"
+                                            value="<%- user.hometown ? user.hometown.commune : null %>"
+                                            disabled
+                                          />
+                                        </div>
+                                        <div class="col-sm-4">
+                                          <input
+                                            id="quequanHuyen"
+                                            type="text"
+                                            class="form-control"
+                                            value="<%- user.hometown ? user.hometown.district : null %>"
+                                            disabled
+                                          />
+                                        </div>
+                                        <div class="col-sm-4">
+                                          <input
+                                            id="quequanTinh"
+                                            type="text"
+                                            class="form-control"
+                                            value="<%- user.hometown ? user.hometown.province : null %>"
+                                            disabled
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Dân tộc</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="dantoc"
+                                        type="text"
+                                        class="form-control required"
+                                        value="<%- user.nation %>"
+                                        disabled
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Tôn giáo</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="tongiao"
+                                        type="text"
+                                        class="form-control required"
+                                        value="<%- user.religion %>"
+                                        disabled
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Nơi đăng ký hộ khẩu thường trú</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="HoKhau"
+                                        type="text"
+                                        class="form-control required"
+                                        value="<%- user.registeredPermanentResidence %>"
+                                        disabled
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Nơi ở hiện nay</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="Address"
+                                        type="text"
+                                        value="<%- user.registeredTemporaryResidence %>"
+                                        disabled
+                                        class="form-control required"
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Nghề nghiệp khi được tuyển dụng</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="nghenghiepTD"
+                                        type="text"
+                                        value="<%- user.occupationƯwhenRecruited %>"
+                                        disabled
+                                        class="form-control required"
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Ngày vào cơ quan hiện tại</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="ngayTD"
+                                        type="text"
+                                        value="<% if(user.recruitmentDay != null){ %><%- moment(user.recruitmentDay).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                        disabled
+                                        class="text form-control required"
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Cơ quan tuyển dụng</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="coquanTDtruoc"
+                                        type="text"
+                                        value="<%- user.employmentAgency %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Chức vụ (chức danh) hiện tại</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="chucvuHT"
+                                        type="text"
+                                        value="<%- (user.positionId[user.positionId.length - 1] ? user.positionId[user.positionId.length - 1].name : null) %>"
+                                        disabled
+                                        class="form-control required"
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Công việc chính được giao</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="cvchinh"
+                                        type="text"
+                                        value="<%- user.mainJob %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Ngạch công chức (viên chức)</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="ngach"
+                                        type="text"
+                                        value="<%- user.scaleOfCivilServant %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Mã ngạch</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="mangach"
+                                        type="text"
+                                        value=""
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-3">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Bậc lương</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="bacluong"
+                                        type="text"
+                                        value=""
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Hệ số</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="heso"
+                                        type="text"
+                                        value=""
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Ngày hưởng</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <% let time = new Date(); let timeYear = time.getFullYear();%>
+                                      <input
+                                        id="ngayhuong"
+                                        type="text"
+                                        value="<% if(user.payday!=null){ %><%- moment(user.payday).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                        disabled
+                                        class="text form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-12 ">
+                                <div class="form-group">
+                                  <label for="" class="col-sm-6 control-label"
+                                    >Phụ cấp</label
+                                  >
+                                  <div class="card-body p-20">
+                                    <div class="insert-block" id="phucap"></div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Trình độ giáo dục phổ thông</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="trinhdoGD"
+                                        type="text"
+                                        value="<%- user.educationLevel ? user.educationLevel.generalEducationLevel.whichClass : null %>"
+                                        disabled
+                                        class="form-control required"
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Trình độ chuyên môn cao nhất</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="trinhdoCM"
+                                        type="text"
+                                        value="<%- user.educationLevel ? user.educationLevel.highestProfessionalQualification : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Lý luận chính trị</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="lyluanCT"
+                                        type="text"
+                                        value="<%- user.educationLevel ? user.educationLevel.politicalTheory : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Quản lý nhà nước</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="quanlinhanuoc"
+                                        type="text"
+                                        value="<%- user.educationLevel ? user.educationLevel.stateManagement : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-3">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Ngoại ngữ</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="ngoaingu"
+                                        type="text"
+                                        value="<%- user.educationLevel.languageLevel ? user.educationLevel.languageLevel.language : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Trình độ</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="trinhDoNN"
+                                        type="text"
+                                        value="<%- user.educationLevel.languageLevel ? user.educationLevel.languageLevel.level : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Mô tả</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="moTaNN"
+                                        type="text"
+                                        value="<%- user.educationLevel.languageLevel ? user.educationLevel.languageLevel.description : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Trình độ tin học</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="tinhoc"
+                                        type="text"
+                                        value="<%- user.educationLevel.computerSkill ? user.educationLevel.computerSkill.level : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Mô tả</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="moTaTH"
+                                        type="text"
+                                        value="<%- user.educationLevel.computerSkill ? user.educationLevel.computerSkill.description : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <div class="col-sm-12">
+                                      <div class="form-check">
+                                        <label class="form-check-label">
+                                          <% if( (user.communist ?
+                                          user.communist.yes : false) ===
+                                          true){%>
+                                          <input
+                                            type="checkbox"
+                                            id="laDangVien"
+                                            value="1"
+                                            checked
+                                            class="form-check-input"
+                                          />
+                                          <%}else{%>
+                                          <input
+                                            type="checkbox"
+                                            id="laDangVien"
+                                            value="1"
+                                            class="form-check-input"
+                                          />
+                                          <%}%> Đang là Đảng viên
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Số thẻ Đảng</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="soTheDang"
+                                        type="text"
+                                        disabled
+                                        value="<%- user.communist.number %>"
+                                        class="text form-control"
+                                        placeholder=""
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Ngày vào Đảng Cộng sản Việt Nam</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="ngayvaoDang"
+                                        type="text"
+                                        value="<% if( (user.communist ? user.communist.dateIn : null) != null){ %><%- moment(user.communist.dateIn).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                        disabled
+                                        class="text form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Ngày chính thức</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="ngayvaoDangCT"
+                                        type="text"
+                                        value="<% if( (user.communist ? user.communist.officalDate : null) != null){ %><%- moment(user.communist.officalDate).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                        disabled
+                                        class="text form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <div class="col-sm-12">
+                                      <div class="form-check">
+                                        <label class="form-check-label">
+                                          <% if( (user.youthUnion ?
+                                          user.youthUnion.yes : false) ===
+                                          true){%>
+                                          <input
+                                            type="checkbox"
+                                            value="1"
+                                            id="laDoanVien"
+                                            checked
+                                            class="form-check-input"
+                                          />
+                                          <%}else{%>
+                                          <input
+                                            type="checkbox"
+                                            value="1"
+                                            id="laDoanVien"
+                                            class="form-check-input"
+                                          />
+                                          <%}%> Đang là Đoàn viên
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Ngày vào Đoàn</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="ngayvaoDoan"
+                                        type="text"
+                                        disabled
+                                        value="<% if(user.youthUnion.dateIn != null){ %><%= moment(user.youthUnion.dateIn).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                        class="text form-control"
+                                        placeholder=""
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label">
+                                      Ngày tham gia tổ chức chính trị - xã hội
+                                    </label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="ngaythamgiaTCCTXH"
+                                        type="text"
+                                        value="<% if((user.ngayThamGiaToChucCTXH[0] ? user.ngayThamGiaToChucCTXH[0].dateIn : null) != null){ %><%- moment(user.ngayThamGiaToChucCTXH[0].dateIn).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label">
+                                      Tổ chức chính trị - xã hội
+                                    </label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="TCCTXH"
+                                        type="text"
+                                        value="<%- user.ngayThamGiaToChucCTXH[0] ? user.ngayThamGiaToChucCTXH[0].name : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label" >
+                                      Ngày nhập ngũ
+                                    </label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="ngaynhapngu"
+                                        type="text"
+                                        value="<% if((user.army ? user.army.dateIn : null) != null){ %><%= moment(user.army.dateIn).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                        disabled
+                                        class="text form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label">
+                                      Ngày xuất ngũ
+                                    </label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="ngayxuatngu"
+                                        type="text"
+                                        value="<% if((user.army ? user.army.dateOut : null) != null){ %><%= moment(user.army.dateOut).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                        disabled
+                                        class="text form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label">
+                                      Quân hàm cao nhất
+                                    </label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="quanham"
+                                        type="text"
+                                        value="<%- user.army ? user.army.rank : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label">
+                                      Danh hiệu được phong tặng cao nhất
+                                    </label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="danhhieu"
+                                        type="text"
+                                        value="<%- user.army ? user.army.highestAward : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Sở trường công tác</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <textarea
+                                        id="sotruong"
+                                        disabled
+                                        class="form-control text"
+                                        rows="4"
+                                      >
+                                        <%- user.forte %>
+                                      </textarea
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-lg-3">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Tình trạng sức khỏe</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="suckhoe"
+                                        value="<%- user.health ? user.health.status : null %>"
+                                        disabled
+                                        type="text"
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Chiều cao</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="chieucao"
+                                        value="<%- user.health ? user.health.heigth : null %>"
+                                        disabled
+                                        type="text"
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Cân nặng</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="cannang"
+                                        type="text"
+                                        value="<%- user.health ? user.health.weight : null %>"
+                                        disabled
+                                        class="form-control  "
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Nhóm máu</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="nhommau"
+                                        type="text"
+                                        value="<%- user.health ? user.health.bloodGroup : null %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Là thương binh hạng</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="thuongbinh"
+                                        type="text"
+                                        value="<%- user.veterans ? user.veterans.type : null %>"
+                                        disabled
+                                        class="form-control  "
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Là con gia đình chính sách</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="conlietsi"
+                                        type="text"
+                                        value="<%- user.familyPolicy %>"
+                                        disabled
+                                        class="form-control"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Số chứng minh nhân dân</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="cmnd"
+                                        type="text"
+                                        value="<%- user.IDCard ? user.IDCard.number : null %>"
+                                        disabled
+                                        class="form-control required"
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="" class="col-sm-6 control-label"
+                                      >Ngày cấp</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="ngaycapcmnd"
+                                        type="date"
+                                        value="<% if((user.IDCard ? user.IDCard.dateRange : null) != null ){ %><%= moment(user.IDCard.dateRange).utc(0).format('YYYY-MM-DD') %><%}%>"
+                                        disabled
+                                        class="text form-control required"
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="form-group">
+                                    <label
+                                      for=""
+                                      class="col-sm-12 control-label"
+                                      >Số sổ bảo hiểm xã hội</label
+                                    >
+                                    <div class="col-sm-12">
+                                      <input
+                                        id="bhxh"
+                                        type="text"
+                                        value="<%- user.socialInsuranceNumber %>"
+                                        disabled
+                                        class="form-control  "
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="tab-pane fade courses"
+                        id="pills-courses"
+                        role="tabpanel"
+                        aria-labelledby="pills-courses-tab"
+                      >
+                        <div class="mT-30">
+                          <div class="insert-block" id="daotao">
+                            <table
+                              class="table table-striped table-bordered table-hover"
+                              id="list-daotao"
+                            >
+                              <thead>
+                                <tr>
+                                  <th>STT</th>
+                                  <th>Thời gian đào tạo</th>
+                                  <th>Nơi đào tạo</th>
+                                  <th>Chuyên ngành</th>
+                                  <th>Trình độ, văn bằng, chứng chỉ</th>
+                                  <th>Hình thức</th>
+                                </tr>
+                              </thead>
+                              <tbody id="listDT"></tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="tab-pane fade"
+                        id="pills-work"
+                        role="tabpanel"
+                        aria-labelledby="pills-work-tab"
+                      >
+                        <div class="mT-30">
+                          <% user.workingProccess ? user.workingProccess.map((item, index) => { %>
+                          <div class="row">
+                            <div class="card-body p-20">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <div class="row">
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="">Từ ngày</label>
+                                        <div class="row ">
+                                          <div class="col-sm-12">
+                                            <input
+                                              id="ngaycongtac"
+                                              value="<% if(item.fromDate!=null){ %><%= moment(item.fromDate).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                              disabled
+                                              type="text"
+                                              class="text form-control"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="">Đến ngày</label>
+                                        <div class="row ">
+                                          <div class="col-sm-12">
+                                            <input
+                                              id="ngayhetcongtac"
+                                              value="<% if(item.toDate!=null){ %><%= moment(item.toDate).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                              disabled
+                                              type="text"
+                                              class="text form-control"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="form-group">
+                                        <label for="">
+                                          <p>
+                                            Chức danh, chức vụ, đơn vị công tác
+                                            (đảng, chính quyền, đoàn thể, tổ
+                                            chức xã hội), kể cả thời gian được
+                                            đào tạo, bồi dưỡng về chuyên môn,
+                                            nghiệp vụ,......
+                                          </p>
+                                        </label>
+                                        <textarea
+                                          id="chucdanhCT"
+                                          disabled
+                                          class="form-control text"
+                                          rows="2"
+                                        >
+                                          <%- item.description %>
+                                        </textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <%}) : null %>
+                        </div>
+                      </div>
+
+                      <div
+                        class="tab-pane fade"
+                        id="pills-profile"
+                        role="tabpanel"
+                        aria-labelledby="pills-profile-tab"
+                      >
+                        <div class="mT-30">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="form-group">
+                                <label for="" class="col-sm-12 control-label"
+                                  >Khai rõ: bị bắt, bị tù (từ ngày tháng năm nào
+                                  đến ngày tháng năm nào, ở đâu), đã khai báo
+                                  cho ai, những vấn đề gì? Bản thân có làm việc
+                                  trong chế độ cũ (cơ quan, đơn vị nào, địa
+                                  điểm, chức danh, chức vụ, thời gian làm việc
+                                  ...)</label
+                                >
+                                <div class="col-sm-12">
+                                  <textarea
+                                    id="question1"
+                                    disabled
+                                    class="form-control text"
+                                    rows="4"
+                                  >
+                                    <%- user.personalHistory[0] ? user.personalHistory[0].question1 : null %>
+                                  </textarea>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="form-group">
+                                <label for="" class="col-sm-12 control-label"
+                                  >Tham gia hoặc có quan hệ với các tổ chức
+                                  chính trị, kinh tế, xã hội nào ở nước ngoài
+                                  (làm gì, tổ chức nào, đặt trụ sở ở đâu
+                                  ...?)
+                                </label>
+                                <div class="col-sm-12">
+                                  <textarea
+                                    id="question2"
+                                    disabled
+                                    class="form-control text"
+                                    rows="4"
+                                  >
+                                    <%- user.personalHistory[0] ? user.personalHistory[0].question2 : null %>
+                                  </textarea>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="form-group">
+                                <label for="" class="col-sm-12 control-label"
+                                  >Có thân nhân (Cha, Mẹ, Vợ, Chồng, con, anh
+                                  chị em ruột) ở nước ngoài (làm gì, địa
+                                  chỉ)?</label
+                                >
+                                <div class="col-sm-12">
+                                  <textarea
+                                    id="question3"
+                                    disabled
+                                    class="form-control text"
+                                    rows="4"
+                                  >
+                                    <%- user.personalHistory[0] ? user.personalHistory[0].question3 : null %>
+                                  </textarea>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="tab-pane fade"
+                        id="pills-family"
+                        role="tabpanel"
+                        aria-labelledby="pills-family-tab"
+                      >
+                        <div class="mT-30">
+                          <div class="row">
+                            <div class="card-body p-20">
+                              <h6>
+                                Về bản thân: Cha, Mẹ, Vợ (hoặc chồng), các con,
+                                anh chị em ruột
+                              </h6>
+                              <div class="insert-block" id="banthan">
+                                <% user.familyRelationship.aboutMyself ?
+                                user.familyRelationship.aboutMyself.map((item,
+                                index) => { %>
+                                <div class="card ban-than radius-16">
+                                  <div class="card-body p-20">
+                                    <div class="row">
+                                      <div class="col-sm-6">
+                                        <div class="row">
+                                          <div class="col-lg-12">
+                                            <div class="form-group">
+                                              <label
+                                                for=""
+                                                class="col-sm-12 control-label"
+                                                >Mối quan hệ</label
+                                              >
+                                              <div class="col-sm-12">
+                                                <input
+                                                  id="moiQH"
+                                                  type="text"
+                                                  value="<%- item.type %>"
+                                                  disabled
+                                                  class="form-control  "
+                                                />
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-lg-8">
+                                            <div class="form-group">
+                                              <label
+                                                for=""
+                                                class="col-sm-12 control-label"
+                                                style="margin-bottom: 15px"
+                                                >Họ và tên</label
+                                              >
+                                              <div class="col-sm-12">
+                                                <input
+                                                  id="nameQH"
+                                                  type="text"
+                                                  value="<%- item.name %>"
+                                                  disabled
+                                                  class="form-control  "
+                                                />
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4">
+                                            <div class="col-lg-12">
+                                              <label
+                                                for=""
+                                                class="col-sm-12 control-label"
+                                              >
+                                                <p style="margin-bottom: 0px">
+                                                  Năm sinh
+                                                </p>
+                                              </label>
+                                              <input
+                                                id="namsinhQH"
+                                                disabled
+                                                value="<% if(item.birthday != null){ %><%= moment(item.birthday).utc(0).format('YYYY') %><%}%>"
+                                                type="text"
+                                                class="text form-control"
+                                                placeholder=""
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <div class="row">
+                                          <div class="col-sm-12">
+                                            <div class="form-group">
+                                              <label for=""
+                                                >Quê quán, nghề nghiệp, chức
+                                                danh, chức vụ, đơn vị công tác,
+                                                học tập, nơi ở (trong, ngoài
+                                                nước); thành viên các tổ chức
+                                                chính trị - xã hội ...)</label
+                                              >
+                                              <textarea
+                                                id="mieutaQH"
+                                                disabled
+                                                class="form-control text  "
+                                                rows="4"
+                                              >
+                                                <%- item.description %>
+                                              </textarea>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <%}) : null %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="card-body p-20">
+                            <h6>
+                              Về bên vợ (hoặc chồng): Cha, Mẹ, anh chị em ruột
+                            </h6>
+                            <div class="insert-block" id="vochong">
+                              <% user.familyRelationship.aboutOther ? user.familyRelationship.aboutOther.map((item, index) => { %>
+                              <div class="card vo-chong radius-16">
+                                <div class="card-body p-20">
+                                  <div class="row">
+                                    <div class="col-sm-6">
+                                      <div class="row">
+                                        <div class="col-lg-12">
+                                          <div class="form-group">
+                                            <label
+                                              for=""
+                                              class="col-sm-12 control-label"
+                                              >Mối quan hệ</label
+                                            >
+                                            <div class="col-sm-12">
+                                              <input
+                                                id="moiQHkhac"
+                                                value="<%- item.type %>"
+                                                disabled
+                                                type="text"
+                                                class="form-control  "
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-lg-8">
+                                          <div class="form-group">
+                                            <label
+                                              for=""
+                                              class="col-sm-12 control-label"
+                                              style="margin-bottom: 15px"
+                                              >Họ và tên</label
+                                            >
+                                            <div class="col-sm-12">
+                                              <input
+                                                id="tenQHkhac"
+                                                value="<%- item.name %>"
+                                                disabled
+                                                type="text"
+                                                class="form-control  "
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                          <div class="col-sm-12">
+                                            <label
+                                              for=""
+                                              class="col-sm-12 control-label"
+                                            >
+                                              <p style="margin-bottom: 0px">
+                                                Năm sinh
+                                              </p>
+                                            </label>
+                                            <input
+                                              id="namsinhQHkhac"
+                                              value="<% if(item.birthday != null){ %><%= moment(item.birthday).utc(0).format('YYYY') %><%}%>"
+                                              type="text"
+                                              disabled
+                                              class="text form-control"
+                                              placeholder=""
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="row">
+                                        <div class="col-sm-12">
+                                          <div class="form-group">
+                                            <label for=""
+                                              >Quê quán, nghề nghiệp, chức danh,
+                                              chức vụ, đơn vị công tác, học tập,
+                                              nơi ở (trong, ngoài nước); thành
+                                              viên các tổ chức chính trị - xã
+                                              hội ...)</label
+                                            >
+                                            <textarea
+                                              id="mieutaQHkhac"
+                                              disabled
+                                              class="form-control text  "
+                                              rows="4"
+                                            >
+                                              <%- item.description %>
+                                            </textarea>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <%}) : null %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="tab-pane fade"
+                        id="pills-salary"
+                        role="tabpanel"
+                        aria-labelledby="pills-salary-tab"
+                      >
+                        <div class="card-body">
+                          <div class="mT-30">
+                            <% user.wageMovements ? user.wageMovements.map((item, index) => { %>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <div class="row ">
+                                    <div class="col-sm-3">
+                                      <label
+                                        for=""
+                                        class="col-sm-12 control-label"
+                                      >
+                                        <p style="margin-bottom: 0px">
+                                          Ngày hưởng
+                                        </p>
+                                      </label>
+                                      <input
+                                        id="ngayluong"
+                                        value="<% if(item.date!=null){ %><%= moment(item.date).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                        type="text"
+                                        disabled
+                                        class="text form-control"
+                                        placeholder=""
+                                      />
+                                    </div>
+                                    <div class="col-lg-5">
+                                      <div class="form-group">
+                                        <label
+                                          for=""
+                                          class="col-sm-12 control-label"
+                                          >Ngạch (Mã ngạch)</label
+                                        >
+                                        <div class="col-sm-12">
+                                          <input
+                                            id="mangachwage"
+                                            disabled
+                                            value="<%- item.scaleCode %>"
+                                            type="text"
+                                            class="form-control  "
+                                            placeholder=""
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                      <div class="form-group">
+                                        <label
+                                          for=""
+                                          class="col-sm-12 control-label"
+                                          >Bậc</label
+                                        >
+                                        <div class="col-sm-12">
+                                          <input
+                                            id="bacwage"
+                                            disabled
+                                            value="<%- item.salaryLevel %>"
+                                            type="text"
+                                            class="form-control  "
+                                            placeholder=""
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                      <div class="form-group">
+                                        <label
+                                          for=""
+                                          class="col-sm-12 control-label"
+                                          >Hệ số lương</label
+                                        >
+                                        <div class="col-sm-12">
+                                          <input
+                                            id="hesowage"
+                                            disabled
+                                            value="<%- item.coefficient %>"
+                                            type="text"
+                                            class="form-control  "
+                                            placeholder=""
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <%}) : null %>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="tab-pane fade khenthuong"
+                        id="pills-award"
+                        role="tabpanel"
+                        aria-labelledby="pills-award-tab"
+                      >
+                        <div class="mT-30 khen-thuong">
+                          <div class="insert-block" id="khenthuong">
+                            <table
+                              class="table table-striped table-bordered table-hover"
+                              id="list-khenthuong"
+                            >
+                              <thead>
+                                <tr>
+                                  <th>STT</th>
+                                  <th>Số quyết định</th>
+                                  <th>Ngày quyết định</th>
+                                  <th>Cấp quyết định</th>
+                                  <th>Danh hiệu</th>
+                                  <th>Hình thức</th>
+                                  <th>Thành tích</th>
+                                </tr>
+                              </thead>
+                              <tbody id="listKT"></tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="tab-pane fade kiluat"
+                        id="pills-discipline"
+                        role="tabpanel"
+                        aria-labelledby="pills-discipline-tab"
+                      >
+                        <div class="mT-30 ki-luat">
+                          <div class="insert-block" id="kiluat">
+                            <table
+                              class="table table-striped table-bordered table-hover"
+                              id="list-kiluat"
+                            >
+                              <thead>
+                                <tr>
+                                  <th>STT</th>
+                                  <th>Số quyết định</th>
+                                  <th>Thời gian kỉ luật</th>
+                                  <th>Cấp quyết định</th>
+                                  <th>Hình thức</th>
+                                  <th>Lý do</th>
+                                </tr>
+                              </thead>
+                              <tbody id="listKL"></tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="tab-pane fade sangkien"
+                        id="pills-giaiphap"
+                        role="tabpanel"
+                        aria-labelledby="pills-giaiphap-tab"
+                      >
+                        <div class="mT-30 giai-phap">
+                          <div class="insert-block" id="giaiphap">
+                            <table
+                              class="table table-striped table-bordered table-hover"
+                              id="list-giaiphap"
+                            >
+                              <thead>
+                                <tr>
+                                  <th>STT</th>
+                                  <th>Năm</th>
+                                  <th>Loại đề tài</th>
+                                  <th>Đề tài</th>
+                                  <th>Xếp loại</th>
+                                  <th>Cấp</th>
+                                  <th>Ghi chú</th>
+                                </tr>
+                              </thead>
+                              <tbody id="listGP"></tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="tab-pane fade"
+                        id="pills-comment"
+                        role="tabpanel"
+                        aria-labelledby="pills-comment-tab"
+                      >
+                        <div class="card-body">
+                          <div class="mT-30">
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <div class="form-group">
+                                  <textarea
+                                    class="form-control text"
+                                    disabled
+                                    rows="4"
+                                  >
+                                    <%- user.evaluate %>
+                                  </textarea>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <% include ../partials/_footer %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/vendors/js/vendor.bundle.addons.js"></script>
+    <script src="/js/off-canvas.js"></script>
+    <script src="/js/misc.js"></script>
+    <script src="/js/dropzone.js"></script>
+    <script src="/js/custom.min.js"></script>
+    <script src="/js/hoverable-collapse.js"></script>
+    <!-- <script>
+      $('#list-daotao').DataTable();
+      $('#list-khenthuong').DataTable();
+      $('#list-kiluat').DataTable();
+      $('#list-giaiphap').DataTable();
+    </script> -->
+
+    <% include ./../partials/scriptForAll %> <% include ./scriptget %>
+  </body>
+</html>

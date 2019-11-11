@@ -1,0 +1,100 @@
+<div class="modal fade" id="addSalary" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Thêm lương - phụ cấp</h4>
+        <button type="button" class="close closes" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-8">
+              <i>*Chú ý: Mỗi lần chỉ chọn 1 nhân viên</i>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="table-responsive">
+                  <table id="Table-listNS" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Số hiệu cán bộ</th>
+                        <th>Họ và tên</th>
+                      </tr>
+                    </thead>
+                    <tbody class="listEmployee">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Mã ngạch</label>
+                  <div class="col-sm-12">
+                    <select class="form-control closess required" required id="maNgach">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Bậc lương</label>
+                  <div class="col-sm-12">
+                    <select class="form-control required" required id="bacLuong">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Hệ số</label>
+                  <div class="col-sm-12">
+                    <select class="form-control required" required id="heSo">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Ngày bắt đầu hưởng</label>
+                  <div class="col-sm-12">
+                    <input id="ngayBatDau" type="date" class="form-control" placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="" class="col-sm-12 control-label">Đến ngày</label>
+                  <div class="col-sm-12">
+                    <input id="ngayKetThuc" type="date" class="form-control" placeholder="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <center>
+                  <button id="themphucap" class="btn btn-primary" type="button" >
+                  <span class="icon-holder">
+                    <i class="fa fa-plus"></i>
+                  </span>
+                  <span class="title">Thêm phụ cấp</span>
+                </button>
+              </center>
+              </div>
+            </div>
+            <div class="row phucap">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary closes" data-dismiss="modal">Đóng</button>
+        <button type="submit" id="create-salary" class="btn btn-primary">Tạo</button>
+      </div>
+    </div>
+  </div>
+</div>

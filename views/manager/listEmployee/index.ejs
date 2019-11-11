@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Nhân sự</title>
+    <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css" />
+    <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/css/styleProfile.css" />
+    <link rel="stylesheet" href="/css/style_2.css" />
+    <link rel="stylesheet" href="/css/style_1.css" />
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <style>
+      body {
+        font-family: Arial;
+      }
+      .table tbody tr.selected {
+        background-color: #b9f7e1 !important;
+        vertical-align: middle !important;
+        height: 4em;
+      }
+      .abcef .form-control {
+        color: red !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-scroller">
+      <% include ../../partials/_navbar %>
+      <div class="container-fluid page-body-wrapper">
+        <% include ../../partials/_sidebar %>
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body" style="padding-top:1rem !important">
+                    <div class="tab">
+                      <ul
+                        class="nav nav-tabs tab-solid tab-solid-primary"
+                        style="margin-bottom: 0.8rem !important"
+                        role="tablist"
+                      >
+                        <li class="nav-item">
+                          <a
+                            class="nav-link active"
+                            id="tab-5-1"
+                            data-toggle="tab"
+                            href="#home-5-1"
+                            role="tab"
+                            aria-controls="home-5-1"
+                            aria-selected="true"
+                            >Danh sách nhân sự</a
+                          >
+                        </li>
+                        <% if(roles == "ADMIN" ){%>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link"
+                            id="tab-5-2"
+                            data-toggle="tab"
+                            href="#profile-5-2"
+                            role="tab"
+                            aria-controls="profile-5-2"
+                            aria-selected="false"
+                            >Danh sách hồ sơ chờ duyệt</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link"
+                            id="tab-5-3"
+                            data-toggle="tab"
+                            href="#profile-5-3"
+                            role="tab"
+                            aria-controls="profile-5-3"
+                            aria-selected="false"
+                            >Danh sách Đoàn viên</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link"
+                            id="tab-5-4"
+                            data-toggle="tab"
+                            href="#profile-5-4"
+                            role="tab"
+                            aria-controls="profile-5-4"
+                            aria-selected="false"
+                            >Danh sách Đảng viên</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link"
+                            id="tab-5-5"
+                            data-toggle="tab"
+                            href="#profile-5-5"
+                            role="tab"
+                            aria-controls="profile-5-5"
+                            aria-selected="false"
+                            >Danh sách cựu cán bộ</a
+                          >
+                        </li>
+                        <%}%>
+                      </ul>
+                    </div>
+                    <div class="tab-content tab-content-solid">
+                      <div
+                        class="tab-pane fade show active"
+                        id="home-5-1"
+                        role="tabpanel"
+                        aria-labelledby="tab-5-1"
+                      >
+                        <% if(roles == "ADMIN" ){%>
+                        <div class="row">
+                          <a href="./tao-ho-so">
+                            <button
+                              style="margin:10px; width: 110px"
+                              class="btn btn-primary"
+                              type="button"
+                              style="margin: auto"
+                            >
+                              <span class="icon-holder">
+                                <i class="fa fa-plus"></i>
+                              </span>
+                              <span class="title">Thêm</span>
+                            </button>
+                          </a>
+                        </div>
+                        <%}%> <% if(roles == "ADMIN" ){%>
+                        <div class="table-responsive">
+                          <table
+                            class="table table-striped table-bordered table-hover"
+                            id="Table-listNS"
+                          >
+                            <thead>
+                              <tr>
+                                <th>Hành động</th>
+                                <th>STT</th>
+                                <th>Số hiệu cán bộ</th>
+                                <th>Họ và tên</th>
+                                <th>Giới tính</th>
+                                <th>Ngày sinh</th>
+                                <th>Nơi sinh</th>
+                                <th>Chức vụ/Chức danh</th>
+                                <th>Phòng/Khoa</th>
+                                <th>Số CMND</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                              </tr>
+                            </thead>
+                            <tbody id="list-employee">
+                              <% nhansu.nhanVien.map((item, index) => { %>
+                              <tr>
+                                <td>
+                                  <button
+                                    type="button"
+                                    class="btn btn-icons btn-rounded btn-outline-primary"
+                                  >
+                                    <a href="./chinh-sua-ho-so/<%- item._id %>">
+                                      <i class="fa fa-edit"></i>
+                                    </a>
+                                  </button>
+                                  <button
+                                    type="button"
+                                    class="btn btn-icons btn-rounded btn-outline-primary"
+                                    onclick="removeProfile('<%- item._id %>')"
+                                    data-toggle="modal"
+                                    data-target="#deleteModal"
+                                  >
+                                    <i class="fa fa-trash-o"></i>
+                                  </button>
+                                  <a
+                                    href="/bao-cao/lylich2c/<%- item._id %>/export"
+                                  >
+                                    <button
+                                      type="button"
+                                      class="btn btn-icons btn-rounded btn-outline-primary"
+                                    >
+                                      <i class="fa fa-download"></i>
+                                    </button>
+                                  </a>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <%- index + 1 %>
+                                </td>
+                                <!-- <td data-toggle="modal" data-target="#info" onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>')">
+                                <%- item.typeOfUsers %>
+                              </td> -->
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <%- item.usersCardNumber %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <%- item.name %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <% if(item.gender==true){ %> Nam 
+                                  <% } else if(item.gender==false) { %> Nữ 
+                                  <% } %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <% if(item.birthday){%> 
+                                  <%- moment(item.birthday).utc(0).format('DD/MM/YYYY') %> 
+                                  <%}%>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <%- item.placeBirth ? item.placeBirth.province : null %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <%- (item.positionId[item.positionId.length - 1] ? item.positionId[item.positionId.length - 1].name : null) %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <%- item.belongToDepartment ? item.belongToDepartment.name : null %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <%- item.IDCard ? item.IDCard.number : null %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <%- item.email %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <%- item.phoneNumber %>
+                                </td>
+                              </tr>
+                              <%})%>
+                            </tbody>
+                          </table>
+                        </div>
+                        <%}else{%>
+                        <div class="table-responsive">
+                          <table
+                            class="table table-striped table-bordered table-hover"
+                            id="Table-listNS"
+                          >
+                            <thead>
+                              <tr>
+                                <th>STT</th>
+                                <th>Họ và tên</th>
+                                <th>Giới tính</th>
+                                <th>Ngày sinh</th>
+                                <th>Chức vụ/Chức danh</th>
+                                <th>Phòng/Khoa</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                              </tr>
+                            </thead>
+                            <tbody id="list-employee">
+                              <% nhansu.nhanVien.map((item, index) => { %>
+                              <tr>
+                                <td>
+                                  <%- index + 1 %>
+                                </td>
+                                <td>
+                                  <%- item.name %>
+                                </td>
+                                <td>
+                                  <% if(item.gender==true){ %> Nam 
+                                  <% } else if(item.gender==false) { %> Nữ 
+                                  <% } %>
+                                </td>
+                                <td>
+                                  <% if(item.birthday){%> 
+                                  <%- moment(item.birthday).utc(0).format('DD/MM/YYYY') %> 
+                                  <%}%>
+                                </td>
+                                <td>
+                                  <%- (item.positionId[item.positionId.length - 1] ? item.positionId[item.positionId.length - 1].name : null) %>
+                                </td>
+                                <td>
+                                  <%- item.belongToDepartment ? item.belongToDepartment.name : null %>
+                                </td>
+                                <td>
+                                  <%- item.email %>
+                                </td>
+                                <td>
+                                  <%- item.phoneNumber %>
+                                </td>
+                              </tr>
+                              <%})%>
+                            </tbody>
+                          </table>
+                        </div>
+                        <%}%>
+                      </div>
+                      <% if(roles == "ADMIN" ){%>
+                      <div
+                        class="tab-pane fade"
+                        id="profile-5-2"
+                        role="tabpanel"
+                        aria-labelledby="tab-5-2"
+                      >
+                        <div class="row" style="padding:5px"></div>
+                        <div class="table-responsive">
+                          <table
+                            class="table table-striped table-bordered table-hover"
+                            id="Table-listChange"
+                          >
+                            <thead>
+                              <tr>
+                                <th>Hành động</th>
+                                <th>STT</th>
+                                <th>Số hiệu cán bộ</th>
+                                <th>Họ và tên</th>
+                                <th>Giới tính</th>
+                                <th>Chức vụ/Chức danh</th>
+                                <th>Phòng/Khoa</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% waiting.map((item, index) => { %>
+                              <tr>
+                                <td>
+                                  <button
+                                    type="button"
+                                    class="btn btn-icons btn-rounded btn-outline-primary"
+                                    onclick="removeChange('<%- item._id %>')"
+                                    data-toggle="modal"
+                                    data-target="#deleteChangeModal"
+                                  >
+                                    <i class="fa fa-trash-o"></i>
+                                  </button>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#accept"
+                                  onclick="getChange('<%- item._id %>')"
+                                >
+                                  <%- index +1 %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#accept"
+                                  onclick="getChange('<%- item._id %>')"
+                                >
+                                  <%- item.user ? item.user.usersCardNumber : null %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#accept"
+                                  onclick="getChange('<%- item._id %>')"
+                                >
+                                  <%- item.user ? item.user.name : null %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#accept"
+                                  onclick="getChange('<%- item._id %>')"
+                                >
+                                  <% if(item.birthday){%> <%- moment(item.birthday).utc(0).format('DD/MM/YYYY') %> 
+                                  <%}%>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#accept"
+                                  onclick="getChange('<%- item._id %>')"
+                                >
+                                  <%- item.user ? (item.user.positionId[item.user.positionId.length - 1] ? item.user.positionId[item.user.positionId.length - 1].name : null) : null %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#accept"
+                                  onclick="getChange('<%- item._id %>')"
+                                >
+                                  <%- item.user ? item.user.belongToDepartment.name : null %>
+                                </td>
+                              </tr>
+                              <%})%>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="profile-5-3"
+                        role="tabpanel"
+                        aria-labelledby="tab-5-3"
+                      >
+                        <div class="row" style="padding:5px"></div>
+                        <div class="table-responsive">
+                          <table
+                            class="table table-striped table-bordered table-hover"
+                            id="Table-youthUnion"
+                          >
+                            <thead>
+                              <tr>
+                                <th>STT</th>
+                                <th>Số hiệu cán bộ</th>
+                                <th>Họ và tên</th>
+                                <th>Giới tính</th>
+                                <th>Chức vụ/Chức danh</th>
+                                <th>Ngày vào Đoàn</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% nhansu.doanVien.map((item, index) => { %>
+                              <tr>
+                                <td>
+                                  <%- index + 1 %>
+                                </td>
+                                <td>
+                                  <%- item.usersCardNumber %>
+                                </td>
+                                <td>
+                                  <%- item.name %>
+                                </td>
+                                <td>
+                                  <% if(item.gender==true){ %> Nam 
+                                  <% } else if(item.gender==false) { %> Nữ 
+                                  <% } %>
+                                </td>
+                                <td>
+                                  <%- (item.positionId[item.positionId.length - 1] ? item.positionId[item.positionId.length - 1].name : null) %>
+                                </td>
+                                <td>
+                                  <% if(item.youthUnion.dateIn){%> <%- moment(item.youthUnion.dateIn).utc(0).format('DD/MM/YYYY') %> 
+                                  <%}%>
+                                </td>
+                              </tr>
+                              <%})%>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="profile-5-4"
+                        role="tabpanel"
+                        aria-labelledby="tab-5-4"
+                      >
+                        <div class="row" style="padding:5px"></div>
+                        <div class="table-responsive">
+                          <table
+                            class="table table-striped table-bordered table-hover"
+                            id="Table-communist"
+                          >
+                            <thead>
+                              <tr>
+                                <th>STT</th>
+                                <th>Số hiệu cán bộ</th>
+                                <th>Số thẻ Đảng</th>
+                                <th>Họ và tên</th>
+                                <th>Giới tính</th>
+                                <th>Chức vụ/Chức danh</th>
+                                <th>Ngày vào Đảng</th>
+                                <th>Ngày chính thức</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% nhansu.dangVien.map((item, index) => { %>
+                              <tr>
+                                <td>
+                                  <%- index + 1 %>
+                                </td>
+                                <td>
+                                  <%- item.usersCardNumber %>
+                                </td>
+                                <td>
+                                  <%- item.communist ? item.communist.number : null %>
+                                </td>
+                                <td>
+                                  <%- item.name %>
+                                </td>
+                                <td>
+                                  <% if(item.gender==true){ %> Nam 
+                                  <% } else if(item.gender==false) { %> Nữ 
+                                  <% } %>
+                                </td>
+                                <td>
+                                  <%- (item.positionId[item.positionId.length - 1] ? item.positionId[item.positionId.length - 1].name : null) %>
+                                </td>
+                                <td>
+                                  <% if(item.communist.dateIn){%> <%- moment(item.communist.dateIn).utc(0).format('DD/MM/YYYY') %> 
+                                  <%}%>
+                                </td>
+                                <td>
+                                  <% if(item.communist.officalDate){%> <%- moment(item.communist.officalDate).utc(0).format('DD/MM/YYYY') %> 
+                                  <%}%>
+                                </td>
+                              </tr>
+                              <%})%>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="profile-5-5"
+                        role="tabpanel"
+                        aria-labelledby="tab-5-5"
+                      >
+                        <div class="table-responsive">
+                          <table
+                            class="table table-striped table-bordered table-hover"
+                            id="Table-oldNS"
+                          >
+                            <thead>
+                              <tr>
+                                <th>Số hiệu cán bộ</th>
+                                <th>Họ và tên</th>
+                                <th>Giới tính</th>
+                                <th>Ngày sinh</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% nhansu.cuuNhanVien.map((item, index) => { %>
+                              <tr>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <%- item.usersCardNumber %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <%- item.name %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <% if(item.gender==true){ %> Nam 
+                                  <% } else if(item.gender==false) { %> Nữ 
+                                  <% } %>
+                                </td>
+                                <td
+                                  data-toggle="modal"
+                                  data-target="#info"
+                                  onclick="getDocs('<%- item._id %>'); getCourses('<%- item._id %>'); getAward('<%- item._id %>'); getDiscipline('<%- item._id %>'); getGP('<%- item._id %>');getSalary('<%- item._id %>')"
+                                >
+                                  <% if(item.birthday){%> 
+                                  <%- moment(item.birthday).utc(0).format('DD/MM/YYYY') %> 
+                                  <%}%>
+                                </td>
+                              </tr>
+                              <%})%>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <%}%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% include ../../partials/_footer %>
+        </div>
+      </div>
+    </div>
+    <!-- Chi tiet -->
+    <%- include ./Modal/Detail %>
+
+    <!-- Chờ duyệt -->
+    <%- include ./Modal/waitAccept %>
+
+    <!-- Tim kiem -->
+    <%- include ./Modal/Search %>
+
+    <!-- Xoa -->
+    <%- include ./Modal/Delete %> 
+    <%- include ./Modal/deleteWaiting %>
+    <script src="/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/vendors/js/vendor.bundle.addons.js"></script>
+    <script src="/js/off-canvas.js"></script>
+    <script src="/js/misc.js"></script>
+    <script src="/js/hoverable-collapse.js"></script>
+
+    <%- include ./search %>
+    <script>
+      var sessionId;
+
+      function removeProfile(id) {
+        sessionId = id;
+      }
+
+      function deleteProfile() {
+        $.ajax({
+          url: `/quan-ly/danh-sach-nhan-su/xoa/${sessionId}`,
+          method: "DELETE",
+          success: function(result) {
+            alert("Xóa thành công");
+            window.location.reload();
+          }
+        });
+      }
+    </script>
+    <script>
+      $("#Table-listNS").DataTable({
+        scrollX: true
+      });
+      $("#Table-listChange").DataTable();
+      $("#Table-youthUnion").DataTable();
+      $("#Table-communist").DataTable();
+      $("#Table-oldNS").DataTable();
+    </script>
+    <!-- <script>
+    $('#list-daotao').DataTable();
+    $('#list-khenthuong').DataTable();
+    $('#list-kiluat').DataTable();
+    $('#list-giaiphap').DataTable();
+    </script> -->
+
+    <%- include ./scriptGet %> 
+    <%- include ./scriptgetChange %> 
+    <%- include ../../partials/scriptForAll %>
+  </body>
+</html>

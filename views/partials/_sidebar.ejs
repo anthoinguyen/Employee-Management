@@ -1,0 +1,138 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+
+    <li class="nav-item">
+      <a class="nav-link" href="/">
+        <i class="menu-icon mdi mdi-television"></i>
+        <span class="menu-title">Trang chủ</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/thong-tin-ca-nhan">
+        <i class="menu-icon mdi mdi-account"></i>
+        <span class="menu-title">Thông tin cá nhân</span>
+      </a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#quan-ly" aria-expanded="false" aria-controls="quan-ly">
+        <i class="menu-icon mdi mdi-content-copy"></i>
+        <span class="menu-title">Quản lý</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="quan-ly">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="/quan-ly/danh-sach-nhan-su">Danh sách nhân sự</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/quan-ly/khoa-phong">Danh sách các khoa, phòng</a>
+          </li>
+          <% if(roles == "ADMIN" ){%>
+          <li class="nav-item">
+            <a class="nav-link" href="/quan-ly/hop-dong-lao-dong">Hợp đồng lao động</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/quan-ly/dao-tao">Quá trình công tác, đào tạo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/quan-ly/khen-thuong-ky-luat">Khen thưởng, kỉ luật</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/quan-ly/giai-phap-sang-kien">Giải pháp, sáng kiến</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/quan-ly/luong-phu-cap">Lương, phụ cấp</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/quan-ly/ngay-nghi">Theo dõi nghỉ phép</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/quan-ly/lam-them-gio">Làm thêm giờ</a>
+          </li>
+          <%}%>
+        </ul>
+      </div>
+    </li>
+    
+    <% if(roles == "ADMIN" ){%>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#bao-cao" aria-expanded="false" aria-controls="bao-cao">
+        <i class="menu-icon mdi mdi-chart-line"></i>
+        <span class="menu-title">Báo cáo thống kê</span>
+        <i class="menu-arrow"></i>
+      </a>
+    </li>
+    <div class="collapse" id="bao-cao">
+      <ul class="nav flex-column sub-menu">
+        <li class="nav-item">
+          <a class="nav-link" href="/bao-cao">Danh sách báo cáo</a>
+        </li>
+      </ul>
+    </div>
+    </li>
+    <%}%>
+    <% if(roles == "ADMIN" ){%>
+    <li class="nav-item">
+      <a class="nav-link" href="/tin-tuc">
+        <i class="menu-icon mdi mdi-table"></i>
+        <span class="menu-title">Tin tức mới</span>
+      </a>
+    </li>
+    <%}%>
+    <li class="nav-item">
+      <a class="nav-link" href="/giay-to">
+        <i class="menu-icon mdi mdi-sticker"></i>
+        <span class="menu-title">Giấy tờ mẫu</span>
+      </a>
+    </li>
+    <% if(roles == "ADMIN" ){%>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#he-thong" aria-expanded="false" aria-controls="he-thong">
+        <i class="menu-icon mdi mdi-settings"></i>
+        <span class="menu-title">Hệ thống</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="he-thong">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="/he-thong/danh-muc-luong">Lương</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tin-tuc/phan-muc-tin-tuc">Phân mục tin tức</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/giay-to/phan-loai">Phân mục giấy tờ mẫu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/he-thong/quan-ly-chuc-vu">Chức vụ</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <%}%>
+
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+        <i class="menu-icon mdi mdi-restart"></i>
+        <span class="menu-title">Tài khoản</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="auth">
+        <ul class="nav flex-column sub-menu">
+          <% if(roles == "ADMIN" ){%>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/roles"> Tất cả tài khoản </a>
+          </li>
+          <%}%>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/doi-mat-khau"> Đổi mật khẩu </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/dang-nhap"> Đăng xuất </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</nav>

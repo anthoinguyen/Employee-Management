@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Khoa phòng</title>
+  <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="/css/style_2.css">
+  <link rel="stylesheet" href="/css/style_1.css">
+  <link rel="shortcut icon" href="images/favicon.png" />
+  <style>
+    body {
+      font-family: Arial;
+    }
+
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    tr td.active {
+      background-color: #b9f7e1;
+      width: 100%;
+    }
+
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border-top: none;
+    }
+
+    .table tbody tr.selected {
+      background-color: #b9f7e1 !important;
+      vertical-align: middle !important;
+      height: auto;
+      width: 100%
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-scroller">
+    <% include ../../partials/_navbar %>
+    <div class="container-fluid page-body-wrapper">
+      <% include ../../partials/_sidebar %>
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="card">
+                <div class="card-body" style="padding-left: 15px; padding-right: 15px">
+                  <h5>Danh sách khoa phòng</h5>
+                  <% if(roles == "ADMIN" ){%>
+                  <div class="row" style="padding:5px">
+
+                    <button style="margin:5px; width: 60px" class="btn btn-outline-primary btn-rounded" type="button"
+                      style="margin: auto" data-toggle="modal" data-target="#createNewDepartment">
+                      <span class="icon-holder">
+                        <i class="fa fa-plus" style="margin:auto"></i>
+                      </span>
+
+                    </button>
+
+                    <button style="margin:5px; width: 60px" class="btn btn-outline-primary btn-rounded" type="button"
+                      data-toggle="modal" data-target="#editDepartment" style="margin: auto" id="editDepartmentButton"
+                      onclick="selected()">
+                      <span class="icon-holder">
+                        <i class="fa fa-edit"></i>
+                      </span>
+
+                    </button>
+
+                    <button style="margin:5px; width: 60px" class="btn btn-outline-primary btn-rounded" type="button"
+                      data-toggle="modal" data-target="#removeDepartment" style="margin: auto" id="delDepartmentButton">
+                      <span class="icon-holder">
+                        <i class="fa fa-close"></i>
+                      </span>
+
+                    </button>
+                  </div>
+                  <%}%>
+                  <table id="department" class="table table-hover">
+                    <tbody>
+                      <% departments.map((item,index) => { %>
+                  <% if(index==0){ %>
+                  <tr>
+                    <td class="tablinks" onclick="openCity(event, '<%- item._id %>')" id="defaultOpen">
+                      <%- item.name %>
+                    </td>
+                  </tr>
+                  <%}else{%>
+                  <tr>
+                    <td class="tablinks" onclick="openCity(event, '<%- item._id %>')">
+                      <%- item.name %>
+                    </td>
+                  </tr>
+
+                  <%}%>
+                      <% }) %>
+                  </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-9 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body" style="padding: 5px">
+                  <h5>Danh sách nhân viên trực thuộc khoa phòng</h5>
+                  <% if(roles == "ADMIN" ){%>
+                  <div class="row" style="padding:5px">
+                    <button style="margin:10px; width: 110px" class="btn btn-primary" type="button" style="margin: auto"
+                      data-toggle="modal" data-target="#addEmployee" onclick="selectedAndQuery()">
+                      <span class="icon-holder">
+                        <i class="fa fa-plus"></i>
+                      </span>
+                      <span class="title">Thêm</span>
+                    </button>
+                  </div>
+                  <%}%>
+                  <% departments.map((item, index) => { %>
+                  <div id="<%- item._id %>" class="tabcontent">
+                    <div class="table-responsive">
+                      <table class="table table-striped table-bordered">
+                        <thead>
+                          <tr>
+                            <% if(roles == "ADMIN" ){%>
+                            <th>Hành động</th>
+                            <%}%>
+                            <th>Số hiệu cán bộ</th>
+                            <th>Họ và tên</th>
+                            <th>Ngày sinh</th>
+                            <th>Chức vụ</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% item.memberList.map((item, index) => { %>
+                          <tr>
+                            <% if(roles == "ADMIN" ){%>
+                            <td>
+                              <button type="button" class="btn btn-icons btn-rounded btn-outline-primary">
+                                <a href="/quan-ly/chinh-sua-ho-so/<%- item.userID %>">
+                                  <i class="fa fa-edit"></i>
+                                </a>
+                              </button>
+                              <button type="button" class="btn btn-icons btn-rounded btn-outline-primary"
+                                onclick="removeEmployee('<%- item.userID %>')" data-toggle="modal"
+                                data-target="#outEmployee">
+                                <i class="fa fa-trash-o"></i>
+                              </button>
+                            </td>
+                            <%}%>
+                            <td>
+                              <%- item.usersCardNumber %>
+                            </td>
+                            <td>
+                              <%- item.name %>
+                            </td>
+                            <td>
+                              <% if(item.birthday){%>
+                              <%- moment(item.birthday).utc(0).format('DD/MM/YYYY') %>
+                              <%}%>
+                            </td>
+                            <td>
+                              <%- item.position %>
+                            </td>
+                          </tr>
+                          <% }) %>
+                          </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <% }) %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <% include ../../partials/_footer %>
+      </div>
+    </div>
+  </div>
+
+  <script src="/vendors/js/vendor.bundle.base.js"></script>
+  <script src="/vendors/js/vendor.bundle.addons.js"></script>
+  <script src="/js/off-canvas.js"></script>
+  <script src="/js/misc.js"></script>
+  <script src="/js/notify.min.js"></script>
+  <script src="/js/hoverable-collapse.js"></script>
+
+  <% include ./createModal %>
+  <% include ./editModal %>
+  <% include ./addEmployee %>
+  <% include ./deleteModal %>
+  <% include ./outEmployee %>
+  <% include ../../partials/scriptForAll %>
+
+  <script>
+    var selectDepartment;
+    var selectUser = [];
+  </script>
+  <script>
+    function openCity(evt, cityName) {
+      selectDepartment = cityName;
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      var tid = "";
+      $('#department tbody tr').click(function (event) {
+        tid = $(this).attr('id');
+      });
+      $("#remove").click(function () {
+        $('#' + tid).remove();
+        $('#' + tid + "1").remove();
+      });
+    });
+
+    $("#department tbody tr").click(function () {
+      $('.selected').removeClass('selected');
+      $(this).addClass('selected');
+    });
+  </script>
+  <script>
+    var OutId;
+
+    function removeEmployee(id) {
+      OutId = id;
+    }
+
+    function outEmployee() {
+      $.ajax({
+        url: "/quan-ly/khoa-phong/" + selectDepartment + "/" + OutId,
+        method: "DELETE",
+        success: function (result) {
+          window.location.reload();
+        }
+      })
+    }
+  </script>
+  <script>
+    function deleteDepartment() {
+      $.ajax({
+        url: "/quan-ly/khoa-phong/" + selectDepartment,
+        method: "DELETE",
+        success: function (result) {
+          window.location.reload();
+        },
+        error: function (result) {
+          $('#delDepartmentButton').notify("Bạn chưa chọn phòng/ban cần xoá", "error")
+        }
+      })
+    }
+  </script>
+  <script>
+    function selected() {
+      $.ajax({
+        url: "/quan-ly/khoa-phong/" + selectDepartment,
+        method: "GET",
+        success: function (result) {
+          $('#editName').val(result.data.name);
+          $('#editShortName').val(result.data.shortName);
+        },
+        error: function (result) {
+          $('#editDepartmentButton').notify("Bạn chưa chọn phòng/ban cần thay đổi", "error")
+        }
+      })
+    }
+  </script>
+  <script>
+    function edit() {
+      $.ajax({
+        url: "/quan-ly/khoa-phong/" + selectDepartment,
+        method: "PUT",
+        dataType: 'json',
+        data: {
+          name: $('#editName').val(),
+          shortName: $('#editShortName').val()
+        },
+        success: function (result) {
+          if (result) {
+            window.location.reload();
+          }
+        }
+      })
+    }
+  </script>
+  <script>
+    $('#Table-listNS').DataTable({
+      "scrollX": true
+    });
+  </script>
+
+  <script>
+    function selectedAndQuery() {
+      $.ajax({
+        url: "/quan-ly/khoa-phong/" + selectDepartment,
+        method: "GET",
+        success: function (result) {
+          $('#editName1').val(result.data.name);
+          $('#editShortName1').val(result.data.shortName);
+        },
+        error: function (result) {
+          $('#editDepartmentButton').notify("Bạn chưa chọn phòng/ban cần thay đổi", "error")
+        }
+      })
+      $.ajax({
+        url: "/quan-ly/khoa-phong/tim-thong-tin",
+        method: "POST",
+        success: function (result) {
+          result.data.map((item, index) => {
+            if (item.cuuNhanVien == false) {
+              $('#tableBody').append(
+                '<tr class="temp">' +
+                '<td class="py-1"><div class="checkbox"><label><input type="checkbox" onClick="selectUsers(`' +
+                item._id + '`)"></label></div></td>' +
+                '<td>' + item.usersCardNumber + '</td>' +
+                '<td>' + item.name + '</td>' +
+                '</tr>'
+              )
+            }
+          })
+          $('#table').DataTable();
+        }
+      })
+    }
+
+    $(".closes").click(function () {
+      $('#tableBody ').each(function () {
+        $(this).find('.temp').remove();
+      });
+    })
+  </script>
+  <script>
+    function selectUsers(id) {
+      selectUser.push(id);
+    }
+  </script>
+  <script>
+    function addUserToDepartment() {
+      $.ajax({
+        url: "/quan-ly/khoa-phong/them-nhan-su/" + selectDepartment,
+        method: "POST",
+        data: {
+          usersList: JSON.stringify(selectUser)
+        },
+        dataType: 'JSON',
+        success: function (result) {
+          if (result) {
+            window.location.reload();
+          }
+        }
+      })
+    }
+  </script>
+  <script>
+    function searchInfo() {
+      $.ajax({
+        url: "/quan-ly/khoa-phong/tim-thong-tin",
+        method: "POST",
+        data: {
+          query: $('#idEmployee').val()
+        },
+        success: function (result) {}
+      })
+    }
+  </script>
+</body>
+
+</html>

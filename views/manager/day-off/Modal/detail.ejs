@@ -1,0 +1,59 @@
+<div class="modal fade" id="info" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Thông tin chi tiết ngày nghĩ của cán bộ</h4>
+        <button type="button" class="close closes" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body ">
+        <div class="row">
+          <div class="col-lg-2">
+            <div class="form-group">
+                <label for="" class="col-sm-12 control-label">Năm</label>
+              <div class="col-sm-12">
+                <select class="form-control closes" id="selectYear">
+                  <% let time = new Date();
+                  let timeYear = time.getFullYear()
+                  %>
+                  <%for( let i = timeYear; i >=2015; i -- ) {%>
+                  <option value="<%- i %>">
+                    <%- i %>
+                  </option>
+                  <%}%>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2">
+              <div class="form-group">
+                <label for="" class="col-sm-12 control-label">Số ngày đã nghỉ</label>
+                <div class="col-sm-12">
+                  <input id="soNgayNghi" type="number" class="form-control" >
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive" style="overflow-y: auto; height: 425px;">
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Hành động</th>
+                      <th>Ngày nghỉ</th>
+                      <th>Trạng thái</th>
+                      <th>Lý do</th>
+                    </tr>
+                  </thead>
+                  <tbody class="listDayoff">
+                  </tbody>
+                </table>
+              </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" style="width: 100px;" class="btn btn-secondary closes" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>

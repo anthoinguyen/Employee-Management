@@ -1,0 +1,225 @@
+<script>
+  var DeleteId;
+
+  function removeCourses(id) {
+    DeleteId = id;
+  }
+
+  function deleteCourses() {
+    $.ajax({
+      url: `/quan-ly/dao-tao/${DeleteId}`,
+      method: "DELETE",
+      success: function (result) {
+        DeleteId = "";
+        alert("Xóa thành công");
+        window.location.reload();
+      }
+    })
+  }
+</script>
+<script>
+  var EditId;
+
+  function editCourses(id) {
+    $.ajax({
+      url: `/quan-ly/dao-tao/${id}`,
+      method: "GET",
+      success: function (result) {
+        EditId = id;
+        if (result.success == true) {
+          var course = result.data;
+
+          // if (course.ngayBatDau != "") {
+          //   let ngayBatDau = moment(course.ngayBatDau).format('YYYY-MM-DD');
+          //   $('#editthoigiandaotao').val(ngayBatDau);
+          // } else {
+          //   let ngayBatDau = "";
+          //   $('#editthoigiandaotao').val(ngayBatDau);
+          // }
+
+          // if (course.ngayKetThuc != "") {
+          //   let ngayKetThuc = moment(course.ngayKetThuc).format('YYYY-MM-DD');
+          //   $('#editthoigianhetdaotao').val(ngayKetThuc);
+          // } else {
+          //   let ngayKetThuc = "";
+          //   $('#editthoigianhetdaotao').val(ngayKetThuc);
+          // }
+
+          $('#editthoigiandaotao').val(course.ngayBatDau),
+          $('#editthoigianhetdaotao').val(course.ngayKetThuc),
+          $('#editkhoadaotao').val(course.ten),
+            $('#editloaidaotao').val(course.loai),
+            $('#editNDdaotao').val(course.noiDung),
+            $('#edittrinhdodaotao').val(course.trinhDo),
+            $('#editnoidaotao').val(course.diaDiem),
+            $('#edithinhthucdaotao').val(course.hinhThuc)
+          // $('#editsoquyetdinh').val(course.quyetDinh ? course.quyetDinh.so : null),
+          // $('#editcoquanquyetdinh').val(course.quyetDinh ? course.quyetDinh.coQuan : null),
+          // $('#editnguoikyquyetdinh').val(course.quyetDinh ? course.quyetDinh.nguoiKy : null),
+          // $('#editchucvunguoiky').val(course.quyetDinh ? course.quyetDinh.chucDanhNguoiKy : null),
+          // $('#editsoluong').val(course.soLuong),
+          // $('#editnguonkinhphi').val(course.kinhPhi ? course.kinhPhi.nguon : null),
+          // $('#editsotien').val(course.kinhPhi ? course.kinhPhi.soTien : null)
+        } else {
+          console.log("Lỗi")
+        }
+      }
+    })
+  }
+
+
+  function ChinhsuaCourses() {
+    var editdaotao = {
+      ten: $('#editkhoadaotao').val(),
+      loai: $('#editloaidaotao').val(),
+      noiDung: $('#editNDdaotao').val(),
+      trinhDo: $('#edittrinhdodaotao').val(),
+      ngayBatDau: $('#editthoigiandaotao').val(),
+      ngayKetThuc: $('#editthoigianhetdaotao').val(),
+      diaDiem: $('#editnoidaotao').val(),
+      hinhThuc: $('#edithinhthucdaotao').val(),
+      confirmed: "1"
+    }
+    $.ajax({
+      url: `/quan-ly/dao-tao/${EditId}`,
+      type: 'put',
+      dataType: 'json',
+      data: editdaotao,
+      success: function (res) {
+        if (res) {
+          EditId = "";
+          alert("Xác nhận thành công");
+          window.location.reload();
+        }
+      }
+    })
+  };
+</script>
+<script>
+  $(document).on('click', '#create-courses', function () {
+
+    let Nhansu = [];
+    Nhansu = $('.case:checkbox:checked').map(function () {
+      return $(this).val();
+    }).get();
+
+    if (Nhansu == "" || Nhansu == undefined || Nhansu == null ) {
+      alert("Vui lòng chọn nhân sự cần thêm")
+    } else {
+
+      var data = {
+        users: JSON.stringify(Nhansu),
+        ten: $('#khoadaotao').val(),
+        loai: $('#loaidaotao').val(),
+        noiDung: $('#NDdaotao').val(),
+        trinhDo: $('#trinhdodaotao').val(),
+        ngayBatDau: $('#thoigiandaotao').val(),
+        ngayKetThuc: $('#thoigianhetdaotao').val(),
+        diaDiem: $('#noidaotao').val(),
+        hinhThuc: $('#hinhthucdaotao').val(),
+        confirmed: "1"
+
+        // quyetDinh: JSON.stringify({
+        //   so: $('#soquyetdinh').val(),
+        //   coQuan: $('#coquanquyetdinh').val(),
+        //   nguoiKy: $('#nguoikyquyetdinh').val(),
+        //   chucDanhNguoiKy: $('#chucvunguoiky').val(),
+        // }),
+        // soLuong: $('#soluong').val(),
+        // kinhPhi: JSON.stringify({
+        //   nguon: $('#nguonkinhphi').val(),
+        //   soTien: $('#sotien').val(),
+        // })
+      }
+      console.log(data)
+
+      $.ajax({
+        url: '/quan-ly/dao-tao/them',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+
+        success: function (res) {
+          if (res) {
+            alert("Tạo thành công");
+            window.location.reload();
+          }
+        }
+      })
+    }
+  });
+</script>
+
+<script>
+  var EditId;
+
+  function getCourses(id) {
+    $.ajax({
+      url: `/quan-ly/dao-tao/${id}`,
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          var course = result.data;
+
+          // if (course.ngayBatDau != "") {
+          //   let ngayBatDau12 = moment(course.ngayBatDau).format('DD/MM/YYYY');
+          //   $('#getthoigiandaotao').val(ngayBatDau12);
+          // } else {
+          //   let ngayBatDau12 = "";
+          //   $('#getthoigiandaotao').val(ngayBatDau12);
+          // }
+
+          // if (course.ngayKetThuc != "") {
+          //   let ngayKetThuc12 = moment(course.ngayKetThuc).format('DD/MM/YYYY');
+          //   $('#getthoigianhetdaotao').val(ngayKetThuc12);
+          // } else {
+          //   let ngayKetThuc12 = "";
+          //   $('#getthoigianhetdaotao').val(ngayKetThuc12);
+          // }
+
+          $('#getthoigiandaotao').val(course.ngayBatDau),
+          $('#getthoigianhetdaotao').val(course.ngayKetThuc),
+          $('#getkhoadaotao').val(course.ten),
+            $('#getloaidaotao').val(course.loai),
+            $('#getNDdaotao').val(course.noiDung),
+            $('#gettrinhdodaotao').val(course.trinhDo),
+            $('#getnoidaotao').val(course.diaDiem),
+            $('#gethinhthucdaotao').val(course.hinhThuc)
+          // $('#getsoquyetdinh').val(course.quyetDinh ? course.quyetDinh.so : null),
+          // $('#getcoquanquyetdinh').val(course.quyetDinh ? course.quyetDinh.coQuan : null),
+          // $('#getnguoikyquyetdinh').val(course.quyetDinh ? course.quyetDinh.nguoiKy : null),
+          // $('#getchucvunguoiky').val(course.quyetDinh ? course.quyetDinh.chucDanhNguoiKy : null),
+          // $('#getsoluong').val(course.soLuong),
+          // $('#getnguonkinhphi').val(course.kinhPhi ? course.kinhPhi.nguon : null),
+          // $('#getsotien').val(course.kinhPhi ? course.kinhPhi.soTien : null)
+
+          // if (course.user.gender == true) {
+          //   var gender1 = "Nam"
+          // } else {
+          //   var gender1 = "Nữ"
+          // }
+          // $('.listNS .body1').append(
+          //   '<tr class="templist">' +
+          //   '<td>' + course.user.usersCardNumber +
+          //   '</td>' +
+          //   '<td>' + course.user.name +
+          //   '</td>' +
+          //   '<td>' + gender1 +
+          //   '</td>' +
+          //   '</tr>'
+          // )
+
+          // $('#Table-listDetail').DataTable();
+        } else {
+          console.log("Lỗi")
+        }
+      }
+    })
+  }
+
+  $(".closes").click(function () {
+    $('.listNS .body1').each(function () {
+      $(this).find('.templist').remove();
+    });
+  })
+</script>

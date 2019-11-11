@@ -1,0 +1,88 @@
+<script>
+  function getNS() {
+    $('.listNS').empty();
+    $.ajax({
+      url: `/quan-ly/danh-sach-nhan-su/list`,
+      method: "GET",
+      success: function (result) {
+        if (result.success == true) {
+          result.data.map((item, index) => {
+            if (item.cuuNhanVien == false) {
+              $('.listNS').append(
+                '<tr class="temp">' +
+                '<td><input class="caseWOT" type="checkbox" value=" ' + item._id + '" />' +
+                '</td>' +
+                '<td>' + item.usersCardNumber +
+                '</td>' +
+                '<td>' + item.name +
+                '</td>' +
+                '<td>' + (item.belongToDepartment ? item.belongToDepartment.name : "") +
+                '</td>' +
+                '</tr>'
+              )
+            }
+          })
+        }
+        $('#Table-listNS').DataTable();
+      }
+    })
+  }
+
+  $(".closes").click(function () {
+    $('.listNS').each(function () {
+      $(this).find('.temp').remove();
+    });
+  })
+</script>
+
+<script>
+  $(document).on('click', '#create-WOT', function () {
+
+    let usersList1 = $('.caseWOT:checkbox:checked').map(function () {
+      return $(this).val();
+    }).get();
+
+    if (usersList1 == ""  || usersList1 == undefined ) {
+      alert("Vui lòng chọn nhân viên")
+    } else {
+      var data = {
+        usersList: JSON.stringify(usersList1),
+        dateWorkOverTime: $('#ngayLam').val(),
+        timeIn: $('#gioBatDau').val(),
+        timeOut: $('#gioKetThuc').val(),
+      }
+      $.ajax({
+        url: '/quan-ly/lam-them-gio',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+
+        success: function (res) {
+          if (res) {
+            alert("Tạo thành công");
+            window.location.reload();
+          }
+        }
+      })
+    }
+  });
+</script>
+<script>
+  var DeleteId;
+
+  function removeWOT(id) {
+    DeleteId = id;
+  }
+
+  function deleteWOT() {
+    $.ajax({
+      url: `/quan-ly/lam-them-gio/${DeleteId}`,
+      method: "DELETE",
+      success: function (result) {
+        DeleteId = "";
+        alert("Xóa thành công");
+        window.location.reload();
+      }
+    })
+  }
+</script>

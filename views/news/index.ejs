@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Tin tức mới nhất</title>
+    <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css" />
+    <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/vendors/summernote/dist/summernote-bs4.css" />
+    <link rel="stylesheet" href="/css/style_2.css" />
+    <link rel="stylesheet" href="/css/style_1.css" />
+    <link rel="shortcut icon" href="/images/favicon.png" />
+  </head>
+
+  <body>
+    <div class="container-scroller">
+      <% include ../partials/_navbar %>
+      <div class="container-fluid page-body-wrapper">
+        <% include ../partials/_sidebar %>
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4>DANH SÁCH TIN TỨC MỚI NHẤT</h4>
+                    <div class="row" style="padding:5px">
+                      <button
+                        style="margin:10px; width: 110px"
+                        class="btn btn-primary"
+                        type="button"
+                        style="margin: auto"
+                        data-toggle="modal"
+                        data-target="#addNews"
+                        id="addNews1"
+                      >
+                        <span class="icon-holder">
+                          <i class="c-white-500 ti-plus"></i>
+                        </span>
+                        <span class="title">Thêm</span>
+                      </button>
+                    </div>
+                    <div class="table-responsive">
+                      <table
+                        id="Table-listNews"
+                        class="table table-bordered table-striped"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Hành động</th>
+                            <th>STT</th>
+                            <th>Tin tức</th>
+                            <th>Người tạo</th>
+                            <th>Ngày đăng</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% news.map((item, index) => { %>
+                          <tr>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-icons btn-rounded btn-outline-primary"
+                                id="edit"
+                                onclick="editNews('<%- item._id %>')"
+                                data-toggle="modal"
+                                data-target="#editModal"
+                              >
+                                <i class="fa fa-edit"></i>
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-icons btn-rounded btn-outline-primary"
+                                onclick="removeNews('<%- item._id %>')"
+                                data-toggle="modal"
+                                data-target="#deleteModal"
+                              >
+                                <i class="fa fa-trash-o"></i>
+                              </button>
+                            </td>
+                            <td>
+                              <%- index + 1 %>
+                            </td>
+                            <td>
+                              <%- item.title %>
+                            </td>
+                            <td>
+                              <%- item.postedBy.name %>
+                            </td>
+                            <td>
+                              <% if(item.createdDate!=null){ %> 
+                              <% let time = new Date(item.createdDate) %> 
+                              <%- time.getDate() + 1 %>/<%- time.getMonth() + 1 %>/<%- time.getFullYear() %> <%}%>
+                            </td>
+                          </tr>
+                          <%})%>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% include ../partials/_footer %>
+        </div>
+      </div>
+    </div>
+    <%- include ./Modal/Delete %> 
+    <%- include ./Modal/Create %> 
+    <%- include ./Modal/Edit %>
+    <script src="/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/vendors/js/vendor.bundle.addons.js"></script>
+    <script src="/js/off-canvas.js"></script>
+    <script src="/js/misc.js"></script>
+    <script src="/js/hoverable-collapse.js"></script>
+    <script src="/vendors/summernote/dist/summernote-bs4.min.js"></script>
+
+    <%- include ./scriptNews %> 
+    <% include ../partials/scriptForAll %>
+    <script>
+      $("#Table-listNews").DataTable();
+    </script>
+    <script>
+      var newsCategory = [];
+    </script>
+    <script>
+      if ($("#summernoteExample").length) {
+        $("#summernoteExample").summernote({
+          height: 300,
+          tabsize: 2
+        });
+      }
+    </script>
+    <script>
+      $("#edit").on("click", function() {
+        $("#editsummernoteExample").summernote({
+          height: 300,
+          tabsize: 2
+        });
+      });
+    </script>
+    <script>
+      $("#createButtonNews").on("click", function() {
+        $("#temp").val($("#summernoteExample").summernote("code"));
+      });
+      $("#addNews1").on("click", function() {
+        $.ajax({
+          url: "/tin-tuc/news-category",
+          method: "GET",
+          success: function(result) {
+            newsCategory = result.data ? result.data.reverse() : [];
+            newsCategory.map(item => {
+              $("#yearId").append(
+                "<option value=" + item._id + ">" + item.year + "</option>"
+              );
+              $("#editYearId").append(
+                "<option value=" + item._id + ">" + item.year + "</option>"
+              );
+            });
+            newsCategory[0].category.map(subItem => {
+              $("#categoryId").append(
+                "<option value=" +
+                  subItem._id +
+                  ">" +
+                  subItem.title +
+                  "</option>"
+              );
+              $("#editCategoryId").append(
+                "<option value=" +
+                  subItem._id +
+                  ">" +
+                  subItem.title +
+                  "</option>"
+              );
+            });
+          }
+        });
+      });
+      $("#yearId").on("change", function() {
+        newsCategory.map(item => {
+          if (item._id === $(this).find(":selected").val()) {
+            $("#categoryId").empty();
+            item.category.map(subItem => {
+              $("#categoryId").append(
+                "<option value=" +
+                  subItem._id +
+                  ">" +
+                  subItem.title +
+                  "</option>"
+              );
+            });
+          }
+        });
+      });
+      $("#editYearId").on("change", function() {
+        newsCategory.map(item => {
+          if (item._id === $(this).find(":selected").val()) {
+            $("#editCategoryId").empty();
+            item.category.map(subItem => {
+              $("#editCategoryId").append(
+                "<option value=" +
+                  subItem._id +
+                  ">" +
+                  subItem.title +
+                  "</option>"
+              );
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
