@@ -16493,8 +16493,7 @@ div.tagsinput {
     .typeahead, .auth.theme-one .auto-form-wrapper .form-group .asColorPicker-wrap
     .typeahead {
       border: 1px solid #e5e5e5;
-      border-right: none;
-      border-radius: 6px 0 0 6px; }
+      border-radius: 6px; }
       .auth.theme-one .auto-form-wrapper .form-group .input-group .form-control:focus, .auth.theme-one .auto-form-wrapper .form-group .asColorPicker-wrap .form-control:focus, .auth.theme-one .auto-form-wrapper .form-group .input-group .asColorPicker-input:focus, .auth.theme-one .auto-form-wrapper .form-group .asColorPicker-wrap .asColorPicker-input:focus, .auth.theme-one .auto-form-wrapper .form-group .input-group .dataTables_wrapper select:focus, .dataTables_wrapper .auth.theme-one .auto-form-wrapper .form-group .input-group select:focus, .auth.theme-one .auto-form-wrapper .form-group .asColorPicker-wrap .dataTables_wrapper select:focus, .dataTables_wrapper .auth.theme-one .auto-form-wrapper .form-group .asColorPicker-wrap select:focus, .auth.theme-one .auto-form-wrapper .form-group .input-group .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text]:focus, .jsgrid .jsgrid-table .jsgrid-filter-row .auth.theme-one .auto-form-wrapper .form-group .input-group input[type=text]:focus, .auth.theme-one .auto-form-wrapper .form-group .asColorPicker-wrap .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text]:focus, .jsgrid .jsgrid-table .jsgrid-filter-row .auth.theme-one .auto-form-wrapper .form-group .asColorPicker-wrap input[type=text]:focus, .auth.theme-one .auto-form-wrapper .form-group .input-group
       .jsgrid .jsgrid-table .jsgrid-filter-row select:focus,
       .jsgrid .jsgrid-table .jsgrid-filter-row .auth.theme-one .auto-form-wrapper .form-group .input-group select:focus, .auth.theme-one .auto-form-wrapper .form-group .asColorPicker-wrap
