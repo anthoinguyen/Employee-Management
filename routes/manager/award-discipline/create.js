@@ -7,14 +7,6 @@ var bcrypt = require('bcryptjs');
 var moment = require('moment');
 
 module.exports = router =>{
-    /* POST lên theo mẫu sau:
-    {
-        users: JSON.stringify(['user_id_1', 'user_id_2',...]),
-        quyetDinh: JSON.stringify(object),
-        ...
-    }
-
-    */
     router.post('/khen-thuong-ky-luat/awards/them',  checkPermission(constants.IS_ADMIN), async (req, res, next) => {
         let users = JSON.parse(req.body.users);
         let awards = await users.map((userID, i, users) => {

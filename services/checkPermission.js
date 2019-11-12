@@ -5,7 +5,7 @@ module.exports = {
     const isAllowed = (usersRole = []) => {
       // Check permission of user is allow in action Role
       // If actionRole is * return true
-      if (_.intersection(...allowed, ["*"]).length > 0) {
+      if (_.intersection(...allowed, ["USER"]).length > 0) {
         return true;
       } else {
         // If it content, 2 array is greater than 0

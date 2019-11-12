@@ -2,7 +2,7 @@ module.exports = {
   IS_ADMIN: ["ADMIN"],
   IS_ADMIN_DEPARTMENT: ["ADMIN_DEPARTMENT"],
   IS_BGH: ["BGH"],
-  IS_USER: ["*"],
+  IS_USER: ["USER"],
   ROLES: ["ADMIN", "ADMIN_DEPARTMENT", "BGH"],
 
   CONTRACT_TYPE_OF: ["Hợp đồng làm việc", "Hợp đồng theo Nghị định 68", "Hợp đồng lao động", "Hợp đồng thỉnh giảng", "Hợp đồng thực tập","Hợp đồng khác"],

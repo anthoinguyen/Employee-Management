@@ -15,7 +15,8 @@ module.exports = router => {
         if (err) errorProcess(res, err);
         if (isMatch) {
           // Compare newPassword with reTypePassword
-          if (req.body.password === req.body.password) {
+          console.log(req.body);
+          if (req.body.password === req.body.passwordAgain) {
             bcrypt.hash(req.body.password, 10, (err, hash) => {
               let query = { email: req.user.email };
               let update = { password: hash };

@@ -40,6 +40,20 @@
                         </span>
                         <span class="title">Thêm</span>
                       </button>
+                      <button
+                        style="margin:10px; width: 210px"
+                        class="btn btn-primary"
+                        type="button"
+                        style="margin: auto"
+                        data-toggle="modal"
+                        data-target="#reset-password"
+                        onclick="getNS1()"
+                      >
+                        <span class="icon-holder">
+                          <i class="c-white-500 ti-plus"></i>
+                        </span>
+                        <span class="title">Reset password</span>
+                      </button>
                     </div>
                     <div class="table-responsive">
                       <table
@@ -86,6 +100,7 @@
       </div>
     </div>
     <%- include ./create %>
+    <%- include ./reset-password %>
 
     <script src="/vendors/js/vendor.bundle.base.js"></script>
     <script src="/vendors/js/vendor.bundle.addons.js"></script>
