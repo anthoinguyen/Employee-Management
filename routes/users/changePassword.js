@@ -15,8 +15,7 @@ module.exports = router => {
         if (err) errorProcess(res, err);
         if (isMatch) {
           // Compare newPassword with reTypePassword
-          console.log(req.body);
-          if (req.body.password === req.body.passwordAgain) {
+          if (req.body.password === req.body.rePassword) {
             bcrypt.hash(req.body.password, 10, (err, hash) => {
               let query = { email: req.user.email };
               let update = { password: hash };
@@ -28,11 +27,11 @@ module.exports = router => {
               })
             })
           } else {
-            return errorWithMess(res, false)
+            return errorWithMess(res,"Mật khẩu không khớp. Vui lòng nhập lại" ,null)
           }
         } else {
           // Type wrongpassword
-          return errorWithMess(res, false)
+          return errorWithMess(res,"Mật khẩu cũ không đúng. Vui lòng nhập lại",null)
         }
       })
     })

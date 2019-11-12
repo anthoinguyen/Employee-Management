@@ -48,18 +48,11 @@
           $('#editthoigiandaotao').val(course.ngayBatDau),
           $('#editthoigianhetdaotao').val(course.ngayKetThuc),
           $('#editkhoadaotao').val(course.ten),
-            $('#editloaidaotao').val(course.loai),
-            $('#editNDdaotao').val(course.noiDung),
-            $('#edittrinhdodaotao').val(course.trinhDo),
-            $('#editnoidaotao').val(course.diaDiem),
-            $('#edithinhthucdaotao').val(course.hinhThuc)
-          // $('#editsoquyetdinh').val(course.quyetDinh ? course.quyetDinh.so : null),
-          // $('#editcoquanquyetdinh').val(course.quyetDinh ? course.quyetDinh.coQuan : null),
-          // $('#editnguoikyquyetdinh').val(course.quyetDinh ? course.quyetDinh.nguoiKy : null),
-          // $('#editchucvunguoiky').val(course.quyetDinh ? course.quyetDinh.chucDanhNguoiKy : null),
-          // $('#editsoluong').val(course.soLuong),
-          // $('#editnguonkinhphi').val(course.kinhPhi ? course.kinhPhi.nguon : null),
-          // $('#editsotien').val(course.kinhPhi ? course.kinhPhi.soTien : null)
+          $('#editloaidaotao').val(course.loai),
+          $('#editNDdaotao').val(course.noiDung),
+          $('#edittrinhdodaotao').val(course.trinhDo),
+          $('#editnoidaotao').val(course.diaDiem),
+          $('#edithinhthucdaotao').val(course.hinhThuc)
         } else {
           console.log("Lỗi")
         }
@@ -118,20 +111,7 @@
         diaDiem: $('#noidaotao').val(),
         hinhThuc: $('#hinhthucdaotao').val(),
         confirmed: "1"
-
-        // quyetDinh: JSON.stringify({
-        //   so: $('#soquyetdinh').val(),
-        //   coQuan: $('#coquanquyetdinh').val(),
-        //   nguoiKy: $('#nguoikyquyetdinh').val(),
-        //   chucDanhNguoiKy: $('#chucvunguoiky').val(),
-        // }),
-        // soLuong: $('#soluong').val(),
-        // kinhPhi: JSON.stringify({
-        //   nguon: $('#nguonkinhphi').val(),
-        //   soTien: $('#sotien').val(),
-        // })
       }
-      console.log(data)
 
       $.ajax({
         url: '/quan-ly/dao-tao/them',
@@ -180,36 +160,11 @@
           $('#getthoigiandaotao').val(course.ngayBatDau),
           $('#getthoigianhetdaotao').val(course.ngayKetThuc),
           $('#getkhoadaotao').val(course.ten),
-            $('#getloaidaotao').val(course.loai),
-            $('#getNDdaotao').val(course.noiDung),
-            $('#gettrinhdodaotao').val(course.trinhDo),
-            $('#getnoidaotao').val(course.diaDiem),
-            $('#gethinhthucdaotao').val(course.hinhThuc)
-          // $('#getsoquyetdinh').val(course.quyetDinh ? course.quyetDinh.so : null),
-          // $('#getcoquanquyetdinh').val(course.quyetDinh ? course.quyetDinh.coQuan : null),
-          // $('#getnguoikyquyetdinh').val(course.quyetDinh ? course.quyetDinh.nguoiKy : null),
-          // $('#getchucvunguoiky').val(course.quyetDinh ? course.quyetDinh.chucDanhNguoiKy : null),
-          // $('#getsoluong').val(course.soLuong),
-          // $('#getnguonkinhphi').val(course.kinhPhi ? course.kinhPhi.nguon : null),
-          // $('#getsotien').val(course.kinhPhi ? course.kinhPhi.soTien : null)
-
-          // if (course.user.gender == true) {
-          //   var gender1 = "Nam"
-          // } else {
-          //   var gender1 = "Nữ"
-          // }
-          // $('.listNS .body1').append(
-          //   '<tr class="templist">' +
-          //   '<td>' + course.user.usersCardNumber +
-          //   '</td>' +
-          //   '<td>' + course.user.name +
-          //   '</td>' +
-          //   '<td>' + gender1 +
-          //   '</td>' +
-          //   '</tr>'
-          // )
-
-          // $('#Table-listDetail').DataTable();
+          $('#getloaidaotao').val(course.loai),
+          $('#getNDdaotao').val(course.noiDung),
+          $('#gettrinhdodaotao').val(course.trinhDo),
+          $('#getnoidaotao').val(course.diaDiem),
+          $('#gethinhthucdaotao').val(course.hinhThuc)
         } else {
           console.log("Lỗi")
         }

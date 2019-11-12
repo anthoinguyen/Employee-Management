@@ -539,14 +539,13 @@
     callback(flag);
   }
   // báo hiệu các field chưa nhập
-  $(document).on('focusout', 'input.required, textarea.required, select.required',
-    function () {
+  $(document).on('focusout', 'input.required, textarea.required, select.required', function () {
       if ($(this).val() == "") {
         makeInputDanger(this);
       } else {
         makeInputDefault(this);
       }
-    })
+  })
 
   $(document).on('click', '[data-toggle=collapse-next]', function () {
     var $target = $(this).parent().next()

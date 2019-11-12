@@ -13,29 +13,57 @@
           <div class="col-md-8">
             <div class="form-group">
               <label for="name">Tên giấy tờ mẫu</label>
-              <input type="text" class="form-control" id="editNameOfDocuments" name="name" aria-describedby="nameOfDocuments"
-                placeholder="Tên loại giấy tờ" required>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="editNameOfDocuments" 
+                name="name" 
+                aria-describedby="nameOfDocuments"
+                placeholder="Tên loại giấy tờ" 
+                required
+              />
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="form-group">
               <label for="exampleFormControlSelect1">Loại giấy tờ</label>
-              <select class="form-control" id="editTypeOfDocuments" name="type" required>
-              </select>
+              <select 
+                class="form-control" 
+                id="editTypeOfDocuments" 
+                name="type" 
+                required
+              ></select>
             </div>
           </div>
         </div>
+
         <div class="form-group">
           <label for="exampleInputPassword1">Nội dung chính của giấy</label>
-          <textarea type="text" class="form-control" id="editDescription" name="description" placeholder="Nhập vào nội dung chính của giấy"
-            rows="4" required></textarea>
+          <textarea 
+            type="text" 
+            class="form-control" 
+            id="editDescription" 
+            name="description" 
+            placeholder="Nhập vào nội dung chính của giấy"
+            rows="4" 
+            required
+          ></textarea>
         </div>
+
         <a id="editFileA">File đính kèm hiện tại</a>
         <br />
+
         <div class="form-group">
           <label for="exampleFormControlFile1">Nhập file</label>
-          <input type="file" class="form-control-file" name="editDocuments" id="editFile">
+          <input 
+            type="file" 
+            class="form-control-file" 
+            name="editDocuments" 
+            id="editFile"
+          />
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
           <button class="btn btn-primary" id="submit" onclick="editDocs()">Chỉnh sửa</button>
