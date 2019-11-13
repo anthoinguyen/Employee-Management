@@ -30,6 +30,7 @@
   }
 
   function ChinhsuaNews() {
+    if($("#form_edit").valid()){
     var edittemp = $('#editsummernoteExample').summernote('code');
     let formdata = new FormData();
     if ($('#editFiles')[0].files[0] != undefined) {
@@ -52,6 +53,7 @@
         }
       }
     })
+    }
   }
 </script>
 <script>

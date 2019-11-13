@@ -94,14 +94,7 @@
         return $(this).val();
       }).get();
 
-    if (
-      roles1 == null ||
-      roles1 == "" ||
-      roles1 == undefined ||
-      usersList1 == null ||
-      usersList1 == "" ||
-      usersList1 == undefined
-    ) {
+    if (!roles1 || !usersList1 || roles1 == "" || usersList1 == "" ) {
       alert("Vui lòng kiểm tra lại thông tin");
     } else {
       let dataRole = {
@@ -128,33 +121,35 @@
   $(document).on("click", "#reset", function() {
     let user = $(".case_RP:checkbox:checked").val();
 
-    if (user == "" || user == undefined || user == null) {
+    if (!user || user == "") {
       alert("Vui lòng chọn nhân sự");
     } else {
-      let password = $("#password").val();
-      let rePassword = $("#rePassword").val();
+      if($("#form_RP").valid()){
+        let password = $("#password").val();
+        let rePassword = $("#rePassword").val();
 
-      if (password === rePassword) {
-        let dataReset = {
-          password,
-          rePassword,
-          id: user
-        };
+        if (password === rePassword) {
+          let dataReset = {
+            password,
+            rePassword,
+            id: user
+          };
 
-        $.ajax({
-          url: "/users/reset-password",
-          type: "POST",
-          dataType: "json",
-          data: dataReset,
-          success: function(res) {
-            if (res) {
-              alert("Reset password thành công");
-              window.location.reload();
+          $.ajax({
+            url: "/users/reset-password",
+            type: "POST",
+            dataType: "json",
+            data: dataReset,
+            success: function(res) {
+              if (res) {
+                alert("Reset password thành công");
+                window.location.reload();
+              }
             }
-          }
-        });
-      } else {
-        alert("Password không trùng khớp");
+          });
+        } else {
+          alert("Password không trùng khớp");
+        }
       }
     }
   });

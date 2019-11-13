@@ -6,53 +6,47 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body" style="padding-top: 15px">
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="form-group">
-              <label for="" class="col-sm-12 control-label">Tiêu đề</label>
-              <textarea 
-                id="editTitleNews" 
-                name="title" 
-                type="text" 
-                class="form-control" 
-                rows="1" 
-                placeholder=""
-              ></textarea>
+        <form id="form_edit">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="form-group">
+                <label for="" class="col-sm-12 control-label">Tiêu đề</label>
+                <textarea id="editTitleNews" name="title" type="text" class="form-control" rows="1" required
+                  placeholder=""></textarea>
+              </div>
             </div>
-          </div>
 
-          <div class="col-sm-4">
-            <div class="form-group">
-              <label for="">Ngày đăng</label>
-              <div class="row ">
-                <div class="col-sm-12">
-                  <input id="editNgaybd" required type="date" name="createdDate" class="form-control">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="">Ngày đăng</label>
+                <div class="row ">
+                  <div class="col-sm-12">
+                    <input id="editNgaybd" required type="date" name="createdDate" class="form-control">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4">
-            <a id="editFileA">File đính kèm hiện tại</a>
-            <div class="form-group">
-              <label for="exampleFormControlFile1">Nhập file</label>
-              <input type="file" class="form-control-file" name="attached" id="editFiles" required>
-            </div>
-          </div>
-        </div>
-        <input  id="edittemp" type="text" name="description" class="form-control" hidden>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card-body" style="padding: 3px">
-              <h4 class="card-title"></h4>
-              <div class="editsummernoteExample" id="editsummernoteExample">
+          <div class="row">
+            <div class="col-lg-4">
+              <a id="editFileA">File đính kèm hiện tại</a>
+              <div class="form-group">
+                <label for="exampleFormControlFile1">Nhập file</label>
+                <input type="file" class="form-control-file" name="attached" id="editFiles" required>
               </div>
             </div>
           </div>
-        </div>
-
+          <input id="edittemp" type="text" name="description" class="form-control" hidden>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card-body" style="padding: 3px">
+                <h4 class="card-title"></h4>
+                <div class="editsummernoteExample" id="editsummernoteExample">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>

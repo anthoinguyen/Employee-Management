@@ -6,17 +6,18 @@
         <button type="button" class="close closes" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
+        <form id="form_edit">
         <div class="row">
           <div class="col-lg-8">
             <div class="form-group">
               <label for="" class="col-sm-12 control-label">Tên ngạch</label>
-              <input id="edittenNgach" type="text" class="form-control" required placeholder="">
+              <input id="edittenNgach" name="edittenNgach" type="text" class="form-control" required placeholder="">
             </div>
           </div>
           <div class="col-lg-4">
             <div class="form-group">
               <label for="" class="col-sm-12 control-label">Mã ngạch</label>
-              <input id="editmaNgach" type="text" class="form-control" required placeholder="">
+              <input id="editmaNgach" name="editmaNgach" type="text" class="form-control" required placeholder="">
             </div>
           </div>
         </div>
@@ -54,7 +55,7 @@
           <div class="col-lg-4">
             <div class="form-group">
               <label for="" class="col-sm-12 control-label">Năm giữ bậc</label>
-              <input id="editnamGiubac" type="number" required class="form-control" placeholder="">
+              <input id="editnamGiubac" name="editnamGiubac" type="number" required class="form-control" placeholder="">
             </div>
           </div>
         </div>
@@ -66,6 +67,7 @@
         <div class="row HSL">
           
         </div>
+      </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary closes" data-dismiss="modal">Đóng</button>

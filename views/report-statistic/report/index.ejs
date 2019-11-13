@@ -1,145 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Báo cáo</title>
-    <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css" />
-    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css" />
-    <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css" />
-    <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="/css/style_1.css" />
-    <link rel="stylesheet" href="/css/style_2.css" />
-    <link rel="shortcut icon" href="/images/favicon.png" />
-  </head>
 
-  <body>
-    <div class="container-scroller">
-      <% include ../../partials/_navbar %>
-      <div class="container-fluid page-body-wrapper">
-        <% include ../../partials/_sidebar %>
-        <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="row">
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4>DANH SÁCH BÁO CÁO</h4>
-                    <div class="row" style="padding:5px"></div>
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="form-group">
-                          <label for="" class="col-sm-12 control-label"
-                            >Xuất báo cáo</label
-                          >
-                          <div class="col-sm-12">
-                            <select class="form-control" id="baocao">
-                              <option value="0">Chất lượng Đảng viên</option>
-                              <option value="1">Chất lượng nhân viên</option>
-                              <option value="2">Chức danh nhân viên</option>
-                              <option value="3">Thông tin liên lạc</option>
-                              <option value="4">Hợp đồng</option>
-                              <option value="9">Lương - phụ cấp</option>
-                              <option value="6">Lý lịch trích ngang</option>
-                              <option value="7">Thâm niên</option>
-                              <option value="5"
-                                >Danh sách đào tạo bồi dưỡng</option
-                              >
-                              <option value="8"
-                                >Danh sách giải pháp, sáng kiến</option
-                              >
-                            </select>
-                          </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Báo cáo</title>
+  <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css" />
+  <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css" />
+  <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="/css/style_1.css" />
+  <link rel="stylesheet" href="/css/style_2.css" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <% include ../../partials/_navbar %>
+    <div class="container-fluid page-body-wrapper">
+      <% include ../../partials/_sidebar %>
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4>DANH SÁCH BÁO CÁO</h4>
+                  <div class="row" style="padding:5px"></div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="" class="col-sm-12 control-label">Xuất báo cáo</label>
+                        <div class="col-sm-12">
+                          <select class="form-control" id="baocao">
+                            <option value="0">Chất lượng Đảng viên</option>
+                            <option value="1">Chất lượng nhân viên</option>
+                            <option value="2">Chức danh nhân viên</option>
+                            <option value="3">Thông tin liên lạc</option>
+                            <option value="4">Hợp đồng</option>
+                            <option value="9">Lương - phụ cấp</option>
+                            <option value="6">Lý lịch trích ngang</option>
+                            <option value="7">Thâm niên</option>
+                            <option value="5">Danh sách đào tạo bồi dưỡng</option>
+                            <option value="8">Danh sách giải pháp, sáng kiến</option>
+                          </select>
                         </div>
                       </div>
-                      <div class="col-lg-6" id="xuatbaocao">
-                        <a
-                          id="linkxuat"
-                          href="/bao-cao/dang-vien/chat-luong/export"
-                        >
-                          <button
-                            style="margin-top:30px; width: 120px"
-                            class="btn btn-primary"
-                            type="button"
-                            style="margin: auto"
-                          >
-                            <span class=" icon-holder">
-                              <i class="fa fa-download"></i>
-                            </span>
-                            <span class="title">Xuất File</span>
-                          </button>
-                        </a>
-                      </div>
+                    </div>
+                    <div class="col-lg-6" id="xuatbaocao">
+                      <a id="linkxuat" href="/bao-cao/dang-vien/chat-luong/export">
+                        <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button"
+                          style="margin: auto">
+                          <span class=" icon-holder">
+                            <i class="fa fa-download"></i>
+                          </span>
+                          <span class="title">Xuất File</span>
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <% include ../../partials/_footer %>
         </div>
+        <% include ../../partials/_footer %>
       </div>
     </div>
-    <script src="/vendors/js/vendor.bundle.base.js"></script>
-    <script src="/vendors/js/vendor.bundle.addons.js"></script>
-    <script src="/js/off-canvas.js"></script>
-    <script src="/js/misc.js"></script>
-    <script src="/js/hoverable-collapse.js"></script>
-    <script>
-      $("#baocao").change(function() {
-        $("#linkxuat").remove();
-        if ($("#baocao").val() == 0) {
-          $("#xuatbaocao").append(
-            '<a id="linkxuat" href="/bao-cao/dang-vien/chat-luong/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
-          );
-        }
-        if ($("#baocao").val() == 1) {
-          $("#xuatbaocao").append(
-            '<a id="linkxuat" href="/bao-cao/nhan-vien/so-luong-chat-luong/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
-          );
-        }
-        if ($("#baocao").val() == 2) {
-          $("#xuatbaocao").append(
-            '<a id="linkxuat" href="/bao-cao/nhan-vien/chuc-danh/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
-          );
-        }
-        if ($("#baocao").val() == 3) {
-          $("#xuatbaocao").append(
-            '<a id="linkxuat" href="/bao-cao/thong-tin-lien-lac/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
-          );
-        }
-        if ($("#baocao").val() == 4) {
-          $("#xuatbaocao").append(
-            '<a id="linkxuat" href="/bao-cao/hop-dong/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
-          );
-        }
-        if ($("#baocao").val() == 5) {
-          $("#xuatbaocao").append(
-            '<a id="linkxuat" href="/bao-cao/dao-tao-boi-duong/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
-          );
-        }
-        if ($("#baocao").val() == 6) {
-          $("#xuatbaocao").append(
-            '<a id="linkxuat" href="/bao-cao/ly-lich-trich-ngang/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
-          );
-        }
-        if ($("#baocao").val() == 7) {
-          $("#xuatbaocao").append(
-            '<a id="linkxuat" href="/bao-cao/nhan-vien/tham-nien/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
-          );
-        }
-        if ($("#baocao").val() == 8) {
-          $("#xuatbaocao").append(
-            '<a id="linkxuat" href="/bao-cao/giai-phap-sang-kien/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
-          );
-        }
-        if ($("#baocao").val() == 9) {
-          $("#xuatbaocao").append(
-            '<a id="linkxuat" href="/bao-cao/nhan-vien/luong-phu-cap/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
-          );
-        }
-      });
-    </script>
-    <% include ../../partials/scriptForAll %>
-  </body>
+  </div>
+  <script src="/vendors/js/vendor.bundle.base.js"></script>
+  <script src="/vendors/js/vendor.bundle.addons.js"></script>
+  <script src="/js/off-canvas.js"></script>
+  <script src="/js/misc.js"></script>
+  <script src="/js/hoverable-collapse.js"></script>
+  <script>
+    $("#baocao").change(function () {
+      $("#linkxuat").remove();
+      if ($("#baocao").val() == 0) {
+        $("#xuatbaocao").append(
+          '<a id="linkxuat" href="/bao-cao/dang-vien/chat-luong/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
+        );
+      }
+      if ($("#baocao").val() == 1) {
+        $("#xuatbaocao").append(
+          '<a id="linkxuat" href="/bao-cao/nhan-vien/so-luong-chat-luong/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
+        );
+      }
+      if ($("#baocao").val() == 2) {
+        $("#xuatbaocao").append(
+          '<a id="linkxuat" href="/bao-cao/nhan-vien/chuc-danh/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
+        );
+      }
+      if ($("#baocao").val() == 3) {
+        $("#xuatbaocao").append(
+          '<a id="linkxuat" href="/bao-cao/thong-tin-lien-lac/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
+        );
+      }
+      if ($("#baocao").val() == 4) {
+        $("#xuatbaocao").append(
+          '<a id="linkxuat" href="/bao-cao/hop-dong/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
+        );
+      }
+      if ($("#baocao").val() == 5) {
+        $("#xuatbaocao").append(
+          '<a id="linkxuat" href="/bao-cao/dao-tao-boi-duong/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
+        );
+      }
+      if ($("#baocao").val() == 6) {
+        $("#xuatbaocao").append(
+          '<a id="linkxuat" href="/bao-cao/ly-lich-trich-ngang/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
+        );
+      }
+      if ($("#baocao").val() == 7) {
+        $("#xuatbaocao").append(
+          '<a id="linkxuat" href="/bao-cao/nhan-vien/tham-nien/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
+        );
+      }
+      if ($("#baocao").val() == 8) {
+        $("#xuatbaocao").append(
+          '<a id="linkxuat" href="/bao-cao/giai-phap-sang-kien/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
+        );
+      }
+      if ($("#baocao").val() == 9) {
+        $("#xuatbaocao").append(
+          '<a id="linkxuat" href="/bao-cao/nhan-vien/luong-phu-cap/export"> <button style="margin-top:30px; width: 120px" class="btn btn-primary" type="button" style="margin: auto" > <span class="icon-holder"> <i class="fa fa-download"></i> </span> <span class="title">Xuất File</span> </button> </a>'
+        );
+      }
+    });
+  </script>
+  <% include ../../partials/scriptForAll %>
+</body>
+
 </html>

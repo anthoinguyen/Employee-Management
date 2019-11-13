@@ -321,7 +321,11 @@ figure {
 img {
   vertical-align: middle;
   border-style: none; }
-
+label.error {
+    display:block;
+    width:100%;
+    margin: 5px 0px;
+    color: red; }
 svg {
   overflow: hidden;
   vertical-align: middle; }

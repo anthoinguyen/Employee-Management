@@ -120,6 +120,7 @@
   </script>
   <script>
     $('#submitCreate').on('click', function() {
+      if($("#form_create").valid()){
       let value = $('#category').val().split(';')
       $.ajax({
         url: "/tin-tuc/category",
@@ -132,10 +133,12 @@
           location.reload();
         }
       })
+      }
     })
   </script>
   <script>
     $('#submitAddon').on('click', function() {
+      if($("#form_add").valid()){
       let valueAddon = $('#categoryAddOn').val().split(';');
       $.ajax({
         url: `/tin-tuc/category/${selectedId}`,
@@ -147,6 +150,7 @@
           location.reload();
         }
       })
+      }
     })
   </script>
 </body>

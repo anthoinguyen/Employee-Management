@@ -87,7 +87,7 @@
                               <%- item.description %>
                             </td>
                             <td>
-                              <%- item.createdDate.getDate() %> / <%- item.createdDate.getMonth() + 1 %> / <%- item.createdDate.getFullYear() %>
+                              <%- item.createdDate.getDate() %>/<%- item.createdDate.getMonth() + 1 %>/<%- item.createdDate.getFullYear() %>
                             </td>
                             <td>
                               <button
@@ -207,6 +207,7 @@
     </script>
     <script>
       function editDocs() {
+        if($("#form_edit").valid()){
         let formdata = new FormData();
         if ($("#editFile")[0].files[0] != undefined) {
           formdata.append("file", $("#editFile")[0].files[0]);
@@ -223,9 +224,7 @@
         $.ajax({
           url: `/giay-to/${editTemp}`,
           data: formdata,
-          // dataType: 'json',
           contentType: false,
-          // cache : false,
           processData: false,
           method: "PUT",
           success: function(result) {
@@ -235,6 +234,7 @@
             }
           }
         });
+        }
       }
     </script>
     <script>

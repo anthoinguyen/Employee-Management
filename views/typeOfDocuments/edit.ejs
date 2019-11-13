@@ -1,4 +1,5 @@
-<div class="modal fade bd-example-modal-lg" id="edit" tabindex="-1" role="dialog" aria-labelledby="addOn" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="edit" tabindex="-1" role="dialog" aria-labelledby="addOn"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,27 +8,23 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-12">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <form id="form_edit">
               <div class="form-group">
                 <label for="name">Các phân mục cần bổ sung</label>
-                <input 
-                  type="text" 
-                  class="form-control" 
-                  id="editName" 
-                  required 
-                  name="name"
-                />
+                <input type="text" class="form-control" id="editName" required name="editName" />
               </div>
-            </div>
-          </div>
-  
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-            <button type="submit" class="btn btn-primary" id="submitEdit">Thêm mới</button>
+            </form>
           </div>
         </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-primary" id="submitEdit">Thêm mới</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <script>
   $(document).on('click', '#create-Salary', function () {
-
+    if($("#form_create").valid()){
     var arrayBacheso = [];
     $('div.hesoluong').each(function (index, val) {
       arrayBacheso.push({
@@ -17,7 +17,6 @@
       nam: $('#namGiubac').val(),
       bacHeso: JSON.stringify(arrayBacheso)
     }
-    console.log(data)
     $.ajax({
       url: '/he-thong/luong/them',
       method: "POST",
@@ -30,6 +29,7 @@
         }
       }
     });
+    }
   })
 </script>
 
@@ -98,6 +98,7 @@
   })
 
   function editSalary() {
+    if($("#form_edit").valid()){
 
     var arrayBacheso1 = [];
     $('div.hesoluong1').each(function (index, val) {
@@ -129,5 +130,6 @@
         }
       }
     })
+    }
   };
 </script>
