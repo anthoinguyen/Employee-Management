@@ -42,10 +42,10 @@
       return $(this).val();
     }).get();
 
-    if (usersList1 == ""  || usersList1 == undefined ) {
+    if (usersList1 == ""  || !usersList1 ) {
       alert("Vui lòng chọn nhân viên")
     } else {
-
+      if ($("#form_create").valid()) {
       var data = {
         usersList: JSON.stringify(usersList1),
         date: $('#ngayNghi').val(),
@@ -66,11 +66,10 @@
           }
         }
       })
+      }
     }
   });
 </script>
-
-
 
 <script>
   var UserID;

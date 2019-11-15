@@ -143,18 +143,6 @@
       if (!flag) {
         alert('Vui lòng nhập đủ thông tin !')
       } else {
-        // var arrayCourses = [];
-        // $('div.dao-tao').each(function (index, val) {
-        //   arrayCourses.push({
-        //     schoolName: $(this).find('#truongdaotao').val(),
-        //     specializedTraining: $(this).find('#chuyenmondaotao').val(),
-        //     fromDate: $(this).find('#ngaydaotao').val(),
-        //     toDate: $(this).find('#ngayhetdaotao').val(),
-        //     formsOfTraining: $(this).find('#hinhthucdaotao').val(),
-        //     diploma: $(this).find('#vanbangdaotao').val(),
-        //   });
-        // })
-
         var arrayWorkingProccess = [];
         $('div.cong-tac').each(function (index, val) {
           arrayWorkingProccess.push({
@@ -297,12 +285,8 @@
           aboutOther: arrayAboutOther,
         }
 
-
-
-
         var data1 = {
           email: $('#email').val(),
-          // password: $('#password').val(),
           usersCardNumber: $('#textSoHieu').val(),
           name: $('#textTen').val(),
           phoneNumber: $('#phoneNumber').val(),
@@ -318,22 +302,15 @@
           occupationƯwhenRecruited: $('#nghenghiepTD').val(),
           recruitmentDay: $('#ngayTD').val(),
           employmentAgency: $('#coquanTDtruoc').val(),
-          // currentPosition: $('#chucvuHT').val(),
           mainJob: $('#cvchinh').val(),
           scaleOfCivilServant: $('#ngach').val(),
-          // salaryLevel: $('#bacluong').val(),
-          // scaleCode: $('#mangach').val(),
-          // coefficient: $('#heso').val(),
           payday: $('#ngayhuong').val(),
-          // fringeBenefits: $('#phucap').val(),
-          // otherFringeBenefits: $('#phucapkhac').val(),
           educationLevel: educationLevel1,
           communist: communist1,
           youthUnion: youthUnion1,
           ngayThamGiaToChucCTXH: ngayThamGiaToChucCTXH1,
           army: army1,
           forte: $('#sotruong').val(),
-
           health: (health1),
           IDCard: (IDCard1),
           socialInsuranceNumber: $('#bhxh').val(),
@@ -341,14 +318,12 @@
           familyPolicy: $('#conlietsi').val(),
           evaluate: $('#nhanxet').val(),
           personalHistory: (personalHistory1),
-          // course: (arrayCourses),
           workingProccess: (arrayWorkingProccess),
           familyRelationship: (familyRelationship1),
           wageMovements: (arrayWageMovements),
           cuuNhanVien: "0"
         }
 
-        console.log(data1)
         $.ajax({
           url: `/thong-tin-ca-nhan/chinh-sua`,
           type: 'put',
@@ -399,10 +374,7 @@
 
 <script>
   //Them khoa dao tao
-
   $(document).on('click', '#create-courses', function () {
-
-
     var daotao = {
       ten: $('#khoadaotao').val(),
       loai: $('#loaidaotao').val(),
@@ -413,7 +385,6 @@
       diaDiem: $('#noidaotao').val(),
       hinhThuc: $('#hinhthucdaotao').val(),
       confirmed: "0"
-
     }
 
     $.ajax({
@@ -421,10 +392,8 @@
       type: 'POST',
       dataType: 'json',
       data: daotao,
-
       success: function (res) {
         if (res) {
-
           $('#listDT').empty();
           $.ajax({
             url: '/thong-tin-ca-nhan/dao-tao',
@@ -473,9 +442,8 @@
                     '</tr>'
                   )
                 })
-
               } else {
-                console.log("abc")
+                console.log("Fails")
               }
             }
           })
@@ -517,11 +485,11 @@
           $('#editthoigiandaotao').val(course.ngayBatDau),
           $('#editthoigianhetdaotao').val(course.ngayKetThuc),
           $('#editkhoadaotao').val(course.ten),
-            $('#editloaidaotao').val(course.loai),
-            $('#editNDdaotao').val(course.noiDung),
-            $('#edittrinhdodaotao').val(course.trinhDo),
-            $('#editnoidaotao').val(course.diaDiem),
-            $('#edithinhthucdaotao').val(course.hinhThuc)
+          $('#editloaidaotao').val(course.loai),
+          $('#editNDdaotao').val(course.noiDung),
+          $('#edittrinhdodaotao').val(course.trinhDo),
+          $('#editnoidaotao').val(course.diaDiem),
+          $('#edithinhthucdaotao').val(course.hinhThuc)
         } else {
           console.log("Lỗi")
         }
@@ -530,7 +498,6 @@
   }
 
   function ChinhsuaCourses() {
-
     var ngayBatDau1 = $('#editthoigiandaotao').val();
     var ngayKetThuc1 = $('#editthoigianhetdaotao').val()
 
@@ -602,7 +569,7 @@
                 })
 
               } else {
-                console.log("abc")
+                console.log("Fails")
               }
             }
           })
@@ -673,9 +640,8 @@
                   '</tr>'
                 )
               })
-
             } else {
-              console.log("abc")
+              console.log("Fails")
             }
           }
         })
@@ -747,7 +713,7 @@
               })
 
             } else {
-              console.log("abc")
+              console.log("Fails")
             }
           }
         })
@@ -824,7 +790,7 @@
                 })
 
               } else {
-                console.log("abc")
+                console.log("Fails")
               }
             }
           })
@@ -855,10 +821,10 @@
 
           $('#editNgayquyetdinh').val(award.quyetDinh ? award.quyetDinh.date : null),
           $('#editCapKT').val(award.quyetDinh ? award.quyetDinh.org : null),
-            $('#editSoKT').val(award.quyetDinh ? award.quyetDinh.number : null),
-            $('#editDanhhieuKT').val(award.title),
-            $('#editHinhthucKT').val(award.format),
-            $('#editThanhtichKT').val(award.description)
+          $('#editSoKT').val(award.quyetDinh ? award.quyetDinh.number : null),
+          $('#editDanhhieuKT').val(award.title),
+          $('#editHinhthucKT').val(award.format),
+          $('#editThanhtichKT').val(award.description)
         }
       }
     })
@@ -933,7 +899,7 @@
                 })
 
               } else {
-                console.log("abc")
+                console.log("Fails")
               }
             }
           })
@@ -1009,7 +975,7 @@
               })
 
             } else {
-              console.log("abc")
+              console.log("Fails")
             }
           }
         })
@@ -1091,7 +1057,7 @@
                 })
 
               } else {
-                console.log("abc")
+                console.log("Fails")
               }
             }
           })
@@ -1129,11 +1095,11 @@
           // }
 
           $('#editNgayhieuluc').val(discipline.quyetDinh ? discipline.quyetDinh.startedDate : null),
-           $('#editNgayhethieuluc').val(discipline.quyetDinh ? discipline.quyetDinh.endedDate : null),
+          $('#editNgayhethieuluc').val(discipline.quyetDinh ? discipline.quyetDinh.endedDate : null),
           $('#editCapKL').val(discipline.quyetDinh ? discipline.quyetDinh.org : null),
-            $('#editSoKL').val(discipline.quyetDinh ? discipline.quyetDinh.number : null),
-            $('#editHinhthucKL').val(discipline.format),
-            $('#editLydoKL').val(discipline.description)
+          $('#editSoKL').val(discipline.quyetDinh ? discipline.quyetDinh.number : null),
+          $('#editHinhthucKL').val(discipline.format),
+          $('#editLydoKL').val(discipline.description)
         }
       }
     })
@@ -1210,9 +1176,8 @@
                     '</tr>'
                   )
                 })
-
               } else {
-                console.log("abc")
+                console.log("Fails")
               }
             }
           })
@@ -1278,9 +1243,8 @@
                   '</tr>'
                 )
               })
-
             } else {
-              console.log("abc")
+              console.log("Fails")
             }
           }
         })
@@ -1351,7 +1315,7 @@
                 })
 
               } else {
-                console.log("abc")
+                console.log("Fails")
               }
             }
           })
@@ -1383,7 +1347,6 @@
   }
 
   function edit_GP() {
-
     var editgiaiphap = {
       nam: $('#editnamgiaiphap').val(),
       loai: $('#editloaiDetai').val(),
@@ -1439,9 +1402,8 @@
                     '</tr>'
                   )
                 })
-
               } else {
-                console.log("abc")
+                console.log("Fails")
               }
             }
           })
@@ -1505,7 +1467,7 @@
           })
 
         } else {
-          console.log("abc")
+          console.log("Fails")
         }
       }
     })
@@ -1561,7 +1523,7 @@
           })
 
         } else {
-          console.log("abc")
+          console.log("Fails")
         }
       }
     })
@@ -1619,7 +1581,7 @@
           })
 
         } else {
-          console.log("abc")
+          console.log("Fails")
         }
       }
     })
@@ -1669,7 +1631,7 @@
           })
 
         } else {
-          console.log("abc")
+          console.log("Fails")
         }
       }
     })

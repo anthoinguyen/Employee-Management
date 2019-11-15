@@ -6,6 +6,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
+        <form id="form_createKT">
         <div class="row">
           <div class="col-lg-7">
             <div class="table-responsive">
@@ -44,7 +45,7 @@
             <div class="col-lg-12">
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Số quyết định</label>
-                <input id="SoKT" type="text" class="form-control  " placeholder="">
+                <input id="SoKT" name="SoKT" required type="text" class="form-control" placeholder="">
               </div>
             </div>
             <div class="col-sm-12">
@@ -52,7 +53,7 @@
                 <label for="">Ngày quyết định</label>
                 <div class="row ">
                   <div class="col-sm-12">
-                    <input id="Ngayquyetdinh" type="text" class="form-control">
+                    <input id="Ngayquyetdinh" name="Ngayquyetdinh" required type="text" class="form-control">
                   </div>
                 </div>
               </div>
@@ -60,30 +61,30 @@
             <div class="col-lg-12">
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Danh hiệu</label>
-                <input id="DanhhieuKT" type="text" class="form-control  " placeholder="">
+                <input id="DanhhieuKT" name="DanhhieuKT" required type="text" class="form-control" placeholder="">
               </div>
             </div>
             <div class="col-lg-12">
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Hình thức khen thưởng</label>
-                <input id="HinhthucKT" type="text" class="form-control  " placeholder="">
+                <input id="HinhthucKT" name="HinhthucKT" required type="text" class="form-control" placeholder="">
               </div>
             </div>
             <div class="col-lg-12">
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Cấp ra quyết định</label>
-                <input id="CapKT" type="text" class="form-control  " placeholder="">
+                <input id="CapKT" type="text" name="CapKT" required class="form-control" placeholder="">
               </div>
             </div>
             <div class="col-lg-12">
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Thành tích đạt được</label>
-                <textarea id="ThanhtichKT" type="text" class="form-control" row="4" placeholder=""></textarea>
+                <textarea id="ThanhtichKT" name="ThanhtichKT" required type="text" class="form-control" row="4" placeholder=""></textarea>
               </div>
             </div>
-
           </div>
         </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>

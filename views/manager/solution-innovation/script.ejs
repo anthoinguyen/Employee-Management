@@ -20,16 +20,15 @@
 
 
   $(document).on('click', '#create_GP', function () {
-
     var usersID = [];
     usersID = $('.case:checkbox:checked').map(function () {
       return $(this).val();
     }).get();
 
-    if (usersID == ""  || usersID == undefined  || usersID == null) {
+    if (usersID == ""  || !usersID ) {
       alert("Vui lòng chọn nhân sự cần thêm")
     } else {
-
+      if ($("#form_create").valid()) {
       var giaiphap = {
         users: JSON.stringify(usersID),
         nam: $('#namgiaiphap').val(),
@@ -54,6 +53,7 @@
         }
       })
     }
+    }
   });
   var editGP;
 
@@ -77,7 +77,7 @@
   }
 
   function edit_GP() {
-
+    if ($("#form_edit").valid()) {
     var editgiaiphap = {
       nam: $('#editnamgiaiphap').val(),
       loai: $('#editloaiDetai').val(),
@@ -86,7 +86,6 @@
       ten: $('#editdeTai').val(),
       ghiChu: $('#editghiChu').val(),
       confirmed: "1"
-
     }
     $.ajax({
       url: `/quan-ly/giai-phap-sang-kien/${editGP}`,
@@ -99,8 +98,8 @@
           alert("Xác nhận thành công");
           window.location.reload();
         }
-
       }
     })
+    }
   }
 </script>

@@ -37,14 +37,14 @@
 
 <script>
   $(document).on('click', '#create-WOT', function () {
-
     let usersList1 = $('.caseWOT:checkbox:checked').map(function () {
       return $(this).val();
     }).get();
 
-    if (usersList1 == ""  || usersList1 == undefined ) {
+    if (usersList1 == ""  || !usersList1) {
       alert("Vui lòng chọn nhân viên")
     } else {
+      if ($("#form_create").valid()) {
       var data = {
         usersList: JSON.stringify(usersList1),
         dateWorkOverTime: $('#ngayLam').val(),
@@ -56,7 +56,6 @@
         type: 'POST',
         dataType: 'json',
         data: data,
-
         success: function (res) {
           if (res) {
             alert("Tạo thành công");
@@ -64,6 +63,7 @@
           }
         }
       })
+      }
     }
   });
 </script>

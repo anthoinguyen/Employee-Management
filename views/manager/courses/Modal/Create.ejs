@@ -7,6 +7,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
+        <form id="form_create">
         <div class="row">
           <div class="col-lg-7">
             <div class="table-responsive">
@@ -46,7 +47,7 @@
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Tên khóa đào tạo</label>
                 <div class="col-sm-12">
-                  <input id="khoadaotao" type="text" class="form-control  " placeholder="">
+                  <input id="khoadaotao" type="text" name="khoadaotao" class="form-control" placeholder="" required>
                 </div>
               </div>
             </div>
@@ -54,7 +55,7 @@
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Loại đào tạo</label>
                 <div class="col-sm-12">
-                  <input id="loaidaotao" type="text" class="form-control" placeholder="Trong nước, Nước ngoài">
+                  <input id="loaidaotao" type="text" name="loaidaotao" class="form-control" placeholder="Trong nước, Nước ngoài" required>
                 </div>
               </div>
             </div>
@@ -62,7 +63,7 @@
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Nội dung đào tạo</label>
                 <div class="col-sm-12">
-                  <input id="NDdaotao" type="text" class="form-control " placeholder="">
+                  <input id="NDdaotao" type="text" name="NDdaotao" class="form-control" placeholder="" required>
                 </div>
               </div>
             </div>
@@ -70,7 +71,7 @@
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Trình độ</label>
                 <div class="col-sm-12">
-                  <input id="trinhdodaotao" type="text" class="form-control " placeholder="">
+                  <input id="trinhdodaotao" name="trinhdodaotao" type="text" class="form-control" placeholder="" required>
                 </div>
               </div>
             </div>
@@ -79,7 +80,7 @@
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Thời gian đào tạo từ</label>
                 <div class="col-lg-12">
-                  <input id="thoigiandaotao" type="text" class="form-control">
+                  <input id="thoigiandaotao" name="thoigiandaotao" required type="text" class="form-control">
                 </div>
               </div>
             </div>
@@ -87,7 +88,7 @@
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Đến</label>
                 <div class="col-lg-12">
-                  <input id="thoigianhetdaotao" type="text" class="form-control">
+                  <input id="thoigianhetdaotao" name="thoigianhetdaotao" required type="text" class="form-control">
                 </div>
               </div>
             </div>
@@ -96,7 +97,7 @@
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Nơi đào tạo</label>
                 <div class="col-sm-12">
-                  <input id="noidaotao" type="text" class="form-control " placeholder="">
+                  <input id="noidaotao" name="noidaotao" required type="text" class="form-control " placeholder="">
                 </div>
               </div>
             </div>
@@ -104,16 +105,17 @@
               <div class="form-group">
                 <label for="" class="col-sm-12 control-label">Hình thức đào tạo</label>
                 <div class="col-sm-12">
-                  <input id="hinhthucdaotao" type="text" class="form-control " placeholder="">
+                  <input id="hinhthucdaotao" name="hinhthucdaotao" required type="text" class="form-control" placeholder="">
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" style="width: 100px;" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-          <button type="button" id="create-courses" style="width: 160px;" class="btn btn-primary">Lưu khóa đào tạo</button>
-        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" style="width: 100px;" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="button" id="create-courses" style="width: 160px;" class="btn btn-primary">Lưu khóa đào tạo</button>
       </div>
     </div>
   </div>

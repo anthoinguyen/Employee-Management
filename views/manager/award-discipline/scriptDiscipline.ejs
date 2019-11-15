@@ -18,16 +18,15 @@
 
 <script>
   $(document).on('click', '#create_discipline', function () {
-
     let discipline = [];
     discipline = $('.caseKL:checkbox:checked').map(function () {
       return $(this).val();
     }).get();
 
-    if (discipline == "" || discipline == undefined || discipline == null ) {
+    if (discipline == "" || !discipline ) {
       alert("Vui lòng chọn nhân sự cần thêm")
     } else {
-
+      if ($("#form_createKL").valid()) {
       var dataD = {
         users: JSON.stringify(discipline),
         quyetDinh: JSON.stringify({
@@ -39,7 +38,6 @@
         format: $('#HinhthucKL').val(),
         description: $('#LydoKL').val(),
         confirmed: "1"
-
       }
 
       $.ajax({
@@ -54,6 +52,7 @@
           }
         }
       })
+    }
     }
   });
 </script>
@@ -89,16 +88,16 @@
           $('#editNgayhieuluc').val(discipline.quyetDinh ? discipline.quyetDinh.startedDate : null),
           $('#editNgayhethieuluc').val(discipline.quyetDinh ? discipline.quyetDinh.endedDate : null),
           $('#editCapKL').val(discipline.quyetDinh ? discipline.quyetDinh.org : null),
-            $('#editSoKL').val(discipline.quyetDinh ? discipline.quyetDinh.number : null),
-            $('#editHinhthucKL').val(discipline.format),
-            $('#editLydoKL').val(discipline.description)
+          $('#editSoKL').val(discipline.quyetDinh ? discipline.quyetDinh.number : null),
+          $('#editHinhthucKL').val(discipline.format),
+          $('#editLydoKL').val(discipline.description)
         }
       }
     })
   }
 
   function editDiscipline() {
-
+    if ($("#form_editKL").valid()) {
     var dateStart = $('#editNgayhieuluc').val();
     var dateEnd = $('#editNgayhethieuluc').val();
 
@@ -124,8 +123,8 @@
           alert("Xác nhận thành công");
           window.location.reload();
         }
-
       }
     })
+    }
   }
 </script>

@@ -25,10 +25,10 @@
     award = $('.caseKT:checkbox:checked').map(function () {
       return $(this).val();
     }).get();
-    if (award == "" || award == undefined || award == null ) {
+    if (award == "" || !award ) {
       alert("Vui lòng chọn nhân sự cần thêm")
     } else {
-
+      if ($("#form_createKT").valid()) {
       var dataA = {
         users: JSON.stringify(award),
         quyetDinh: JSON.stringify({
@@ -40,7 +40,6 @@
         format: $('#HinhthucKT').val(),
         description: $('#ThanhtichKT').val(),
         confirmed: "1"
-
       }
 
       $.ajax({
@@ -55,6 +54,7 @@
           }
         }
       })
+      }
     }
   })
 </script>
@@ -81,16 +81,17 @@
 
           $('#editNgayquyetdinh').val(award.quyetDinh ? award.quyetDinh.date : null),
           $('#editCapKT').val(award.quyetDinh ? award.quyetDinh.org : null),
-            $('#editSoKT').val(award.quyetDinh ? award.quyetDinh.number : null),
-            $('#editDanhhieuKT').val(award.title),
-            $('#editHinhthucKT').val(award.format),
-            $('#editThanhtichKT').val(award.description)
+          $('#editSoKT').val(award.quyetDinh ? award.quyetDinh.number : null),
+          $('#editDanhhieuKT').val(award.title),
+          $('#editHinhthucKT').val(award.format),
+          $('#editThanhtichKT').val(award.description)
         }
       }
     })
   }
 
   function editAward() {
+    if ($("#form_editKT").valid()) {
     var dateQuyetdinh = $('#editNgayquyetdinh').val();
     var data2 = {
       quyetDinh: JSON.stringify({
@@ -102,7 +103,6 @@
       format: $('#editHinhthucKT').val(),
       description: $('#editThanhtichKT').val(),
       confirmed: "1"
-
     }
     $.ajax({
       url: `/quan-ly/khen-thuong-ky-luat/awards/${editID1}`,
@@ -116,5 +116,6 @@
         }
       }
     })
+    }
   }
 </script>

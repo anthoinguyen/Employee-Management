@@ -6,17 +6,18 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
+        <form id="form_editKL">
         <div class="row">
           <div class="col-lg-6">
             <div class="form-group">
               <label for="" class="col-sm-12 control-label">Số quyết định</label>
-              <input id="editSoKL" type="text" class="form-control " placeholder="">
+              <input id="editSoKL" name="editSoKL" required type="text" class="form-control" placeholder="">
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group">
               <label for="" class="col-sm-12 control-label">Cấp ra quyết định</label>
-              <input id="editCapKL" type="text" class="form-control  " placeholder="">
+              <input id="editCapKL" name="editCapKL" required type="text" class="form-control  " placeholder="">
             </div>
           </div>
         </div>
@@ -26,7 +27,7 @@
               <label for="">Ngày hiệu lực</label>
               <div class="row ">
                 <div class="col-sm-12">
-                  <input id="editNgayhieuluc" type="text" class="form-control ">
+                  <input id="editNgayhieuluc" name="editNgayhieuluc" required type="text" class="form-control ">
                 </div>
               </div>
             </div>
@@ -36,7 +37,7 @@
               <label for="">Ngày hết hiệu lực</label>
               <div class="row ">
                 <div class="col-sm-12">
-                  <input id="editNgayhethieuluc" type="text" class="form-control ">
+                  <input id="editNgayhethieuluc" name="editNgayhethieuluc" required type="text" class="form-control ">
                 </div>
               </div>
             </div>
@@ -47,7 +48,7 @@
           <div class="col-lg-12">
             <div class="form-group">
               <label for="" class="col-sm-12 control-label">Hình thức kỷ luật</label>
-              <input id="editHinhthucKL" type="text" class="form-control  " placeholder="">
+              <input id="editHinhthucKL" name="editHinhthucKL" required type="text" class="form-control" placeholder="">
             </div>
           </div>
         </div>
@@ -55,11 +56,12 @@
           <div class="col-lg-12">
             <div class="form-group">
               <label for="" class="col-sm-12 control-label">Lý do kỷ luật</label>
-              <textarea id="editLydoKL" type="text" class="form-control" row="4" placeholder=""></textarea>
+              <textarea id="editLydoKL" name="editLydoKL" required type="text" class="form-control" row="4" placeholder=""></textarea>
             </div>
           </div>
         </div>
       </div>
+    </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
         <button type="button" class="btn btn-primary" onclick="editDiscipline()">Xác nhận</button>

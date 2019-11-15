@@ -6,6 +6,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
+        <form id="form_edit">
         <div class="row">
           <div class="col-lg-12">
             <div class="row">
@@ -23,7 +24,7 @@
                 <div class="form-group">
                   <label for="" class="col-sm-12 control-label">Mã ngạch</label>
                   <div class="col-sm-12">
-                    <select class="form-control closess required" required id="editmaNgach">
+                    <select class="form-control closess" name="editmaNgach" required id="editmaNgach">
                     </select>
                   </div>
                 </div>
@@ -32,7 +33,7 @@
                 <div class="form-group">
                   <label for="" class="col-sm-12 control-label">Bậc lương</label>
                   <div class="col-sm-12">
-                    <select class="form-control required" required id="editbacLuong">
+                    <select class="form-control" name="editbacLuong" required id="editbacLuong">
                     </select>
                   </div>
                 </div>
@@ -41,7 +42,7 @@
                 <div class="form-group">
                   <label for="" class="col-sm-12 control-label">Hệ số</label>
                   <div class="col-sm-12">
-                    <select class="form-control required" required id="editheSo">
+                    <select class="form-control" name="editheSo" required id="editheSo">
                     </select>
                   </div>
                 </div>
@@ -50,7 +51,7 @@
                 <div class="form-group">
                   <label for="" class="col-sm-12 control-label">Ngày bắt đầu hưởng</label>
                   <div class="col-sm-12">
-                    <input id="editngayBatDau" type="date" class="form-control" placeholder="">
+                    <input id="editngayBatDau" name="editngayBatDau" type="date" class="form-control" placeholder="">
                   </div>
                 </div>
               </div>
@@ -58,7 +59,7 @@
                 <div class="form-group">
                   <label for="" class="col-sm-12 control-label">Đến ngày</label>
                   <div class="col-sm-12">
-                    <input id="editngayKetThuc" type="date" class="form-control" placeholder="">
+                    <input id="editngayKetThuc" name="editngayKetThuc" type="date" class="form-control" placeholder="">
                   </div>
                 </div>
               </div>
@@ -80,6 +81,7 @@
             </div>
           </div>
         </div>
+      </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>

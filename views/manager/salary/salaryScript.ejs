@@ -107,60 +107,49 @@
 
   $(".closess").click(function() {
     $("#bacLuong").each(function() {
-      $(this)
-        .find(".bacLuong1")
-        .remove();
+      $(this).find(".bacLuong1").remove();
     });
   });
 </script>
 <script>
   $(document).on("click", "#create-salary", function() {
-    validateInput(function(flag) {
-      if (!flag) {
-        alert("Vui lòng nhập đủ thông tin !");
-      } else {
-        let usersList1 = $(".case:checkbox:checked").val();
-
-        var phucap1 = [];
-        $(".tempPhucap").each(function(index, val) {
-          phucap1.push({
-            soTien: $(this)
-              .find("#soTien")
-              .val(),
-            moTa: $(this)
-              .find("#moTa")
-              .val()
-          });
-        });
-
-        if (usersList1 != "" && usersList1 != undefined) {
-          var data = {
-            user: usersList1,
-            ngach: $("#maNgach").val(),
-            bacHeso: $("#bacLuong").val(),
-            ngayBatDau: $("#ngayBatDau").val(),
-            ngayKetThuc: $("#ngayKetThuc").val(),
-            phuCap: JSON.stringify(phucap1)
-          };
-
-          $.ajax({
-            url: `/quan-ly/luong-phu-cap/them`,
-            type: "POST",
-            dataType: "json",
-            data: data,
-            success: function(res) {
-              if (res) {
-                user = "";
-                alert("Tạo thành công");
-                window.location.reload();
-              }
-            }
-          });
-        } else {
-          alert("Vui lòng chọn nhân viên !!!");
-        }
-      }
+    let usersList1 = $(".case:checkbox:checked").val();
+    var phucap1 = [];
+    $(".tempPhucap").each(function(index, val) {
+      phucap1.push({
+        soTien: $(this).find("#soTien").val(),
+        moTa: $(this).find("#moTa").val()
+      });
     });
+
+    if (usersList1 == ""  || !usersList1 ) {
+      alert("Vui lòng chọn nhân sự cần thêm")
+    } else {
+      if ($("#form_create").valid()) {
+        var data = {
+          user: usersList1,
+          ngach: $("#maNgach").val(),
+          bacHeso: $("#bacLuong").val(),
+          ngayBatDau: $("#ngayBatDau").val(),
+          ngayKetThuc: $("#ngayKetThuc").val(),
+          phuCap: JSON.stringify(phucap1)
+        };
+
+        $.ajax({
+          url: `/quan-ly/luong-phu-cap/them`,
+          type: "POST",
+          dataType: "json",
+          data: data,
+          success: function(res) {
+            if (res) {
+              user = "";
+              alert("Tạo thành công");
+              window.location.reload();
+            }
+          }
+        });
+      } 
+    }
   });
 </script>
 <script>
@@ -331,20 +320,19 @@
   }
 
   $(document).on("click", "#edit-Salary", function() {
-    validateInput(function(flag) {
-      if (!flag) {
-        alert("Vui lòng nhập đủ thông tin !");
-      } else {
-        let usersList0 = $("#editnhanSu").val();
+    let usersList0 = $("#editnhanSu").val();
+    var phucap2 = [];
+    $(".tempPhucap1").each(function(index, val) {
+      phucap2.push({
+        soTien: $(this).find("#editsoTien").val(),
+        moTa: $(this).find("#editmoTa").val()
+      });
+    });
 
-        var phucap2 = [];
-        $(".tempPhucap1").each(function(index, val) {
-          phucap2.push({
-            soTien: $(this).find("#editsoTien").val(),
-            moTa: $(this).find("#editmoTa").val()
-          });
-        });
-
+    if (usersList0 == ""  || !usersList0) {
+      alert("Error !")
+    } else {
+      if ($("#form_edit").valid()) {
         var data = {
           user: usersList0,
           ngach: $("#editmaNgach").val(),
@@ -353,7 +341,6 @@
           ngayKetThuc: $("#editngayKetThuc").val(),
           phuCap: JSON.stringify(phucap2)
         };
-        console.log("a", data);
 
         $.ajax({
           url: `/quan-ly/luong-phu-cap/${editID}`,
@@ -369,33 +356,6 @@
           }
         });
       }
-    });
-  });
-
-  // Kiểm tra các fiedl
-  function validateInput(callback) {
-    let flag = true;
-    $("input, textarea, select")
-      .filter("[required]:visible")
-      .each(function(index, val) {
-        let _this = this;
-        if ($(this).val() == "") {
-          flag = false;
-          makeInputDanger(_this);
-        }
-      });
-    callback(flag);
-  }
-  // báo hiệu các field chưa nhập
-  $(document).on(
-    "focusout",
-    "input.required, textarea.required, select.required",
-    function() {
-      if ($(this).val() == "") {
-        makeInputDanger(this);
-      } else {
-        makeInputDefault(this);
-      }
     }
-  );
+  });
 </script>
