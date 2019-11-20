@@ -6,10 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Quản lý Hợp đồng Lao động</title>
   <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
-  <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/css/vendor.bundle.addons.css">
   <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css">
-  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"> -->
   <link rel="stylesheet" href="/css/style_2.css">
   <link rel="stylesheet" href="/css/style_1.css">
   <link rel="shortcut icon" href="images/favicon.png" />
@@ -107,17 +106,17 @@
                               </td>
                               <td>
                                 <a href="<%- item.detail[item.detail.length - 1].fileLink %>" download>
-                                  <button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="tooltip"
+                                  <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="tooltip"
                                     data-placement="top" title="Tải hợp đồng">
                                     <i class="fa fa-download"></i>
                                   </button>
                                 </a>
-                                <button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="modal"
+                                <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal"
                                   data-target="#renewModal" onclick="selectContract('<%- item._doc.usersId %>')"
                                   data-toggle="tooltip" data-placement="top" title="Gia hạn hợp đồng">
                                   <i class="fa fa-edit"></i>
                                 </button>
-                                <button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="modal"
+                                <button type="button" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal"
                                   data-target="#banModal" onclick="selectContract('<%- item._doc.usersId %>')"
                                   data-toggle="tooltip" data-placement="top" title="Chấm dứt hợp đồng lao động">
                                   <i class="fa fa-ban"></i>
@@ -289,8 +288,8 @@
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script> -->
-  <script src="/vendors/js/vendor.bundle.base.js"></script>
-  <script src="/vendors/js/vendor.bundle.addons.js"></script>
+  <script src="/js/vendor.bundle.base.js"></script>
+  <script src="/js/vendor.bundle.addons.js"></script>
   <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script> -->
   <script src="/js/off-canvas.js"></script>
   <script src="/js/misc.js"></script>
