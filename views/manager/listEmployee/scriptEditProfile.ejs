@@ -299,10 +299,10 @@
 
         var educationLevel1 = {};
         educationLevel1 = {
-          generalEducationLevel: {
+          generalEducation: {
             whichClass: $('#trinhdoGD').val(),
           },
-          highestProfessionalQualification: $("#trinhdoCM").val(),
+          highestQualification: $("#trinhdoCM").val(),
           politicalTheory: $("#lyluanCT").val(),
           stateManagement: $("#quanlinhanuoc").val(),
           languageLevel: {
@@ -419,9 +419,9 @@
           hometown: JSON.stringify(hometown1),
           nation: document.getElementById("dantoc2").value,
           religion: document.getElementById("tongiao2").value,
-          registeredPermanentResidence: $('#HoKhau').val(),
-          registeredTemporaryResidence: $('#Address').val(),
-          occupationƯwhenRecruited: $('#nghenghiepTD').val(),
+          registeredPermResidence: $('#HoKhau').val(),
+          registeredTempResidence: $('#Address').val(),
+          occupationRecruited: $('#nghenghiepTD').val(),
           recruitmentDay: $('#ngayTD').val(),
           employmentAgency: $('#coquanTDtruoc').val(),
           // currentPosition: $('#chucvuHT').val(),
@@ -444,7 +444,7 @@
           // discipline: JSON.stringify(discipline1),
           health: JSON.stringify(health1),
           IDCard: JSON.stringify(IDCard1),
-          socialInsuranceNumber: $('#bhxh').val(),
+          socialInsurance: $('#bhxh').val(),
           veterans: JSON.stringify(veterans1),
           familyPolicy: $('#conlietsi').val(),
           evaluate: $('#nhanxet').val(),
@@ -496,9 +496,6 @@
       }
     })
   });
-
-
-
 
   // Kiểm tra các fiedl
   function validateInput(callback) {

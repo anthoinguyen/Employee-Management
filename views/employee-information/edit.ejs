@@ -357,7 +357,7 @@
                                       id="HoKhau"
                                       type="text"
                                       class="form-control "
-                                      value="<%- user.registeredPermanentResidence %>"
+                                      value="<%- user.registeredPermResidence %>"
                                     />
                                   </div>
                                 </div>
@@ -373,7 +373,7 @@
                                     <input
                                       id="Address"
                                       type="text"
-                                      value="<%- user.registeredTemporaryResidence %>"
+                                      value="<%- user.registeredTempResidence %>"
                                       class="form-control "
                                     />
                                   </div>
@@ -391,7 +391,7 @@
                                     <input
                                       id="nghenghiepTD"
                                       type="text"
-                                      value="<%- user.occupationƯwhenRecruited %>"
+                                      value="<%- user.occupationRecruited %>"
                                       class="form-control "
                                     />
                                   </div>
@@ -574,7 +574,7 @@
                                     <input
                                       id="trinhdoGD"
                                       type="text"
-                                      value="<%- user.educationLevel ? user.educationLevel.generalEducationLevel.whichClass : null %>"
+                                      value="<%- user.educationLevel ? user.educationLevel.generalEducation.whichClass : null %>"
                                       class="form-control "
                                     />
                                   </div>
@@ -588,9 +588,9 @@
                                   <div class="col-sm-12">
                                     <select class="form-control" id="trinhdoCM">
                                       <option
-                                        value="<%- user.educationLevel ? user.educationLevel.highestProfessionalQualification : null %>"
+                                        value="<%- user.educationLevel ? user.educationLevel.highestQualification : null %>"
                                       >
-                                        <%- user.educationLevel ? user.educationLevel.highestProfessionalQualification : null %>
+                                        <%- user.educationLevel ? user.educationLevel.highestQualification : null %>
                                       </option>
                                       <option value="Tiến sĩ">Tiến sĩ</option>
                                       <option value="Thạc sĩ">Thạc sĩ</option>
@@ -1124,7 +1124,7 @@
                                     <input
                                       id="bhxh"
                                       type="text"
-                                      value="<%- user.socialInsuranceNumber %>"
+                                      value="<%- user.socialInsurance %>"
                                       class="form-control  "
                                     />
                                   </div>

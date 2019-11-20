@@ -160,7 +160,7 @@ module.exports = router => {
             if (tonGiao) ws.cell(row, 9).string(tonGiao).style(styleCenter);
 
             // Chuyên môn
-            let chuyenMon = (user.educationLevel.highestProfessionalQualification !== undefined) ? user.educationLevel.highestProfessionalQualification : '';
+            let chuyenMon = (user.educationLevel.highestQualification !== undefined) ? user.educationLevel.highestQualification : '';
             list_chuyenmon.forEach((item, index, list) => {
                 let i = 15 + index;
                 if(item === chuyenMon) {

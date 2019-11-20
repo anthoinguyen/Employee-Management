@@ -263,7 +263,7 @@
                                 <div class="form-group">
                                   <label for="" class="col-sm-12 control-label">Nơi đăng ký hộ khẩu thường trú</label>
                                   <div class="col-sm-12">
-                                    <input id="HoKhau" type="text" class="form-control " value="<%- user.registeredPermanentResidence %>">
+                                    <input id="HoKhau" type="text" class="form-control " value="<%- user.registeredPermResidence %>">
                                   </div>
                                 </div>
                               </div>
@@ -273,7 +273,7 @@
                                 <div class="form-group">
                                   <label for="" class="col-sm-12 control-label">Nơi ở hiện nay</label>
                                   <div class="col-sm-12">
-                                    <input id="Address" type="text" value="<%- user.registeredTemporaryResidence %>"
+                                    <input id="Address" type="text" value="<%- user.registeredTempResidence %>"
                                       class="form-control ">
                                   </div>
                                 </div>
@@ -285,7 +285,7 @@
                                 <div class="form-group">
                                   <label for="" class="col-sm-12 control-label">Nghề nghiệp khi được tuyển dụng</label>
                                   <div class="col-sm-12">
-                                    <input id="nghenghiepTD" type="text" value="<%- user.occupationƯwhenRecruited %>"
+                                    <input id="nghenghiepTD" type="text" value="<%- user.occupationRecruited %>"
                                       class="form-control ">
                                   </div>
                                 </div>
@@ -397,7 +397,7 @@
                                 <div class="form-group">
                                   <label for="" class="col-sm-12 control-label">Trình độ giáo dục phổ thông</label>
                                   <div class="col-sm-12">
-                                    <input id="trinhdoGD" type="text" value="<%- user.educationLevel ? user.educationLevel.generalEducationLevel.whichClass : null %>"
+                                    <input id="trinhdoGD" type="text" value="<%- user.educationLevel ? user.educationLevel.generalEducation.whichClass : null %>"
                                       class="form-control ">
                                   </div>
                                 </div>
@@ -407,8 +407,8 @@
                                   <label for="" class="col-sm-12 control-label">Trình độ chuyên môn cao nhất</label>
                                   <div class="col-sm-12">
                                     <select class="form-control" id="trinhdoCM">
-                                      <option value="<%- user.educationLevel ? user.educationLevel.highestProfessionalQualification : null %>">
-                                        <%- user.educationLevel ? user.educationLevel.highestProfessionalQualification : null %>
+                                      <option value="<%- user.educationLevel ? user.educationLevel.highestQualification : null %>">
+                                        <%- user.educationLevel ? user.educationLevel.highestQualification : null %>
                                       </option>
                                       <option value="Tiến sĩ">Tiến sĩ</option>
                                       <option value="Thạc sĩ">Thạc sĩ</option>
@@ -754,7 +754,7 @@
                                 <div class="form-group">
                                   <label for="" class="col-sm-12 control-label">Số sổ bảo hiểm xã hội</label>
                                   <div class="col-sm-12">
-                                    <input id="bhxh" type="text" value="<%- user.socialInsuranceNumber %>" class="form-control  ">
+                                    <input id="bhxh" type="text" value="<%- user.socialInsurance %>" class="form-control  ">
                                   </div>
                                 </div>
                               </div>

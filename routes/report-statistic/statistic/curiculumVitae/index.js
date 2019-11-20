@@ -158,7 +158,7 @@ module.exports = router => {
             // Số CMND
             ws.cell(n, 5).string((user.IDCard.number !== undefined) ? user.IDCard.number : '').style(styleLeft).style(styleWrap);
             // Số BHXH
-            ws.cell(n, 6).string((user.socialInsuranceNumber !== undefined) ? user.socialInsuranceNumber : '').style(styleLeft).style(styleWrap);
+            ws.cell(n, 6).string((user.socialInsurance !== undefined) ? user.socialInsurance : '').style(styleLeft).style(styleWrap);
 
             // Vị trí làm việc
             let positions = (user.positionId.length > 0) ? user.positionId : [];
@@ -211,12 +211,12 @@ module.exports = router => {
                 }
             }
             // Văn hóa
-            if(user.educationLevel.generalEducationLevel.whichClass !== undefined) {
-                ws.cell(n, 17).string(user.educationLevel.generalEducationLevel.whichClass).style(styleCenter);
+            if(user.educationLevel.generalEducation.whichClass !== undefined) {
+                ws.cell(n, 17).string(user.educationLevel.generalEducation.whichClass).style(styleCenter);
             }
             // Trình độ chuyên môn
-            if(user.educationLevel.highestProfessionalQualification !== undefined) {
-                let tdcm = user.educationLevel.highestProfessionalQualification;
+            if(user.educationLevel.highestQualification !== undefined) {
+                let tdcm = user.educationLevel.highestQualification;
                 for (let [i,t] of trinhdo.entries()) {
                     if(tdcm === t) {
                         ws.cell(n, 18 + i).string("x").style(styleCenter);

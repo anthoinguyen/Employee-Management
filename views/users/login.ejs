@@ -24,14 +24,14 @@
                 <div class="form-group">
                   <label class="label">Email</label>
                   <div class="input-group">
-                    <input type="email" name="username" class="form-control" placeholder="abc@gmail.com"/>
+                    <input type="email" name="username" class="form-control" placeholder="abc@gmail.com" email required maxlength="40"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="label">Mật khẩu</label>
                   <div class="input-group">
-                    <input type="password" name="password" class="form-control" placeholder="******"/>
+                    <input type="password" name="password" class="form-control" placeholder="******" required minlength="6" maxlength="20" />
                   </div>
                 </div>
 
@@ -53,30 +53,6 @@
   <script src="/js/misc.js"></script>
   <script>
     $("#form-login").validate({
-      rules: {
-        username: {
-            required: true,
-            maxlength: 40,
-            email: true
-        },
-        password: {
-            required: true,
-            minlength: 6,
-            maxlength: 20
-        }
-      },
-      messages: {
-        username: {
-          maxlength: "Vui lòng nhập không quá 40 kí tự",
-          email: "Vui lòng nhập email",
-          required: "Vui lòng nhập email",
-        },
-        password: {
-          required: "Vui lòng nhập password",
-          minlength: "Vui lòng nhập ít nhất 6 kí tự",
-          maxlength: "Vui lòng nhập không quá 20 kí tự"
-        }
-      },
       submitHandler: function(form) {
         form.submit();
       }

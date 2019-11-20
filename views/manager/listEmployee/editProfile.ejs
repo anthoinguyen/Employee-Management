@@ -248,7 +248,7 @@
                               <div class="form-group">
                                 <label for="" class="col-sm-12 control-label">Nơi đăng ký hộ khẩu thường trú</label>
                                 <div class="col-sm-12">
-                                  <input id="HoKhau" type="text" class="form-control " value="<%- data.registeredPermanentResidence %>"
+                                  <input id="HoKhau" type="text" class="form-control " value="<%- data.registeredPermResidence %>"
                                     placeholder="Số nhà, đường phố, thành phố, xóm, thôn, xã, huyện, tỉnh">
                                 </div>
                               </div>
@@ -259,7 +259,7 @@
                               <div class="form-group">
                                 <label for="" class="col-sm-12 control-label">Nơi ở hiện nay</label>
                                 <div class="col-sm-12">
-                                  <input id="Address" type="text" value="<%- data.registeredTemporaryResidence %>"
+                                  <input id="Address" type="text" value="<%- data.registeredTempResidence %>"
                                     class="form-control " placeholder="Số nhà, đường phố, thành phố, xóm, thôn, xã, huyện, tỉnh">
                                 </div>
                               </div>
@@ -271,7 +271,7 @@
                               <div class="form-group">
                                 <label for="" class="col-sm-12 control-label">Nghề nghiệp khi được tuyển dụng</label>
                                 <div class="col-sm-12">
-                                  <input id="nghenghiepTD" type="text" value="<%- data.occupationƯwhenRecruited %>"
+                                  <input id="nghenghiepTD" type="text" value="<%- data.occupationRecruited %>"
                                     class="form-control " placeholder="">
                                 </div>
                               </div>
@@ -395,7 +395,7 @@
                               <div class="form-group">
                                 <label for="" class="col-sm-12 control-label">Trình độ giáo dục phổ thông</label>
                                 <div class="col-sm-12">
-                                  <input id="trinhdoGD" type="text" value="<%- data.educationLevel ? data.educationLevel.generalEducationLevel.whichClass : null %>"
+                                  <input id="trinhdoGD" type="text" value="<%- data.educationLevel ? data.educationLevel.generalEducation.whichClass : null %>"
                                     class="form-control " placeholder="">
                                 </div>
                               </div>
@@ -405,8 +405,8 @@
                                 <label for="" class="col-sm-12 control-label">Trình độ chuyên môn cao nhất</label>
                                 <div class="col-sm-12">
                                   <select class="form-control" id="trinhdoCM">
-                                    <option value="<%- data.educationLevel ? data.educationLevel.highestProfessionalQualification : null %>">
-                                      <%- data.educationLevel ? data.educationLevel.highestProfessionalQualification : null %>
+                                    <option value="<%- data.educationLevel ? data.educationLevel.highestQualification : null %>">
+                                      <%- data.educationLevel ? data.educationLevel.highestQualification : null %>
                                     </option>
                                     <option value="Tiến sĩ">Tiến sĩ</option>
                                     <option value="Thạc sĩ">Thạc sĩ</option>
@@ -756,7 +756,7 @@
                               <div class="form-group">
                                 <label for="" class="col-sm-12 control-label">Số sổ bảo hiểm xã hội</label>
                                 <div class="col-sm-12">
-                                  <input id="bhxh" type="text" value="<%- data.socialInsuranceNumber %>" class="form-control  "
+                                  <input id="bhxh" type="text" value="<%- data.socialInsurance %>" class="form-control  "
                                     placeholder="">
                                 </div>
                               </div>

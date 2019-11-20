@@ -108,7 +108,7 @@ module.exports = router => {
                     // Dân tộc
                     if(dv.nation !== 'Kinh') dantoc += 1;
                     // Trình độ chuyên môn
-                    let tdcm = dv.educationLevel.highestProfessionalQualification;
+                    let tdcm = dv.educationLevel.highestQualification;
                     switch (tdcm) {
                         case "Tiến sĩ": td_trenDH += 1; break;
                         case "Thạc sĩ": td_trenDH += 1; break;

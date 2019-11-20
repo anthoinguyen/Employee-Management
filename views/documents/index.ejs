@@ -147,6 +147,13 @@
       });
     </script>
     <script>
+      $("#form-create").validate({
+        submitHandler: function(form) {
+          form.submit();
+        }
+      });
+    </script>
+    <script>
       var docsTemp;
       var editTemp;
       function deleteDocsTemp(id) {

@@ -104,10 +104,10 @@ module.exports = router => {
             ws.cell(n, 10).string(hometown_str).style(styleLeft).style(styleWrapText);
             ws.column(10).setWidth(30);
             // Thường trú, tạm trú
-            if(user.registeredPermanentResidence !== undefined)
-                ws.cell(n, 11).string(user.registeredPermanentResidence).style(styleLeft).style(styleWrapText);
-            if(user.registeredTemporaryResidence !== undefined)
-                ws.cell(n, 12).string(user.registeredTemporaryResidence).style(styleLeft).style(styleWrapText);
+            if(user.registeredPermResidence !== undefined)
+                ws.cell(n, 11).string(user.registeredPermResidence).style(styleLeft).style(styleWrapText);
+            if(user.registeredTempResidence !== undefined)
+                ws.cell(n, 12).string(user.registeredTempResidence).style(styleLeft).style(styleWrapText);
             ws.column(11).setWidth(30);
             ws.column(12).setWidth(30);
             

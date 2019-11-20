@@ -489,7 +489,7 @@
                                         id="HoKhau"
                                         type="text"
                                         class="form-control required"
-                                        value="<%- user.registeredPermanentResidence %>"
+                                        value="<%- user.registeredPermResidence %>"
                                         disabled
                                         required
                                       />
@@ -509,7 +509,7 @@
                                       <input
                                         id="Address"
                                         type="text"
-                                        value="<%- user.registeredTemporaryResidence %>"
+                                        value="<%- user.registeredTempResidence %>"
                                         disabled
                                         class="form-control required"
                                         required
@@ -531,7 +531,7 @@
                                       <input
                                         id="nghenghiepTD"
                                         type="text"
-                                        value="<%- user.occupationƯwhenRecruited %>"
+                                        value="<%- user.occupationRecruited %>"
                                         disabled
                                         class="form-control required"
                                         required
@@ -736,7 +736,7 @@
                                       <input
                                         id="trinhdoGD"
                                         type="text"
-                                        value="<%- user.educationLevel ? user.educationLevel.generalEducationLevel.whichClass : null %>"
+                                        value="<%- user.educationLevel ? user.educationLevel.generalEducation.whichClass : null %>"
                                         disabled
                                         class="form-control required"
                                         required
@@ -755,7 +755,7 @@
                                       <input
                                         id="trinhdoCM"
                                         type="text"
-                                        value="<%- user.educationLevel ? user.educationLevel.highestProfessionalQualification : null %>"
+                                        value="<%- user.educationLevel ? user.educationLevel.highestQualification : null %>"
                                         disabled
                                         class="form-control"
                                       />
@@ -1331,7 +1331,7 @@
                                       <input
                                         id="bhxh"
                                         type="text"
-                                        value="<%- user.socialInsuranceNumber %>"
+                                        value="<%- user.socialInsurance %>"
                                         disabled
                                         class="form-control  "
                                       />

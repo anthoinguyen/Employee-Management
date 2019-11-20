@@ -250,10 +250,10 @@
 
         var educationLevel1 = {};
         educationLevel1 = {
-          generalEducationLevel: {
+          generalEducation: {
             whichClass: $('#trinhdoGD').val(),
           },
-          highestProfessionalQualification: $("trinhdoCM").val(),
+          highestQualification: $("trinhdoCM").val(),
           politicalTheory: $("lyluanCT").val(),
           stateManagement: $("quanlinhanuoc").val(),
           languageLevel: {
@@ -342,9 +342,6 @@
           aboutOther: arrayAboutOther,
         }
 
-
-
-
         var data = {
           email: $('#email').val(),
           password: $('#password').val(),
@@ -358,14 +355,14 @@
           hometown: JSON.stringify(hometown1),
           nation: document.getElementById("dantoc1").value,
           religion: document.getElementById("tongiao1").value,
-          registeredPermanentResidence: $('#HoKhau').val(),
-          registeredTemporaryResidence: $('#Address').val(),
-          occupationƯwhenRecruited: $('#nghenghiepTD').val(),
+          registeredPermResidence: $('#HoKhau').val(),
+          registeredTempResidence: $('#Address').val(),
+          occupationRecruited: $('#nghenghiepTD').val(),
           recruitmentDay: $('#ngayTD').val(),
           employmentAgency: $('#coquanTDtruoc').val(),
           // currentPosition: $('#chucvuHT').val(),
           mainJob: $('#cvchinh').val(),
-          scaleOfCivilServant: $('#ngach').val(),
+          //scaleOfCivilServant: $('#ngach').val(),
           // salaryLevel: $('#bacluong').val(),
           // scaleCode: $('#mangach').val(),
           // coefficient: $('#heso').val(),
@@ -378,10 +375,9 @@
           ngayThamGiaToChucCTXH: JSON.stringify(ngayThamGiaToChucCTXH1),
           army: JSON.stringify(army1),
           forte: $('#sotruong').val(),
-
           health: JSON.stringify(health1),
           IDCard: JSON.stringify(IDCard1),
-          socialInsuranceNumber: $('#bhxh').val(),
+          socialInsurance: $('#bhxh').val(),
           veterans: JSON.stringify(veterans1),
           familyPolicy: $('#conlietsi').val(),
           evaluate: $('#nhanxet').val(),

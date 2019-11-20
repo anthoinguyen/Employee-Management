@@ -6,7 +6,7 @@ var _ = require('lodash');
 var moment = require('moment');
 
 router.get('/', (req, res, next) => {
-  bcrypt.hash('123', 10, async (err, passHash) => {
+  bcrypt.hash('123456', 10, async (err, passHash) => {
     let user = {
       name: "Admin",
       email: 'admin@gmail.com',

@@ -6,19 +6,16 @@ var users = new mongoose.Schema({
   },
 
   usersCardNumber: {
-    // Số hiệu cán bộ
     type: String
   },
 
   phoneNumber: {
-    // Số điện thoại
     type: String
   },
 
-  typeOfUsers: {
-    // Loại cán bộ
-    type: String
-  },
+  // typeOfUsers: {
+  //   type: String
+  // },
 
   name: {
     required: true,
@@ -36,13 +33,13 @@ var users = new mongoose.Schema({
   gender: {
     type: Boolean //true: Nam, false: Nữ
   },
-  // Nơi sinh
+
   placeBirth: {
     commune: { type: String },
     district: { type: String },
     province: { type: String }
   },
-  // Quê quán
+
   hometown: {
     commune: { type: String },
     district: { type: String },
@@ -57,34 +54,28 @@ var users = new mongoose.Schema({
     type: String
   },
 
-  registeredPermanentResidence: {
-    //nơi đăng ký hộ khẩu thường trú
+  registeredPermResidence: {
     type: String
   },
 
-  registeredTemporaryResidence: {
-    //nơi đăng ký tạm trú or nơi ở hiện tại
+  registeredTempResidence: {
     type: String
   },
 
-  occupationƯwhenRecruited: {
-    //nghề nghiệp khi được tuyển dụng
+  occupationRecruited: {
     type: String
   },
 
   recruitmentDay: {
-    //ngày tuyển dụng
     type: Date
   },
 
   employmentAgency: {
-    //cơ quan tuyển dụng
     type: String
   },
 
   positionId: [
     {
-      //chức vụ hiện tại
       type: mongoose.Schema.Types.ObjectId,
       ref: "positions",
       autopopulate: true
@@ -92,99 +83,78 @@ var users = new mongoose.Schema({
   ],
 
   mainJob: {
-    //công việc chính được giao
     type: String
   },
 
-  scaleOfCivilServant: {
-    //ngạch công chức (viên chức)
-    type: String
-  },
+  // scaleOfCivilServant: {
+  //   type: String
+  // },
 
-  salaryLevel: {
-    //bậc lương
-    type: String
-  },
+  // salaryLevel: {
+  //   type: String
+  // },
 
-  scaleCode: {
-    //mã ngạch
-    type: String
-  },
+  // scaleCode: {
+  //   type: String
+  // },
 
-  coefficient: {
-    //hệ số lương
-    type: String
-  },
+  // coefficient: {
+  //   type: String
+  // },
 
   payday: {
-    //ngày trả lương
     type: Date
   },
 
-  fringeBenefits: {
-    //phụ cấp chức vụ
-    type: String
-  },
+  // fringeBenefits: {
+  //   type: String
+  // },
 
-  otherFringeBenefits: {
-    //phụ cấp khác
-    type: String
-  },
+  // otherFringeBenefits: {
+  //   type: String
+  // },
 
   educationLevel: {
-    generalEducationLevel: {
-      //trình độ giáo dục phổ thông
-      whichClass: { type: String }, //đã tốt nghiệp lớp mấy
-      whichCoefficient: { type: String } //thuộc hệ nào
+    generalEducation: {
+      whichClass: { type: String },
+      // whichCoefficient: { type: String }
     },
 
-    highestProfessionalQualification: {
-      //trình độ chuyên môn cao nhất
+    highestQualification: {
       type: String
     },
 
     politicalTheory: {
-      //lý luận chính trị
       type: String
     },
 
     stateManagement: {
-      //quản lý nhà nước
       type: String
     },
 
     languageLevel: {
-      //trình độ ngoại ngữ
       language: {
-        // Ngôn ngữ
         type: String
       },
       level: {
-        // Trình độ
         type: String
       },
       description: {
-        // Mô tả
         type: String
       }
     },
 
     computerSkill: {
       level: {
-        // Trình độ
         type: String
       },
       description: {
-        // Mô tả
         type: String
       }
     }
   },
 
   communist: {
-    // Đảng viên
-    // Ngày vào
-    // Ngày vào chính thức
     yes: { type: Boolean },
     number: { type: String },
     dateIn: { type: Date },
@@ -206,25 +176,20 @@ var users = new mongoose.Schema({
 
   army: {
     dateIn: {
-      // Ngày nhập ngũ
       type: Date
     },
     dateOut: {
-      // Ngày xuất ngũ
       type: Date
     },
     rank: {
-      // Quân hàm
       type: String
     },
     highestAward: {
-      // Phong hiệu được phong tặng cao nhất
       type: String
     }
   },
 
   forte: {
-    // Sở trường công tác
     type: String
   },
 
@@ -236,10 +201,10 @@ var users = new mongoose.Schema({
   },
 
   veterans: {
-    // Thương binh
-    type: { type: String }, // Hạng
-    date: { type: Date }
+    type: { type: String },
+    // date: { type: Date }
   },
+
   familyPolicy: {
     type: String
   },
@@ -249,22 +214,20 @@ var users = new mongoose.Schema({
     dateRange: { type: String }
   },
 
-  socialInsuranceNumber: { type: String },
+  socialInsurance: { type: String },
 
   course: [
     {
-      // Tên trường, chuyên ngành đào tạo, từ đến, hình thức đào tạo, văn bằng
-      schoolName: { type: String }, // Nơi đào tạo
-      specializedTraining: { type: String }, // Chuyên ngành đào tạo
+      schoolName: { type: String },
+      specializedTraining: { type: String },
       fromDate: { type: Date },
       toDate: { type: Date },
-      formsOfTraining: { type: String }, // Hình thức đào tạo
-      diploma: { type: String } // Văn bằng, chứng chỉ
+      formsOfTraining: { type: String },
+      diploma: { type: String }
     }
   ],
   workingProccess: [
     {
-      // Quá trình công tác
       fromDate: { type: Date },
       toDate: { type: Date },
       description: { type: String }
@@ -283,11 +246,9 @@ var users = new mongoose.Schema({
     aboutMyself: [
       {
         type: {
-          // Mối quan hệ
           type: String
         },
         name: {
-          // Họ tên
           type: String
         },
         birthday: { type: Date },
@@ -297,11 +258,9 @@ var users = new mongoose.Schema({
     aboutOther: [
       {
         type: {
-          // Mối quan hệ
           type: String
         },
         name: {
-          // Họ tên
           type: String
         },
         birthday: { type: Date },
@@ -312,33 +271,29 @@ var users = new mongoose.Schema({
 
   wageMovements: [
     {
-      // Diễn biến quá trình lương
       date: { type: Date },
       salaryLevel: {
-        //bậc lương
         type: String
       },
 
       scaleCode: {
-        //mã ngạch
         type: String
       },
 
       coefficient: {
-        //hệ số lương
         type: String
       }
     }
   ],
 
-  laborContract: [
-    {
-      scanImage: { type: String },
-      dateSign: { type: Date },
-      dateExpired: { type: Date },
-      description: { type: String }
-    }
-  ],
+  // laborContract: [
+  //   {
+  //     scanImage: { type: String },
+  //     dateSign: { type: Date },
+  //     dateExpired: { type: Date },
+  //     description: { type: String }
+  //   }
+  // ],
 
   belongToDepartment: {
     name: {
@@ -350,7 +305,6 @@ var users = new mongoose.Schema({
     }
   },
   evaluate: {
-    // Nhận xét đánh giá của cơ quan đơn vị
     type: String
   },
 

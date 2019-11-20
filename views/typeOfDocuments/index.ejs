@@ -96,6 +96,14 @@
   <% include ./edit %>
   <% include ./delete %>
   <% include ../partials/scriptForAll %>
+
+  <script>
+    $("#form-add").validate({
+      submitHandler: function(form) {
+        form.submit();
+      }
+    });
+  </script>
   <script>
     var selectedId = "";
   </script>

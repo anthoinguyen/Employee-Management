@@ -162,14 +162,14 @@
           if (data.religion != odata.religion) {
             $('#changetongiao').val(data.religion)
           }
-          if (data.registeredPermanentResidence != odata.registeredPermanentResidence) {
-            $('#changeHoKhau').val(data.registeredPermanentResidence)
+          if (data.registeredPermResidence != odata.registeredPermResidence) {
+            $('#changeHoKhau').val(data.registeredPermResidence)
           }
-          if (data.registeredTemporaryResidence != odata.registeredTemporaryResidence) {
-            $('#changeAddress').val(data.registeredTemporaryResidence)
+          if (data.registeredTempResidence != odata.registeredTempResidence) {
+            $('#changeAddress').val(data.registeredTempResidence)
           }
-          if (data.occupationƯwhenRecruited != odata.occupationƯwhenRecruited) {
-            $('#changenghenghiepTD').val(data.occupationƯwhenRecruited)
+          if (data.occupationRecruited != odata.occupationRecruited) {
+            $('#changenghenghiepTD').val(data.occupationRecruited)
           }
           if (data.employmentAgency != odata.employmentAgency) {
             $('#changecoquanTDtruoc').val(data.employmentAgency)
@@ -198,13 +198,13 @@
           // if (data.otherFringeBenefits != odata.otherFringeBenefits) {
           //   $('#changephucapkhac').val(data.otherFringeBenefits)
           // }
-          if (data.educationLevel.generalEducationLevel.whichClass != (odata.educationLevel ? odata.educationLevel
-              .generalEducationLevel.whichClass : null)) {
-            $('#changetrinhdoGD').val(data.educationLevel.generalEducationLevel.whichClass)
+          if (data.educationLevel.generalEducation.whichClass != (odata.educationLevel ? odata.educationLevel
+              .generalEducation.whichClass : null)) {
+            $('#changetrinhdoGD').val(data.educationLevel.generalEducation.whichClass)
           }
-          if (data.educationLevel.highestProfessionalQualification != (odata.educationLevel ? odata.educationLevel
-              .highestProfessionalQualification : null)) {
-            $('#changetrinhdoCM').val(data.educationLevel.highestProfessionalQualification)
+          if (data.educationLevel.highestQualification != (odata.educationLevel ? odata.educationLevel
+              .highestQualification : null)) {
+            $('#changetrinhdoCM').val(data.educationLevel.highestQualification)
           }
           if (data.educationLevel.politicalTheory != (odata.educationLevel ? odata.educationLevel.politicalTheory :
               null)) {
@@ -277,8 +277,8 @@
               $('#changengaycapcmnd').val(dateIDCard);
             }
           }
-          if (data.socialInsuranceNumber != odata.socialInsuranceNumber) {
-            $('#changebhxh').val(data.socialInsuranceNumber)
+          if (data.socialInsurance != odata.socialInsurance) {
+            $('#changebhxh').val(data.socialInsurance)
           }
           if (data.veterans.type != (odata.veterans ? odata.veterans.type : null)) {
             $('#changethuongbinh').val(data.veterans.type)

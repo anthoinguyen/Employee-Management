@@ -30,9 +30,9 @@ module.exports = router => {
                     count_all++;
                     if(!u.gender) count_girl++;
                     if(u.nation !== 'Kinh') count_danToc++;
-                    if(u.educationLevel !== undefined && u.educationLevel.highestProfessionalQualification  !== undefined)
+                    if(u.educationLevel !== undefined && u.educationLevel.highestQualification  !== undefined)
                     {
-                        let tdcm = u.educationLevel.highestProfessionalQualification;
+                        let tdcm = u.educationLevel.highestQualification;
                         switch (tdcm) {
                             case "Tiến sĩ": count_trenDH += 1; break;
                             case "Thạc sĩ": count_trenDH += 1; break;
@@ -143,9 +143,9 @@ module.exports = router => {
                     count_all++;
                     if(!u.gender) count_girl++;
                     if(u.nation !== 'Kinh') count_danToc++;
-                    if(u.educationLevel !== undefined && u.educationLevel.highestProfessionalQualification  !== undefined)
+                    if(u.educationLevel !== undefined && u.educationLevel.highestQualification  !== undefined)
                     {
-                        let tdcm = u.educationLevel.highestProfessionalQualification;
+                        let tdcm = u.educationLevel.highestQualification;
                         switch (tdcm) {
                             case "Tiến sĩ": count_trenDH += 1; break;
                             case "Thạc sĩ": count_trenDH += 1; break;
