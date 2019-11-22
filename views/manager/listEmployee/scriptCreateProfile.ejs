@@ -131,7 +131,7 @@
           result.data.map((item, index) => {
             $('#mangach').append(
               '<option value="' + item._id + '">' + item.maNgach + '</option>'
-            )
+            );
           })
         }
       }
@@ -193,7 +193,6 @@
       if (!flag) {
         alert('Vui lòng nhập đủ thông tin !')
       } else {
-
 
         var arrayWorkingProccess = [];
         $('div.cong-tac').each(function (index, val) {
@@ -360,15 +359,7 @@
           occupationRecruited: $('#nghenghiepTD').val(),
           recruitmentDay: $('#ngayTD').val(),
           employmentAgency: $('#coquanTDtruoc').val(),
-          // currentPosition: $('#chucvuHT').val(),
           mainJob: $('#cvchinh').val(),
-          //scaleOfCivilServant: $('#ngach').val(),
-          // salaryLevel: $('#bacluong').val(),
-          // scaleCode: $('#mangach').val(),
-          // coefficient: $('#heso').val(),
-          payday: $('#ngayhuong').val(),
-          // fringeBenefits: $('#phucap').val(),
-          // otherFringeBenefits: $('#phucapkhac').val(),
           educationLevel: JSON.stringify(educationLevel1),
           communist: JSON.stringify(communist1),
           youthUnion: JSON.stringify(youthUnion1),
@@ -382,7 +373,6 @@
           familyPolicy: $('#conlietsi').val(),
           evaluate: $('#nhanxet').val(),
           personalHistory: JSON.stringify(personalHistory1),
-          // course: JSON.stringify(arrayCourses),
           workingProccess: JSON.stringify(arrayWorkingProccess),
           familyRelationship: JSON.stringify(familyRelationship1),
           wageMovements: JSON.stringify(arrayWageMovements),
@@ -437,7 +427,6 @@
                   dataType: 'json',
                   data: daotao,
                   success: function (res) {
-
                   }
                 });
 
@@ -461,7 +450,6 @@
                   dataType: 'json',
                   data: khenthuong,
                   success: function (res) {
-
                   }
                 });
 
@@ -487,7 +475,6 @@
                   data: kiluat,
                   success: function (res) {}
                 });
-
               })
 
               $('div.giai-phap').each(function (index, val) {
@@ -507,10 +494,8 @@
                   dataType: 'json',
                   data: giaiphap,
                   success: function (res) {
-
                   }
                 });
-
               })
               alert("Tạo thành công");
               window.location.replace("/quan-ly/danh-sach-nhan-su");
@@ -520,7 +505,6 @@
       }
     })
   });
-
 
   // Kiểm tra các fiedl
   function validateInput(callback) {
@@ -536,11 +520,11 @@
   }
   // báo hiệu các field chưa nhập
   $(document).on('focusout', 'input.required, textarea.required, select.required', function () {
-      if ($(this).val() == "") {
-        makeInputDanger(this);
-      } else {
-        makeInputDefault(this);
-      }
+    if ($(this).val() == "") {
+      makeInputDanger(this);
+    } else {
+      makeInputDefault(this);
+    }
   })
 
   $(document).on('click', '[data-toggle=collapse-next]', function () {

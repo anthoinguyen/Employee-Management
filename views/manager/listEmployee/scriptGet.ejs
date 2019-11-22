@@ -1,9 +1,9 @@
 <script>
   function getSalary(id) {
     $('#bacluong').val("0"),
-      $('#mangach').val("0"),
-      $('#heso').val("0"),
-      $('#phucap').empty()
+    $('#mangach').val("0"),
+    $('#heso').val("0"),
+    $('#phucap').empty()
     $.ajax({
       url: `/quan-ly/luong-phu-cap/user/${id}`,
       method: "GET",
@@ -11,12 +11,20 @@
         if (result.success == true) {
           var salary = result.data;
           $('#bacluong').val(salary.bacHeso),
-            $('#mangach').val(salary.ngach.maNgach),
-            salary.ngach.bacHeso.map((item1, index) => {
-              if (salary.bacHeso == item1.bac) {
-                $('#heso').val(item1.heso)
-              }
-            })
+          $('#ngach').val(salary.ngach.tenNgach),
+          $('#mangach').val(salary.ngach.maNgach),
+          salary.ngach.bacHeso.map((item1, index) => {
+            if (salary.bacHeso == item1.bac) {
+              $('#heso').val(item1.heso)
+            }
+          })
+          if (salary.ngayBatDau != null) {
+            var ngayBD = moment(salary.ngayBatDau).format('DD/MM/YYYY');
+            $('#ngayhuong').val(ngayBD);
+          } else {
+            var ngayBD = "";
+            $('#ngayhuong').val(ngayBD);
+          }
 
           $.each(salary.phuCap, function (index, item) {
 
@@ -302,13 +310,6 @@
             let recruitmentDay = "";
             $('#ngayTD').val(recruitmentDay);
           }
-          if (data.payday != "") {
-            let payday = moment(data.payday).format('YYYY-MM-DD');
-            $('#ngayhuong').val(payday);
-          } else {
-            let payday = "";
-            $('#ngayhuong').val(payday);
-          }
 
           if ((data.communist ? data.communist.dateIn : "") != "") {
             let communistdateIn = moment(data.communist.dateIn).format('YYYY-MM-DD');
@@ -340,58 +341,52 @@
             }
 
           $('#textSoHieu').val(data.usersCardNumber),
-            $('#textTen').val(data.name),
-            $('#phoneNumber').val(data.phoneNumber),
-            $('#textTenKhac').val(data.nickName),
-            $('#gioitinh').val(gender),
-            $('#noisinhXa').val(data.placeBirth ? data.placeBirth.commune : null),
-            $('#noisinhHuyen').val(data.placeBirth ? data.placeBirth.district : null),
-            $('#noisinhTinh').val(data.placeBirth ? data.placeBirth.province : null),
-            $('#quequanXa').val(data.hometown ? data.hometown.commune : null),
-            $('#quequanHuyen').val(data.hometown ? data.hometown.district : null),
-            $('#quequanTinh').val(data.hometown ? data.hometown.province : null),
-            $('#dantoc').val(data.nation),
-            $('#tongiao').val(data.religion),
-            $('#HoKhau').val(data.registeredPermResidence),
-            $('#Address').val(data.registeredTempResidence),
-            $('#nghenghiepTD').val(data.occupationRecruited),
-            $('#coquanTDtruoc').val(data.employmentAgency),
-            $('#chucvuHT').val((data.positionId[data.positionId.length - 1] ? data.positionId[data.positionId.length -
-              1].name : null)),
-            $('#cvchinh').val(data.mainJob),
-            $('#ngach').val(data.scaleOfCivilServant),
-            // $('#bacluong').val(data.salaryLevel),
-            // $('#mangach').val(data.scaleCode),
-            // $('#heso').val(data.coefficient),
-            // $('#phucap').val(data.fringeBenefits),
-            // $('#phucapkhac').val(data.otherFringeBenefits),
-            $('#trinhdoGD').val(data.educationLevel ? data.educationLevel.generalEducation.whichClass : null),
-            $('#trinhdoCM').val(data.educationLevel ? data.educationLevel.highestQualification : null),
-            $('#lyluanCT').val(data.educationLevel ? data.educationLevel.politicalTheory : null),
-            $('#quanlinhanuoc').val(data.educationLevel ? data.educationLevel.stateManagement : null),
-            $('#ngoaingu').val(data.educationLevel ? data.educationLevel.languageLevel.language : null),
-            $('#trinhDoNN').val(data.educationLevel ? data.educationLevel.languageLevel.level : null),
-            $('#moTaNN').val(data.educationLevel ? data.educationLevel.languageLevel.description : null),
-            $('#tinhoc').val(data.educationLevel ? data.educationLevel.computerSkill.level : null),
-            $('#moTaTH').val(data.educationLevel ? data.educationLevel.computerSkill.description : null),
-            $('#soTheDang').val(data.communist ? data.communist.number : null),
-            $('#TCCTXH').val(data.ngayThamGiaToChucCTXH[0] ? data.ngayThamGiaToChucCTXH[0].name : null),
-            $('#quanham').val(data.army ? data.army.rank : null),
-            $('#danhhieu').val(data.army ? data.army.highestAward : null),
-            $('#sotruong').val(data.forte),
-            $('#suckhoe').val(data.health ? data.health.status : null),
-            $('#chieucao').val(data.health ? data.health.heigth : null),
-            $('#cannang').val(data.health ? data.health.weight : null),
-            $('#nhommau').val(data.health ? data.health.bloodGroup : null),
-            $('#cmnd').val(data.IDCard ? data.IDCard.number : null),
-            $('#ngaycapcmnd').val(data.IDCard ? data.IDCard.dateRange : null),
-            $('#bhxh').val(data.socialInsurance),
-            $('#thuongbinh').val(data.veterans ? data.veterans.type : null),
-            $('#conlietsi').val(data.familyPolicy),
-            $('#question1').val(data.personalHistory[0] ? data.personalHistory[0].question1 : null),
-            $('#question2').val(data.personalHistory[0] ? data.personalHistory[0].question2 : null),
-            $('#question3').val(data.personalHistory[0] ? data.personalHistory[0].question3 : null),
-            $('#nhanxet').val(data.evaluate),
+          $('#textTen').val(data.name),
+          $('#phoneNumber').val(data.phoneNumber),
+          $('#textTenKhac').val(data.nickName),
+          $('#gioitinh').val(gender),
+          $('#noisinhXa').val(data.placeBirth ? data.placeBirth.commune : null),
+          $('#noisinhHuyen').val(data.placeBirth ? data.placeBirth.district : null),
+          $('#noisinhTinh').val(data.placeBirth ? data.placeBirth.province : null),
+          $('#quequanXa').val(data.hometown ? data.hometown.commune : null),
+          $('#quequanHuyen').val(data.hometown ? data.hometown.district : null),
+          $('#quequanTinh').val(data.hometown ? data.hometown.province : null),
+          $('#dantoc').val(data.nation),
+          $('#tongiao').val(data.religion),
+          $('#HoKhau').val(data.registeredPermResidence),
+          $('#Address').val(data.registeredTempResidence),
+          $('#nghenghiepTD').val(data.occupationRecruited),
+          $('#coquanTDtruoc').val(data.employmentAgency),
+          $('#chucvuHT').val((data.positionId[data.positionId.length - 1] ? data.positionId[data.positionId.length -
+            1].name : null)),
+          $('#cvchinh').val(data.mainJob),
+          $('#trinhdoGD').val(data.educationLevel ? data.educationLevel.generalEducation.whichClass : null),
+          $('#trinhdoCM').val(data.educationLevel ? data.educationLevel.highestQualification : null),
+          $('#lyluanCT').val(data.educationLevel ? data.educationLevel.politicalTheory : null),
+          $('#quanlinhanuoc').val(data.educationLevel ? data.educationLevel.stateManagement : null),
+          $('#ngoaingu').val(data.educationLevel ? data.educationLevel.languageLevel.language : null),
+          $('#trinhDoNN').val(data.educationLevel ? data.educationLevel.languageLevel.level : null),
+          $('#moTaNN').val(data.educationLevel ? data.educationLevel.languageLevel.description : null),
+          $('#tinhoc').val(data.educationLevel ? data.educationLevel.computerSkill.level : null),
+          $('#moTaTH').val(data.educationLevel ? data.educationLevel.computerSkill.description : null),
+          $('#soTheDang').val(data.communist ? data.communist.number : null),
+          $('#TCCTXH').val(data.ngayThamGiaToChucCTXH[0] ? data.ngayThamGiaToChucCTXH[0].name : null),
+          $('#quanham').val(data.army ? data.army.rank : null),
+          $('#danhhieu').val(data.army ? data.army.highestAward : null),
+          $('#sotruong').val(data.forte),
+          $('#suckhoe').val(data.health ? data.health.status : null),
+          $('#chieucao').val(data.health ? data.health.heigth : null),
+          $('#cannang').val(data.health ? data.health.weight : null),
+          $('#nhommau').val(data.health ? data.health.bloodGroup : null),
+          $('#cmnd').val(data.IDCard ? data.IDCard.number : null),
+          $('#ngaycapcmnd').val(data.IDCard ? data.IDCard.dateRange : null),
+          $('#bhxh').val(data.socialInsurance),
+          $('#thuongbinh').val(data.veterans ? data.veterans.type : null),
+          $('#conlietsi').val(data.familyPolicy),
+          $('#question1').val(data.personalHistory[0] ? data.personalHistory[0].question1 : null),
+          $('#question2').val(data.personalHistory[0] ? data.personalHistory[0].question2 : null),
+          $('#question3').val(data.personalHistory[0] ? data.personalHistory[0].question3 : null),
+          $('#nhanxet').val(data.evaluate),
 
             $.each(data.workingProccess, function (index, item) {
 

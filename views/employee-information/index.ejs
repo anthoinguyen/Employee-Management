@@ -633,7 +633,7 @@
                                       <input
                                         id="ngach"
                                         type="text"
-                                        value="<%- user.scaleOfCivilServant %>"
+                                        value=""
                                         disabled
                                         class="form-control"
                                       />
@@ -704,7 +704,7 @@
                                       <input
                                         id="ngayhuong"
                                         type="text"
-                                        value="<% if(user.payday!=null){ %><%- moment(user.payday).utc(0).format('DD/MM/YYYY') %><%}%>"
+                                        value=""
                                         disabled
                                         class="text form-control"
                                       />
@@ -1159,11 +1159,7 @@
                                         id="sotruong"
                                         disabled
                                         class="form-control text"
-                                        rows="4"
-                                      >
-                                        <%- user.forte %>
-                                      </textarea
-                                      >
+                                        rows="4"><%- user.forte %></textarea>
                                     </div>
                                   </div>
                                 </div>
@@ -1434,10 +1430,7 @@
                                           id="chucdanhCT"
                                           disabled
                                           class="form-control text"
-                                          rows="2"
-                                        >
-                                          <%- item.description %>
-                                        </textarea>
+                                          rows="2"><%- item.description %></textarea>
                                       </div>
                                     </div>
                                   </div>
@@ -1472,10 +1465,7 @@
                                     id="question1"
                                     disabled
                                     class="form-control text"
-                                    rows="4"
-                                  >
-                                    <%- user.personalHistory[0] ? user.personalHistory[0].question1 : null %>
-                                  </textarea>
+                                    rows="4"><%- user.personalHistory[0] ? user.personalHistory[0].question1 : null %></textarea>
                                 </div>
                               </div>
                             </div>
@@ -1494,10 +1484,7 @@
                                     id="question2"
                                     disabled
                                     class="form-control text"
-                                    rows="4"
-                                  >
-                                    <%- user.personalHistory[0] ? user.personalHistory[0].question2 : null %>
-                                  </textarea>
+                                    rows="4"><%- user.personalHistory[0] ? user.personalHistory[0].question2 : null %></textarea>
                                 </div>
                               </div>
                             </div>
@@ -1515,10 +1502,7 @@
                                     id="question3"
                                     disabled
                                     class="form-control text"
-                                    rows="4"
-                                  >
-                                    <%- user.personalHistory[0] ? user.personalHistory[0].question3 : null %>
-                                  </textarea>
+                                    rows="4"><%- user.personalHistory[0] ? user.personalHistory[0].question3 : null %></textarea>
                                 </div>
                               </div>
                             </div>
@@ -1624,10 +1608,7 @@
                                                 id="mieutaQH"
                                                 disabled
                                                 class="form-control text  "
-                                                rows="4"
-                                              >
-                                                <%- item.description %>
-                                              </textarea>
+                                                rows="4"><%- item.description %></textarea>
                                             </div>
                                           </div>
                                         </div>
@@ -1728,10 +1709,7 @@
                                               id="mieutaQHkhac"
                                               disabled
                                               class="form-control text  "
-                                              rows="4"
-                                            >
-                                              <%- item.description %>
-                                            </textarea>
+                                              rows="4"><%- item.description %></textarea>
                                           </div>
                                         </div>
                                       </div>
@@ -1942,10 +1920,7 @@
                                   <textarea
                                     class="form-control text"
                                     disabled
-                                    rows="4"
-                                  >
-                                    <%- user.evaluate %>
-                                  </textarea>
+                                    rows="4"><%- user.evaluate %></textarea>
                                 </div>
                               </div>
                             </div>

@@ -6,12 +6,29 @@
       success: function (result) {
         if (result.success == true) {
           var salary = result.data;
+
+          if (salary.ngayBatDau != null) {
+            var ngayBD = moment(salary.ngayBatDau).format('DD/MM/YYYY');
+            $('#ngayhuong').append(
+              '<option value="' + ngayBD + '">' + ngayBD + '</option>'
+            );
+          } else {
+            var ngayBD = "";
+            $('#ngayhuong').append(
+              '<option value="' + ngayBD + '">' + ngayBD + '</option>'
+            );
+          }
+
           $('#bacluong').append(
               '<option value="' + salary.bacHeso + '">' + salary.bacHeso + '</option>'
-            ),
-            $('#mangach').append(
-              '<option value="' + salary.ngach._id + '">' + salary.ngach.maNgach + '</option>'
-            )
+          ),
+          $('#ngach').append(
+            '<option value="' + salary.ngach._id + '">' + salary.ngach.tenNgach + '</option>'
+          ),
+          
+          $('#mangach').append(
+            '<option value="' + salary.ngach._id + '">' + salary.ngach.maNgach + '</option>'
+          )
           salary.ngach.bacHeso.map((item1, index) => {
             if (salary.bacHeso == item1.bac) {
               $('#heso').append(
@@ -156,93 +173,12 @@
     userId = id;
   }
 
-  // window.onload = function getMaNgach() {
-
-  //   $.ajax({
-  //     url: `/he-thong/luong/list`,
-  //     method: "GET",
-  //     success: function (result) {
-  //       if (result.success == true) {
-  //         result.data.map((item, index) => {
-  //           $('#mangach').append(
-  //             '<option value="' + item._id + '">' + item.maNgach + '</option>'
-  //           )
-  //         })
-  //       }
-  //     }
-  //   })
-
-
-  // }
-
-
-
-  // $('#mangach').change(function () {
-  //   var selectMangach = $('#mangach').val();
-  //   $('#bacluong').empty();
-  //   $('#heso').empty();
-  //   $('#bacluong').append('<option value=""></option>');
-  //   $.ajax({
-  //     url: `/he-thong/luong/list`,
-  //     method: 'GET',
-  //     success: function (result) {
-  //       result.data.map(item => {
-  //         if (item._id === selectMangach) {
-  //           item.bacHeso.map(item1 => {
-  //             if (item1.heso != "") {
-  //               $('#bacluong').append('<option value="' + item1.bac + '">' + item1.bac +
-  //                 '</option>')
-  //             }
-  //           })
-  //         }
-  //       })
-  //     }
-  //   })
-  // })
-
-  // $('#bacluong').change(function () {
-  //   $('#heso').empty();
-  //   var selectMangach = $('#mangach').val();
-  //   var selectBac = $('#bacluong').val();
-
-  //   $.ajax({
-  //     url: `/he-thong/luong/list`,
-  //     method: 'GET',
-  //     success: function (result) {
-  //       result.data.map(item2 => {
-  //         if (item2.maNgach === selectMangach) {
-  //           item2.bacHeso.map(item3 => {
-  //             if (selectBac == item3.bac) {
-  //               $('#heso').append('<option value="' +
-  //                 item3.heso + '">' + item3.heso +
-  //                 '</option>')
-  //             }
-  //           })
-  //         }
-  //       })
-  //     }
-  //   })
-  // })
-
-
-
   // Submit button
   $(document).on('click', '#edit-button', function (e) {
     validateInput(function (flag) {
       if (!flag) {
         alert('Vui lòng nhập đủ thông tin !')
       } else {
-        // var arrayCourses = [];
-        // $('div.dao-tao').each(function (index, val) {
-        //   arrayCourses.push({
-        //     schoolName: $(this).find('#truongdaotao').val(),
-        //     specializedTraining: $(this).find('#chuyenmondaotao').val(),
-        //     fromDate: $(this).find('#ngaydaotao').val(),
-        //     toDate: $(this).find('#ngayhetdaotao').val(),
-        //     formsOfTraining: $(this).find('#hinhthucdaotao').val(),
-        //     diploma: $(this).find('#vanbangdaotao').val(),
-        //   });
-        // })
 
         var arrayWorkingProccess = [];
         $('div.cong-tac').each(function (index, val) {
@@ -391,21 +327,6 @@
           aboutOther: arrayAboutOther,
         }
 
-        // var award1 = [];
-        // award1 = {
-        //   type: $('#khenthuong').val(),
-        //   year: $('#namkhenthuong').val(),
-        //   level: $('#capkhenthuong').val(),
-        // }
-        // var discipline1 = [];
-        // discipline1 = {
-        //   type: $('#kyluat').val(),
-        //   year: $('#namkyluat').val(),
-        //   level: $('#capkyluat').val(),
-        // }
-
-
-
         var data = {
           email: $('#email').val(),
           // password: $('#password').val(),
@@ -424,15 +345,7 @@
           occupationRecruited: $('#nghenghiepTD').val(),
           recruitmentDay: $('#ngayTD').val(),
           employmentAgency: $('#coquanTDtruoc').val(),
-          // currentPosition: $('#chucvuHT').val(),
           mainJob: $('#cvchinh').val(),
-          scaleOfCivilServant: $('#ngach').val(),
-          // salaryLevel: $('#bacluong').val(),
-          // scaleCode: $('#mangach').val(),
-          // coefficient: $('#heso').val(),
-          payday: $('#ngayhuong').val(),
-          // fringeBenefits: $('#phucap').val(),
-          // otherFringeBenefits: $('#phucapkhac').val(),
           educationLevel: JSON.stringify(educationLevel1),
           communist: JSON.stringify(communist1),
           youthUnion: JSON.stringify(youthUnion1),
@@ -440,8 +353,6 @@
           // mainJobToChucCTXH: $('#textTenMe').val(),
           army: JSON.stringify(army1),
           forte: $('#sotruong').val(),
-          // award: JSON.stringify(award1),
-          // discipline: JSON.stringify(discipline1),
           health: JSON.stringify(health1),
           IDCard: JSON.stringify(IDCard1),
           socialInsurance: $('#bhxh').val(),
@@ -449,7 +360,6 @@
           familyPolicy: $('#conlietsi').val(),
           evaluate: $('#nhanxet').val(),
           personalHistory: JSON.stringify(personalHistory1),
-          // course: JSON.stringify(arrayCourses),
           workingProccess: JSON.stringify(arrayWorkingProccess),
           familyRelationship: JSON.stringify(familyRelationship1),
           wageMovements: JSON.stringify(arrayWageMovements),
@@ -463,31 +373,6 @@
           data: data,
           success: function (res) {
             if (res) {
-
-
-              // var arrayPhucap = [];
-              // $('div.phu-cap').each(function (index, val) {
-              //   arrayPhucap.push({
-              //     moTa: $(this).find('#phucap').val(),
-              //     soTien: $(this).find('#phucapkhac').val()
-              //   });
-              // })
-
-              // var editluong = {
-              //   user: res.data._id,
-              //   bacHeso: $('#bacluong').val(),
-              //   ngach: $('#mangach').val(),
-              //   phuCap: JSON.stringify(arrayPhucap)
-              // }
-
-              // $.ajax({
-              //   url: '/quan-ly/luong-phu-cap/them',
-              //   type: 'PUT',
-              //   dataType: 'json',
-              //   data: editluong,
-              //   success: function (res) {}
-              // });
-
               alert("Chỉnh sửa thành công");
               window.location.replace("/quan-ly/danh-sach-nhan-su");
             }

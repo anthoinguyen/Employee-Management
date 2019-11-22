@@ -327,8 +327,9 @@
                               <div class="form-group">
                                 <label for="" class="col-sm-12 control-label">Ngạch công chức (viên chức)</label>
                                 <div class="col-sm-12">
-                                  <input id="ngach" type="text" value="<%- data.scaleOfCivilServant %>" class="form-control"
-                                    placeholder="">
+                                  <!-- <input id="ngach" type="text" disabled value="" class="form-control" placeholder=""> -->
+                                  <select class="form-control" disabled id="ngach">
+                                  </select>
                                 </div>
                               </div>
                             </div>
@@ -367,27 +368,15 @@
                               <div class="form-group">
                                 <label for="" class="col-sm-6 control-label">Ngày hưởng</label>
                                 <div class="col-sm-12">
-                                  <input id="ngayhuong" type="date" value="<% if(data.payday!=null){ %><%= moment(data.payday).utc(0).format('YYYY-MM-DD') %><%}%>"
-                                    class="text form-control" placeholder="dd/mm/yyyy">
+                                  <select class="form-control" disabled id="ngayhuong">
+                                  </select>
                                 </div>
                               </div>
                             </div>
                           </div>
 
                           <div class="row" id="phucap">
-                            <!-- <div class="col-lg-12">
-                                  <div class="form-group">
-                                    <div class="card-body p-20">
-                                      <div class="insert-block" >
-                                      </div>
-                                      <div class="row m-t-15" style=" padding-top: 15px; padding-bottom: 10px">
-                                        <a class="btn btn-info btn-rounded col-lg-2 m-auto" id="themphucap">
-                                          <i class="fa fa-plus text-white"></i>
-                                        </a>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div> -->
+
                           </div>
 
                           <div class="row">

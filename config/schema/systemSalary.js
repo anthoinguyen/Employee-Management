@@ -11,11 +11,9 @@ var systemSalary = new mongoose.Schema({
     type: String
   },
   loai: {
-    // Loại
     type: String
   },
   nam: {
-    // Năm giữ bậc
     type: Number
   },
   bacHeso: [

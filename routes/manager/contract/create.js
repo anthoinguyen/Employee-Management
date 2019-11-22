@@ -13,7 +13,6 @@ module.exports = router => {
       req.files[0].link = req.files[0].destination.substring(6, req.files[0].destination.length) + req.files[0].filename;
       
       let positionObject = {};
-      console.log(req.body)
       
       if (!_.isEmpty(req.body.boNhiemCheckBox)) {
         let insertPosition = {
@@ -89,9 +88,7 @@ module.exports = router => {
       req.files[0].link = req.files[0].destination.substring(6, req.files[0].destination.length) + req.files[0].filename;
       
       let positionObject = {};
-      console.log(req.body)
       let usersInfo = await mongoose.model('users').findOne({ usersCardNumber: req.body.userCardFull })
-      console.log(usersInfo)
       if (req.body.boNhiemCheckBox) {
         let insertPosition = {
           name: req.body.nameFull,
@@ -160,7 +157,6 @@ module.exports = router => {
           }
         }
       }
-      console.log(update)
       let option = { new: true };
       let temp = await mongoose.model('contract').findOne({ usersId: usersInfo._id });
       if (_.isEmpty(temp)) {
@@ -168,7 +164,6 @@ module.exports = router => {
           usersId: usersInfo._id,
           name: usersInfo.name,
           usersCardNumber: usersInfo.usersCardNumber,
-          typeOfUsers: usersInfo.typeOfUsers,
           departmentName: _.get(usersInfo, 'belongToDepartment.name', null),
         }
         await mongoose.model('contract').create(insert)

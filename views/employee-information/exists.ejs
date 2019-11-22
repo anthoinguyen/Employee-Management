@@ -338,7 +338,7 @@
                                 <div class="form-group">
                                   <label for="" class="col-sm-12 control-label">Ngạch công chức (viên chức)</label>
                                   <div class="col-sm-12">
-                                    <input id="ngach" type="text" value="<%- user.scaleOfCivilServant %>" class="form-control">
+                                    <input id="ngach" type="text" disabled value="" class="form-control">
                                   </div>
                                 </div>
                               </div>
@@ -375,8 +375,8 @@
                                     <%
                                     let time = new Date();
                                     let timeYear = time.getFullYear();%>
-                                    <input id="ngayhuong" type="date" value="<% if( user.payday != null ){ %><%= moment(user.payday).utc(0).format('YYYY-MM-DD') %><%}%>"
-                                      class="text form-control" placeholder="dd/mm/yyyy">
+                                    <input id="ngayhuong" type="date" value="" disabled
+                                      class="text form-control">
                                   </div>
                                 </div>
                               </div>

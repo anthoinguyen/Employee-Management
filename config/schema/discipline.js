@@ -7,28 +7,22 @@ var discipline = new mongoose.Schema({
   },
   quyetDinh: {
     number: {
-      // Số QĐ
       type: String
     },
     startedDate: {
-      // Ngày hiệu lực
       type: String
     },
     endedDate: {
-      // Ngày hết hiệu lực
       type: String
     },
     org: {
-      // Cấp ra QĐ
       type: String
     }
   },
   format: {
-    // Hình thức
     type: String
   },
   description: {
-    // Lý do
     type: String
   },
   confirmed: {

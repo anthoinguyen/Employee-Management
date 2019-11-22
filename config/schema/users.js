@@ -13,9 +13,9 @@ var users = new mongoose.Schema({
     type: String
   },
 
-  // typeOfUsers: {
-  //   type: String
-  // },
+  typeOfUsers: {
+    type: String
+  },
 
   name: {
     required: true,
@@ -86,38 +86,9 @@ var users = new mongoose.Schema({
     type: String
   },
 
-  // scaleOfCivilServant: {
-  //   type: String
-  // },
-
-  // salaryLevel: {
-  //   type: String
-  // },
-
-  // scaleCode: {
-  //   type: String
-  // },
-
-  // coefficient: {
-  //   type: String
-  // },
-
-  payday: {
-    type: Date
-  },
-
-  // fringeBenefits: {
-  //   type: String
-  // },
-
-  // otherFringeBenefits: {
-  //   type: String
-  // },
-
   educationLevel: {
     generalEducation: {
       whichClass: { type: String },
-      // whichCoefficient: { type: String }
     },
 
     highestQualification: {
@@ -202,7 +173,6 @@ var users = new mongoose.Schema({
 
   veterans: {
     type: { type: String },
-    // date: { type: Date }
   },
 
   familyPolicy: {
@@ -285,15 +255,6 @@ var users = new mongoose.Schema({
       }
     }
   ],
-
-  // laborContract: [
-  //   {
-  //     scanImage: { type: String },
-  //     dateSign: { type: Date },
-  //     dateExpired: { type: Date },
-  //     description: { type: String }
-  //   }
-  // ],
 
   belongToDepartment: {
     name: {

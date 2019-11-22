@@ -7,28 +7,22 @@ var awards = new mongoose.Schema({
   },
   quyetDinh: {
     number: {
-      // Số QĐ
       type: String
     },
     date: {
-      // Ngày ra QĐ
       type: String
     },
     org: {
-      // Cấp ra QĐ
       type: String
     }
   },
   title: {
-    // Danh hiệu
     type: String
   },
   format: {
-    // Hình thức
     type: String
   },
   description: {
-    // Thành tích đạt được
     type: String
   },
   confirmed: {

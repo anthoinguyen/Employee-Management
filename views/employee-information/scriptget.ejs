@@ -192,8 +192,8 @@
 <script>
   window.onload = function getSalary() {
     $('#bacluong').val("0"),
-      $('#mangach').val("0"),
-      $('#heso').val("0")
+    $('#mangach').val("0"),
+    $('#heso').val("0")
     $.ajax({
       url: `/thong-tin-ca-nhan/luong-phu-cap`,
       method: "GET",
@@ -201,12 +201,14 @@
         if (result.success == true) {
           var salary = result.data;
           $('#bacluong').val(salary.bacHeso),
-            $('#mangach').val(salary.ngach.maNgach),
-            salary.ngach.bacHeso.map((item1, index) => {
-              if (salary.bacHeso == item1.bac) {
-                $('#heso').val(item1.heso)
-              }
-            })
+          $('#ngayhuong').val(salary.ngayBatDau),
+          $('#ngach').val(salary.ngach.tenNgach),
+          $('#mangach').val(salary.ngach.maNgach),
+          salary.ngach.bacHeso.map((item1, index) => {
+            if (salary.bacHeso == item1.bac) {
+              $('#heso').val(item1.heso)
+            }
+          })
 
           $.each(salary.phuCap, function (index, item) {
 

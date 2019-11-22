@@ -11,11 +11,6 @@ var contract = new mongoose.Schema({
     type: String
   },
   usersCardNumber: {
-    // Số hiệu cán bộ
-    type: String
-  },
-  typeOfUsers: {
-    // Loại cán bộ
     type: String
   },
   departmentName: {
