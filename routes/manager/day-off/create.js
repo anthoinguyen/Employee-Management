@@ -57,6 +57,7 @@ module.exports = router => {
             userId: userInfo._id,
             name: userInfo.name,
             usersCardNumber: userInfo.usersCardNumber,
+            typeOfUsers: userInfo.typeOfUsers,
             departmentName:  _.get(userInfo, 'belongToDepartment.name', null),
             detail: [{
               year: req.body.date ? new Date(req.body.date).getFullYear() : new Date().getFullYear(),

@@ -6,16 +6,24 @@ var contract = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users"
   },
+  
   name: {
     required: true,
     type: String
   },
+
   usersCardNumber: {
     type: String
   },
+
+  typeOfUsers: {
+    type: String
+  },
+
   departmentName: {
     type: String
   },
+
   detail: [
     {
       daySigned: {

@@ -33,19 +33,14 @@ module.exports = router =>{
             communist: JSON.parse(req.body.communist),
             ngayThamGiaToChucCTXH: JSON.parse(req.body.ngayThamGiaToChucCTXH),
             army: JSON.parse(req.body.army),
-            // award: JSON.parse(req.body.award),
-            // discipline: JSON.parse(req.body.discipline),
             health: JSON.parse(req.body.health),
             veterans: JSON.parse(req.body.veterans),
             IDCard: JSON.parse(req.body.IDCard),
-            // course: JSON.parse(req.body.course),
             youthUnion: JSON.parse(req.body.youthUnion),
             workingProccess: JSON.parse(req.body.workingProccess),
             personalHistory: JSON.parse(req.body.personalHistory),
             familyRelationship: JSON.parse(req.body.familyRelationship),
             wageMovements: JSON.parse(req.body.wageMovements),
-            // laborContract: JSON.parse(req.body.laborContract),
-            // belongToDepartment: JSON.parse(req.body.belongToDepartment),
         };
         try {
             let user = await mongoose.model('users').findById(id).exec();
