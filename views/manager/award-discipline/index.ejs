@@ -27,7 +27,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="tab">
-                    <ul class="nav nav-tabs tab-solid tab-solid-primary" role="tablist">
+                    <ul class="nav nav-tabs tab-solid tab-solid-primary" role="tablist" style="margin-bottom: 5px">
                       <li class="nav-item">
                         <a class="nav-link active" id="tab-5-1" data-toggle="tab" href="#home-5-1" role="tab"
                           aria-controls="home-5-1" aria-selected="true">Danh sách khen thưởng</a>
@@ -40,22 +40,15 @@
                   </div>
                   <div class="tab-content tab-content-solid">
                     <div class="tab-pane fade show active" id="home-5-1" role="tabpanel" aria-labelledby="tab-5-1">
-                      <div class="row" style="padding:0px 5px">
-
-                        <button style="margin:0px 10px 5px 10px; width: 110px" class="btn btn-primary" type="button" style="margin: auto"
-                          data-toggle="modal" data-target="#createKT">
-                          <span class="icon-holder">
-                            <i class="fa fa-plus"></i>
-                          </span>
-                          <span class="title">Thêm</span>
-                        </button>
-                        <!-- <button style="margin:10px; width: 110px" class="btn btn-primary" aria-controls="dataTable"
-                          type="button" style="margin: auto">
-                          <span class="icon-holder">
-                            <i class="fa fa-print"></i>
-                          </span>
-                          <span class="title">In</span>
-                        </button> -->
+                      <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6 text-right">
+                          <button style="margin-bottom: 8px; width: 110px" class="btn btn-primary" type="button" style="margin: auto"
+                            data-toggle="modal" data-target="#createKT">
+                            Thêm mới
+                          </button>
+                        </div>
                       </div>
                       <div class="table-responsive">
                         <table id="listKT" class="table table-bordered table-striped">
@@ -126,23 +119,15 @@
                       </div>
                     </div>
                     <div class="tab-pane fade" id="profile-5-2" role="tabpanel" aria-labelledby="tab-5-2">
-                      <div class="row" style="padding: 0px 5px">
-
-                        <button style="margin:0px 10px 5px 10px; width: 110px" class="btn btn-primary" type="button" style="margin: auto"
+                      <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6 text-right">
+                          <button style="margin-bottom: 8px; width: 110px" class="btn btn-primary" type="button" style="margin: auto"
                           data-toggle="modal" data-target="#createKL">
-                          <span class="icon-holder">
-                            <i class="fa fa-plus"></i>
-                          </span>
-                          <span class="title">Thêm</span>
-                        </button>
-
-                        <!-- <button style="margin:10px; width: 110px" class="btn btn-primary" aria-controls="dataTable"
-                          type="button" style="margin: auto">
-                          <span class="icon-holder">
-                            <i class="fa fa-print"></i>
-                          </span>
-                          <span class="title">In</span>
-                        </button> -->
+                            Thêm mới
+                          </button>
+                        </div>
                       </div>
                       <div class="table-responsive">
                         <table id="listKL" class="table table-bordered table-striped">

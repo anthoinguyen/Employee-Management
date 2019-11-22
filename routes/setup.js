@@ -23,6 +23,7 @@ router.get('/', (req, res, next) => {
       email: 'users@gmail.com',
       password: passHash,
       roles: constants.IS_USER,
+      usersCardNumber: "111",
       birthday: moment().utc(7).set('month', moment().utc(7).get('month') + 1),
       cuuNhanVien: "0"
     }
