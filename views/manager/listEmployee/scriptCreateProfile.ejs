@@ -119,72 +119,72 @@
 
   // Get luong, he so
 
-  window.onload = function getMaNgach() {
+  // window.onload = function getMaNgach() {
 
-    $('#mangach').empty();
-    $('#mangach').append('<option value=""></option>');
-    $.ajax({
-      url: `/he-thong/luong/list`,
-      method: "GET",
-      success: function (result) {
-        if (result.success == true) {
-          result.data.map((item, index) => {
-            $('#mangach').append(
-              '<option value="' + item._id + '">' + item.maNgach + '</option>'
-            );
-          })
-        }
-      }
-    })
-  }
+  //   $('#mangach').empty();
+  //   $('#mangach').append('<option value=""></option>');
+  //   $.ajax({
+  //     url: `/he-thong/luong/list`,
+  //     method: "GET",
+  //     success: function (result) {
+  //       if (result.success == true) {
+  //         result.data.map((item, index) => {
+  //           $('#mangach').append(
+  //             '<option value="' + item._id + '">' + item.maNgach + '</option>'
+  //           );
+  //         })
+  //       }
+  //     }
+  //   })
+  // }
 
 
-  $('#mangach').change(function () {
-    var selectMangach = $('#mangach').val();
-    $('#bacluong').empty();
-    $('#heso').empty();
-    $('#bacluong').append('<option value=""></option>');
-    $.ajax({
-      url: `/he-thong/luong/list`,
-      method: 'GET',
-      success: function (result) {
-        result.data.map(item => {
-          if (item._id === selectMangach) {
-            item.bacHeso.map(item1 => {
-              if (item1.heso != "") {
-                $('#bacluong').append('<option value="' + item1.bac + '">' + item1.bac +
-                  '</option>')
-              }
-            })
-          }
-        })
-      }
-    })
-  })
+  // $('#mangach').change(function () {
+  //   var selectMangach = $('#mangach').val();
+  //   $('#bacluong').empty();
+  //   $('#heso').empty();
+  //   $('#bacluong').append('<option value=""></option>');
+  //   $.ajax({
+  //     url: `/he-thong/luong/list`,
+  //     method: 'GET',
+  //     success: function (result) {
+  //       result.data.map(item => {
+  //         if (item._id === selectMangach) {
+  //           item.bacHeso.map(item1 => {
+  //             if (item1.heso != "") {
+  //               $('#bacluong').append('<option value="' + item1.bac + '">' + item1.bac +
+  //                 '</option>')
+  //             }
+  //           })
+  //         }
+  //       })
+  //     }
+  //   })
+  // })
 
-  $('#bacluong').change(function () {
-    $('#heso').empty();
-    var selectMangach = $('#mangach').val();
-    var selectBac = $('#bacluong').val();
+  // $('#bacluong').change(function () {
+  //   $('#heso').empty();
+  //   var selectMangach = $('#mangach').val();
+  //   var selectBac = $('#bacluong').val();
 
-    $.ajax({
-      url: `/he-thong/luong/list`,
-      method: 'GET',
-      success: function (result) {
-        result.data.map(item2 => {
-          if (item2._id === selectMangach) {
-            item2.bacHeso.map(item3 => {
-              if (selectBac == item3.bac) {
-                $('#heso').append('<option value="' +
-                  item3.heso + '">' + item3.heso +
-                  '</option>')
-              }
-            })
-          }
-        })
-      }
-    })
-  })
+  //   $.ajax({
+  //     url: `/he-thong/luong/list`,
+  //     method: 'GET',
+  //     success: function (result) {
+  //       result.data.map(item2 => {
+  //         if (item2._id === selectMangach) {
+  //           item2.bacHeso.map(item3 => {
+  //             if (selectBac == item3.bac) {
+  //               $('#heso').append('<option value="' +
+  //                 item3.heso + '">' + item3.heso +
+  //                 '</option>')
+  //             }
+  //           })
+  //         }
+  //       })
+  //     }
+  //   })
+  // })
 
 
   // Submit button
@@ -386,28 +386,28 @@
           success: function (res) {
             if (res) {
 
-              var arrayPhucap = [];
-              $('div.phu-cap').each(function (index, val) {
-                arrayPhucap.push({
-                  moTa: $(this).find('#phucap').val(),
-                  soTien: $(this).find('#phucapkhac').val()
-                });
-              })
+              // var arrayPhucap = [];
+              // $('div.phu-cap').each(function (index, val) {
+              //   arrayPhucap.push({
+              //     moTa: $(this).find('#phucap').val(),
+              //     soTien: $(this).find('#phucapkhac').val()
+              //   });
+              // })
 
-              var luong = {
-                user: res.data._id,
-                bacHeso: $('#bacluong').val(),
-                ngach: $('#mangach').val(),
-                phuCap: JSON.stringify(arrayPhucap)
-              }
+              // var luong = {
+              //   user: res.data._id,
+              //   bacHeso: $('#bacluong').val(),
+              //   ngach: $('#mangach').val(),
+              //   phuCap: JSON.stringify(arrayPhucap)
+              // }
 
-              $.ajax({
-                url: '/quan-ly/luong-phu-cap/them',
-                type: 'POST',
-                dataType: 'json',
-                data: luong,
-                success: function (res) {}
-              });
+              // $.ajax({
+              //   url: '/quan-ly/luong-phu-cap/them',
+              //   type: 'POST',
+              //   dataType: 'json',
+              //   data: luong,
+              //   success: function (res) {}
+              // });
 
               $('div.dao-tao').each(function (index, val) {
 
