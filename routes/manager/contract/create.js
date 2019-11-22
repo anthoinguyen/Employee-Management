@@ -164,7 +164,7 @@ module.exports = router => {
           usersId: usersInfo._id,
           name: usersInfo.name,
           usersCardNumber: usersInfo.usersCardNumber,
-          typeOfUsers: userInfo.typeOfUsers,
+          typeOfUsers: usersInfo.typeOfUsers,
           departmentName: _.get(usersInfo, 'belongToDepartment.name', null),
         }
         await mongoose.model('contract').create(insert)
