@@ -252,9 +252,9 @@
           generalEducation: {
             whichClass: $('#trinhdoGD').val(),
           },
-          highestQualification: $("trinhdoCM").val(),
-          politicalTheory: $("lyluanCT").val(),
-          stateManagement: $("quanlinhanuoc").val(),
+          highestQualification: document.getElementById("trinhdoCM").value,
+          politicalTheory: document.getElementById("lyluanCT").value,
+          stateManagement: document.getElementById("quanlinhanuoc").value,
           languageLevel: {
             language: $('#ngoaingu').val(),
             level: $('#trinhDoNN').val(),
@@ -265,6 +265,8 @@
             description: $('#moTaTH').val(),
           }
         }
+
+        console.log(educationLevel1);
 
         var laDangVien = $('#laDangVien:checkbox:checked').val();
         if (laDangVien == undefined) {
@@ -378,6 +380,8 @@
           wageMovements: JSON.stringify(arrayWageMovements),
           cuuNhanVien: cuuNV
         }
+
+        console.log("data",data);
         $.ajax({
           url: '/quan-ly/tao-ho-so',
           type: 'POST',
