@@ -266,8 +266,6 @@
           }
         }
 
-        console.log(educationLevel1);
-
         var laDangVien = $('#laDangVien:checkbox:checked').val();
         if (laDangVien == undefined) {
           laDangVien = "0"
@@ -381,7 +379,6 @@
           cuuNhanVien: cuuNV
         }
 
-        console.log("data",data);
         $.ajax({
           url: '/quan-ly/tao-ho-so',
           type: 'POST',
@@ -500,9 +497,14 @@
                   success: function (res) {
                   }
                 });
-              })
-              alert("Tạo thành công");
-              window.location.replace("/quan-ly/danh-sach-nhan-su");
+              })              
+              $.notify("Thêm thông tin nhân sự thành công", "success", {
+                style: "bootstrap",
+                showDuration: 1
+              });
+              setTimeout(function() {
+                window.location.replace("/quan-ly/danh-sach-nhan-su");
+              }, 800);
             }
           }
         })

@@ -23,7 +23,10 @@
             $('#editFileA').hide();
           }
         } else {
-          console.log("Lỗi")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -49,7 +52,13 @@
       success: function (result) {
         if (result.data) {
           EditId = '';
+          $.notify("Chỉnh sửa tin tức thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
           window.location.reload();
+        }, 800);
         }
       }
     })
@@ -61,7 +70,6 @@
 
   function removeNews(id) {
     RemoveId = id;
-    console.log(id)
   }
 
   function deleteNews() {
@@ -70,8 +78,13 @@
       method: "DELETE",
       success: function (result) {
         RemoveId = '';
-        alert("Xóa thành công");
-        window.location.reload();
+        $.notify("Xóa tin tức thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
+          window.location.reload();
+        }, 800);
       }
     })
   }
@@ -101,8 +114,13 @@
       method: "POST",
       success: function (result) {
         if (result.data) {
-          alert("Tạo thành công");
+          $.notify("Tạo tin tức thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
           window.location.reload();
+        }, 800);
         }
       }
     });

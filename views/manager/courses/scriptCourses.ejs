@@ -9,12 +9,19 @@
     $.ajax({
       url: `/quan-ly/dao-tao/${DeleteId}`,
       method: "DELETE",
-      success: function (result) {
+      success: function(result) {
         DeleteId = "";
-        alert("Xóa thành công");
-        window.location.reload();
+        if (result) {
+          $.notify("Xóa khóa đào tạo thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 800);
+        }
       }
-    })
+    });
   }
 </script>
 <script>
@@ -24,7 +31,7 @@
     $.ajax({
       url: `/quan-ly/dao-tao/${id}`,
       method: "GET",
-      success: function (result) {
+      success: function(result) {
         EditId = id;
         if (result.success == true) {
           var course = result.data;
@@ -45,88 +52,104 @@
           //   $('#editthoigianhetdaotao').val(ngayKetThuc);
           // }
 
-          $('#editthoigiandaotao').val(course.ngayBatDau),
-          $('#editthoigianhetdaotao').val(course.ngayKetThuc),
-          $('#editkhoadaotao').val(course.ten),
-          $('#editloaidaotao').val(course.loai),
-          $('#editNDdaotao').val(course.noiDung),
-          $('#edittrinhdodaotao').val(course.trinhDo),
-          $('#editnoidaotao').val(course.diaDiem),
-          $('#edithinhthucdaotao').val(course.hinhThuc)
+          $("#editthoigiandaotao").val(course.ngayBatDau),
+          $("#editthoigianhetdaotao").val(course.ngayKetThuc),
+          $("#editkhoadaotao").val(course.ten),
+          $("#editloaidaotao").val(course.loai),
+          $("#editNDdaotao").val(course.noiDung),
+          $("#edittrinhdodaotao").val(course.trinhDo),
+          $("#editnoidaotao").val(course.diaDiem),
+          $("#edithinhthucdaotao").val(course.hinhThuc);
         } else {
-          console.log("Fails")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
-    })
+    });
   }
-
 
   function ChinhsuaCourses() {
     if ($("#form_edit").valid()) {
-    var editdaotao = {
-      ten: $('#editkhoadaotao').val(),
-      loai: $('#editloaidaotao').val(),
-      noiDung: $('#editNDdaotao').val(),
-      trinhDo: $('#edittrinhdodaotao').val(),
-      ngayBatDau: $('#editthoigiandaotao').val(),
-      ngayKetThuc: $('#editthoigianhetdaotao').val(),
-      diaDiem: $('#editnoidaotao').val(),
-      hinhThuc: $('#edithinhthucdaotao').val(),
-      confirmed: "1"
+      var editdaotao = {
+        ten: $("#editkhoadaotao").val(),
+        loai: $("#editloaidaotao").val(),
+        noiDung: $("#editNDdaotao").val(),
+        trinhDo: $("#edittrinhdodaotao").val(),
+        ngayBatDau: $("#editthoigiandaotao").val(),
+        ngayKetThuc: $("#editthoigianhetdaotao").val(),
+        diaDiem: $("#editnoidaotao").val(),
+        hinhThuc: $("#edithinhthucdaotao").val(),
+        confirmed: "1"
+      };
+      $.ajax({
+        url: `/quan-ly/dao-tao/${EditId}`,
+        type: "put",
+        dataType: "json",
+        data: editdaotao,
+        success: function(res) {
+          if (res) {
+            EditId = "";
+            $.notify("Xác nhận thành công", "success", {
+                style: "bootstrap",
+                showDuration: 1
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 800);
+            }
+          }
+      });
     }
-    $.ajax({
-      url: `/quan-ly/dao-tao/${EditId}`,
-      type: 'put',
-      dataType: 'json',
-      data: editdaotao,
-      success: function (res) {
-        if (res) {
-          EditId = "";
-          alert("Xác nhận thành công");
-          window.location.reload();
-        }
-      }
-    })
-    }
-  };
+  }
 </script>
 <script>
-  $(document).on('click', '#create-courses', function () {
-
+  $(document).on("click", "#create-courses", function() {
     let Nhansu = [];
-    Nhansu = $('.case:checkbox:checked').map(function () {
-      return $(this).val();
-    }).get();
+    Nhansu = $(".case:checkbox:checked")
+      .map(function() {
+        return $(this).val();
+      })
+      .get();
 
-    if (Nhansu == "" || !Nhansu ) {
-      alert("Vui lòng chọn nhân sự cần thêm")
+    if (Nhansu == "" || !Nhansu) {
+      $.notify("Vui lòng chọn nhân sự!", "warn", {
+        style: "bootstrap",
+        showDuration: 10
+      });
     } else {
       if ($("#form_create").valid()) {
-      var data = {
-        users: JSON.stringify(Nhansu),
-        ten: $('#khoadaotao').val(),
-        loai: $('#loaidaotao').val(),
-        noiDung: $('#NDdaotao').val(),
-        trinhDo: $('#trinhdodaotao').val(),
-        ngayBatDau: $('#thoigiandaotao').val(),
-        ngayKetThuc: $('#thoigianhetdaotao').val(),
-        diaDiem: $('#noidaotao').val(),
-        hinhThuc: $('#hinhthucdaotao').val(),
-        confirmed: "1"
-      }
+        var data = {
+          users: JSON.stringify(Nhansu),
+          ten: $("#khoadaotao").val(),
+          loai: $("#loaidaotao").val(),
+          noiDung: $("#NDdaotao").val(),
+          trinhDo: $("#trinhdodaotao").val(),
+          ngayBatDau: $("#thoigiandaotao").val(),
+          ngayKetThuc: $("#thoigianhetdaotao").val(),
+          diaDiem: $("#noidaotao").val(),
+          hinhThuc: $("#hinhthucdaotao").val(),
+          confirmed: "1"
+        };
 
-      $.ajax({
-        url: '/quan-ly/dao-tao/them',
-        type: 'POST',
-        dataType: 'json',
-        data: data,
-        success: function (res) {
-          if (res) {
-            alert("Tạo thành công");
-            window.location.reload();
+        $.ajax({
+          url: "/quan-ly/dao-tao/them",
+          type: "POST",
+          dataType: "json",
+          data: data,
+          success: function(res) {
+            if (res) {
+              $.notify("Thêm khóa đào tạo thành công", "success", {
+                style: "bootstrap",
+                showDuration: 1
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 800);
+            }
           }
-        }
-      })
+        });
       }
     }
   });
@@ -139,7 +162,7 @@
     $.ajax({
       url: `/quan-ly/dao-tao/${id}`,
       method: "GET",
-      success: function (result) {
+      success: function(result) {
         if (result.success == true) {
           var course = result.data;
 
@@ -159,24 +182,27 @@
           //   $('#getthoigianhetdaotao').val(ngayKetThuc12);
           // }
 
-          $('#getthoigiandaotao').val(course.ngayBatDau),
-          $('#getthoigianhetdaotao').val(course.ngayKetThuc),
-          $('#getkhoadaotao').val(course.ten),
-          $('#getloaidaotao').val(course.loai),
-          $('#getNDdaotao').val(course.noiDung),
-          $('#gettrinhdodaotao').val(course.trinhDo),
-          $('#getnoidaotao').val(course.diaDiem),
-          $('#gethinhthucdaotao').val(course.hinhThuc)
+          $("#getthoigiandaotao").val(course.ngayBatDau),
+            $("#getthoigianhetdaotao").val(course.ngayKetThuc),
+            $("#getkhoadaotao").val(course.ten),
+            $("#getloaidaotao").val(course.loai),
+            $("#getNDdaotao").val(course.noiDung),
+            $("#gettrinhdodaotao").val(course.trinhDo),
+            $("#getnoidaotao").val(course.diaDiem),
+            $("#gethinhthucdaotao").val(course.hinhThuc);
         } else {
-          console.log("Fails")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
-    })
+    });
   }
 
-  $(".closes").click(function () {
-    $('.listNS .body1').each(function () {
-      $(this).find('.templist').remove();
+  $(".closes").click(function() {
+    $(".listNS .body1").each(function() {
+      $(this).find(".templist").remove();
     });
-  })
+  });
 </script>

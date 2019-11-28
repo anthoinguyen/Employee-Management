@@ -12,8 +12,13 @@
       method: "DELETE",
       success: function (result) {
         deleteGP = "";
-        alert("Xóa thành công");
-        window.location.reload();
+        $.notify("Xóa sáng kiến thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
+          window.location.reload();
+        }, 800);
       }
     })
   }
@@ -26,7 +31,10 @@
     }).get();
 
     if (usersID == ""  || !usersID ) {
-      alert("Vui lòng chọn nhân sự cần thêm")
+      $.notify("Vui lòng chọn nhân sự!", "warn", {
+        style: "bootstrap",
+        showDuration: 10
+      });
     } else {
       if ($("#form_create").valid()) {
       var giaiphap = {
@@ -47,8 +55,13 @@
         data: giaiphap,
         success: function (res) {
           if (res) {
-            alert("Tạo thành công")
-            window.location.reload();
+            $.notify("Thêm sáng kiến thành công", "success", {
+              style: "bootstrap",
+              showDuration: 1
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 800);
           }
         }
       })
@@ -66,11 +79,11 @@
         if (result.success == true) {
           let solution = result.data;
           $('#editnamgiaiphap').val(solution.nam),
-            $('#editloaiDetai').val(solution.loai),
-            $('#editxepLoai').val(solution.xepLoai),
-            $('#editcap').val(solution.cap),
-            $('#editdeTai').val(solution.ten),
-            $('#editghiChu').val(solution.ghiChu)
+          $('#editloaiDetai').val(solution.loai),
+          $('#editxepLoai').val(solution.xepLoai),
+          $('#editcap').val(solution.cap),
+          $('#editdeTai').val(solution.ten),
+          $('#editghiChu').val(solution.ghiChu)
         }
       }
     })
@@ -95,8 +108,13 @@
       success: function (result) {
         if (result) {
           editGP = "";
-          alert("Xác nhận thành công");
+          $.notify("Chỉnh sửa sáng kiến thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
           window.location.reload();
+        }, 800);
         }
       }
     })

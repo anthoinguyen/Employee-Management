@@ -9,8 +9,13 @@
       method: "DELETE",
       success: function (result) {
         KLId = "";
-        alert("Xóa thành công");
-        window.location.reload();
+        $.notify("Xóa kỷ luật thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
+          window.location.reload();
+        }, 800);
       }
     })
   }
@@ -24,7 +29,10 @@
     }).get();
 
     if (discipline == "" || !discipline ) {
-      alert("Vui lòng chọn nhân sự cần thêm")
+      $.notify("Vui lòng chọn nhân sự!", "warn", {
+        style: "bootstrap",
+        showDuration: 10
+      });
     } else {
       if ($("#form_createKL").valid()) {
       var dataD = {
@@ -47,8 +55,13 @@
         data: dataD,
         success: function (res) {
           if (res) {
-            alert("Tạo kỉ luật thành công")
-            location.reload();
+            $.notify("Thêm kỷ luật thành công", "success", {
+              style: "bootstrap",
+              showDuration: 1
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 800);
           }
         }
       })
@@ -91,6 +104,11 @@
           $('#editSoKL').val(discipline.quyetDinh ? discipline.quyetDinh.number : null),
           $('#editHinhthucKL').val(discipline.format),
           $('#editLydoKL').val(discipline.description)
+        }else{
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -120,8 +138,13 @@
       success: function (result) {
         if (result) {
           editID2 = "";
-          alert("Xác nhận thành công");
-          window.location.reload();
+          $.notify("Xác nhận thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 800);
         }
       }
     })

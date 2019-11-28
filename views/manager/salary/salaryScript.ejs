@@ -6,6 +6,7 @@
       method: "GET",
       success: function(result) {
         if (result.success == true) {
+          console.log(result.data);
           result.data.map((item, index) => {
             $(".listEmployee").append(
               '<tr class="temp1">' +
@@ -123,7 +124,10 @@
     });
 
     if (usersList1 == ""  || !usersList1 ) {
-      alert("Vui lòng chọn nhân sự cần thêm")
+      $.notify("Vui lòng chọn nhân sự!", "warn", {
+        style: "bootstrap",
+        showDuration: 10
+      });
     } else {
       if ($("#form_create").valid()) {
         var data = {
@@ -143,8 +147,13 @@
           success: function(res) {
             if (res) {
               user = "";
-              alert("Tạo thành công");
-              window.location.reload();
+              $.notify("Thêm lương thành công", "success", {
+                style: "bootstrap",
+                showDuration: 1
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 800);
             }
           }
         });
@@ -184,8 +193,13 @@
       method: "DELETE",
       success: function(result) {
         DeleteId = "";
-        alert("Xóa thành công");
-        window.location.reload();
+        $.notify("Xóa lương thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
+          window.location.reload();
+        }, 800);
       }
     });
   }
@@ -314,6 +328,11 @@
                 '" class="form-control " placeholder=""> </div> </div> </div> </div> </div> </div> </div> </div>'
             );
           });
+        }else{
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     });
@@ -330,7 +349,10 @@
     });
 
     if (usersList0 == ""  || !usersList0) {
-      alert("Error !")
+      $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+        style: "bootstrap",
+        showDuration: 10
+      });
     } else {
       if ($("#form_edit").valid()) {
         var data = {
@@ -350,8 +372,13 @@
           success: function(res) {
             if (res) {
               user = "";
-              alert("Chỉnh sửa thành công");
-              window.location.reload();
+              $.notify("Chỉnh sửa lương thành công", "success", {
+                style: "bootstrap",
+                showDuration: 1
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 800);
             }
           }
         });

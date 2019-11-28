@@ -24,8 +24,13 @@
       data: data,
       success: function (result) {
         if (result) {
-          alert("Tạo thành công");
+          $.notify("Thêm danh mục lương thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
           window.location.reload();
+        }, 800);
         }
       }
     });
@@ -46,8 +51,13 @@
       method: "DELETE",
       success: function (result) {
         DeleteId = "";
-        alert("Xóa thành công");
-        window.location.reload();
+        $.notify("Xóa danh mục lương thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
+          window.location.reload();
+        }, 800);
       }
     })
   }
@@ -85,7 +95,10 @@
           })
 
         } else {
-          console.log("Lỗi")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -125,8 +138,13 @@
       success: function (res) {
         if (res) {
           EditId = "";
-          alert("Chỉnh sửa thành công");
-          window.location.reload();
+          $.notify("Chỉnh sửa danh mục lương thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 800);
         }
       }
     })

@@ -43,7 +43,10 @@
     }).get();
 
     if (usersList1 == ""  || !usersList1 ) {
-      alert("Vui lòng chọn nhân viên")
+      $.notify("Vui lòng chọn nhân sự!", "warn", {
+        style: "bootstrap",
+        showDuration: 10
+      });
     } else {
       if ($("#form_create").valid()) {
       var data = {
@@ -61,8 +64,13 @@
         success: function (res) {
           if (res) {
             user = "";
-            alert("Tạo thành công");
-            window.location.reload();
+            $.notify("Thêm ngày nghỉ thành công", "success", {
+              style: "bootstrap",
+              showDuration: 1
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 800);
           }
         }
       })
@@ -196,8 +204,13 @@
         UserID = "";
         detailID = "";
         DeleteId = "";
-        alert("Xóa thành công");
-        window.location.reload();
+        $.notify("Xóa ngày nghỉ thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
+          window.location.reload();
+        }, 800);
       }
     })
   }

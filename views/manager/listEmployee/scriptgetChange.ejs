@@ -532,7 +532,10 @@
           })
 
         } else {
-          console.log("abc")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -567,8 +570,13 @@
       success: function (res) {
         if (res) {
           user = "";
-          alert("Duyệt hồ sơ thành công");
+          $.notify("Duyệt thông tin thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
           window.location.reload();
+        }, 800);
         }
       }
     })
@@ -586,8 +594,13 @@
       url: `/quan-ly/thong-tin-thay-doi/${removeChangeID}`,
       method: "DELETE",
       success: function (result) {
-        alert("Xóa hồ sơ chờ duyệt thành công");
-        window.location.reload();
+        $.notify("Xóa thông tin chờ duyệt thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
+        setTimeout(function() {
+          window.location.reload();
+        }, 800);
       }
     })
   }

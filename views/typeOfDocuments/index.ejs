@@ -91,6 +91,7 @@
   <script src="/js/hoverable-collapse.js"></script>
   <script src="/js/off-canvas.js"></script>
   <script src="/js/misc.js"></script>
+  <script src="/js/notify.min.js"></script>
 
   <% include ./addOn %>
   <% include ./edit %>
@@ -135,7 +136,13 @@
         url: `/giay-to/phan-loai/${selectedId}`,
         method: "DELETE",
         success: function () {
-          window.location.reload();
+            $.notify("Xóa phân loại giấy tờ mẫu thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
+          setTimeout(function() {
+            window.location.reload();
+          }, 800);
         }
       });
     }
@@ -150,7 +157,13 @@
             name: $("#editName").val()
           },
           success: function () {
-            window.location.reload();
+            $.notify("Chỉnh sửa phân loại giấy tờ mẫu thành công", "success", {
+              style: "bootstrap",
+              showDuration: 1
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 800);
           }
         });
       }

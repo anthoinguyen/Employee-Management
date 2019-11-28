@@ -333,8 +333,13 @@
           },
           success: function (res) {
             if (res) {
-              alert("Chỉnh sửa thành công. Xin chờ xét duyệt");
-              window.location.reload();
+              $.notify("Chỉnh sửa thông tin thành công. Vui lòng chờ xét duyệt", "success", {
+                style: "bootstrap",
+                showDuration: 1
+              });
+              setTimeout(function() {
+                window.location.reload();
+              }, 800);
             }
           }
         })
@@ -443,12 +448,17 @@
                   )
                 })
               } else {
-                console.log("Fails")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Tạo thành công");
-          // window.location.reload();
+          $.notify("Thêm khóa đào tạo thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -491,7 +501,10 @@
           $('#editnoidaotao').val(course.diaDiem),
           $('#edithinhthucdaotao').val(course.hinhThuc)
         } else {
-          console.log("Lỗi")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -569,12 +582,17 @@
                 })
 
               } else {
-                console.log("Fails")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Chỉnh sửa thành công");
-          // window.location.reload();
+          $.notify("Chỉnh sửa khóa đào tạo thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -641,12 +659,17 @@
                 )
               })
             } else {
-              console.log("Fails")
+              $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                style: "bootstrap",
+                showDuration: 1
+              });
             }
           }
         })
-        alert("Xóa thành công");
-        // window.location.reload();
+        $.notify("Xóa khóa đào tạo thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
       }
     })
   }
@@ -713,12 +736,17 @@
               })
 
             } else {
-              console.log("Fails")
+              $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                style: "bootstrap",
+                showDuration: 1
+              });
             }
           }
         })
-        alert("Xóa thành công");
-        // window.location.reload();
+        $.notify("Xóa khen thưởng thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
       }
     })
   }
@@ -790,12 +818,17 @@
                 })
 
               } else {
-                console.log("Fails")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Tạo khen thưởng thành công");
-          // window.location.reload();
+          $.notify("Thêm khen thưởng thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -899,12 +932,17 @@
                 })
 
               } else {
-                console.log("Fails")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Chỉnh sửa khen thưởng thành công");
-          // window.location.reload();
+          $.notify("Chỉnh sửa khen thưởng thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -975,12 +1013,17 @@
               })
 
             } else {
-              console.log("Fails")
+              $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                style: "bootstrap",
+                showDuration: 1
+              });
             }
           }
         })
-        alert("Xóa thành công");
-        // window.location.reload();
+        $.notify("Xóa kỷ luật thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
       }
     })
   }
@@ -1057,12 +1100,17 @@
                 })
 
               } else {
-                console.log("Fails")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Tạo kỉ luật thành công")
-          // window.location.reload();
+          $.notify("Thêm kỷ luật thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -1177,12 +1225,17 @@
                   )
                 })
               } else {
-                console.log("Fails")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Chỉnh sửa kỉ luật thành công");
-          // window.location.reload();
+          $.notify("Chỉnh sửa kỷ luật thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
 
       }
@@ -1244,12 +1297,17 @@
                 )
               })
             } else {
-              console.log("Fails")
+              $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                style: "bootstrap",
+                showDuration: 1
+              });
             }
           }
         })
-        alert("Xóa thành công");
-        // window.location.reload();
+        $.notify("Xóa sáng kiến thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
       }
     })
   }
@@ -1315,12 +1373,17 @@
                 })
 
               } else {
-                console.log("Fails")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Tạo thành công")
-          // window.location.reload();
+          $.notify("Thêm sáng kiến thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -1403,12 +1466,17 @@
                   )
                 })
               } else {
-                console.log("Fails")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Chỉnh sửa thành công");
-          // window.location.reload();
+          $.notify("Chỉnh sửa sáng kiến thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
 
       }
@@ -1467,7 +1535,10 @@
           })
 
         } else {
-          console.log("Fails")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -1523,7 +1594,10 @@
           })
 
         } else {
-          console.log("Fails")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -1581,7 +1655,10 @@
           })
 
         } else {
-          console.log("Fails")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -1631,7 +1708,10 @@
           })
 
         } else {
-          console.log("Fails")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })

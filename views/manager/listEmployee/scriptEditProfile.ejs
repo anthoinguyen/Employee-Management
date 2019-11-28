@@ -373,8 +373,13 @@
           data: data,
           success: function (res) {
             if (res) {
-              alert("Chỉnh sửa thành công");
-              window.location.replace("/quan-ly/danh-sach-nhan-su");
+              $.notify("Chỉnh sửa thông tin nhân sự thành công", "success", {
+                style: "bootstrap",
+                showDuration: 1
+              });
+              setTimeout(function() {
+                window.location.replace("/quan-ly/danh-sach-nhan-su");
+              }, 800);
             }
           }
         })
@@ -462,7 +467,10 @@
           })
 
         } else {
-          console.log("Error")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -518,7 +526,10 @@
           })
 
         } else {
-          console.log("Error")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -577,7 +588,10 @@
           })
 
         } else {
-          console.log("Error")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -627,7 +641,10 @@
           })
 
         } else {
-          console.log("Error")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -636,8 +653,6 @@
 
 
 <script>
-  //Them khoa dao tao
-
   var createDTID;
 
   function createDT(id) {
@@ -718,11 +733,17 @@
                 })
 
               } else {
-                console.log("Error")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Tạo thành công");
+          $.notify("Thêm khóa đào tạo thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -759,13 +780,16 @@
           $('#editthoigiandaotao').val(course.ngayBatDau),
           $('#editthoigianhetdaotao').val(course.ngayKetThuc),
           $('#editkhoadaotao').val(course.ten),
-            $('#editloaidaotao').val(course.loai),
-            $('#editNDdaotao').val(course.noiDung),
-            $('#edittrinhdodaotao').val(course.trinhDo),
-            $('#editnoidaotao').val(course.diaDiem),
-            $('#edithinhthucdaotao').val(course.hinhThuc)
+          $('#editloaidaotao').val(course.loai),
+          $('#editNDdaotao').val(course.noiDung),
+          $('#edittrinhdodaotao').val(course.trinhDo),
+          $('#editnoidaotao').val(course.diaDiem),
+          $('#edithinhthucdaotao').val(course.hinhThuc)
         } else {
-          console.log("Lỗi")
+          $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -794,8 +818,10 @@
       success: function (res) {
         if (res) {
           EditId = "";
-          alert("Chỉnh sửa thành công");
-
+          $.notify("Chỉnh sửa khóa đào tạo thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     })
@@ -813,15 +839,16 @@
       method: "DELETE",
       success: function (result) {
         DeleteDT = "";
-        alert("Xóa thành công");
-
+        $.notify("Xóa khóa đào tạo thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
       }
     })
   }
 </script>
 
 <script>
-  // Khen thuong
   var DeleteKT;
 
   function removeKhenthuong(id) {
@@ -834,7 +861,10 @@
       method: "DELETE",
       success: function (result) {
         DeleteKT = '';
-        alert("Xóa thành công");
+        $.notify("Xóa khen thưởng thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
       }
     })
   }
@@ -914,11 +944,17 @@
                 })
 
               } else {
-                console.log("Error")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Tạo khen thưởng thành công");
+          $.notify("Thêm khen thưởng thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
         }
       }
     })
@@ -944,10 +980,10 @@
 
           $('#editNgayquyetdinh').val(award.quyetDinh ? award.quyetDinh.date : null),
           $('#editCapKT').val(award.quyetDinh ? award.quyetDinh.org : null),
-            $('#editSoKT').val(award.quyetDinh ? award.quyetDinh.number : null),
-            $('#editDanhhieuKT').val(award.title),
-            $('#editHinhthucKT').val(award.format),
-            $('#editThanhtichKT').val(award.description)
+          $('#editSoKT').val(award.quyetDinh ? award.quyetDinh.number : null),
+          $('#editDanhhieuKT').val(award.title),
+          $('#editHinhthucKT').val(award.format),
+          $('#editThanhtichKT').val(award.description)
         }
       }
     })
@@ -975,7 +1011,10 @@
       success: function (result) {
         if (result) {
           editKT = "";
-          alert("Chỉnh sửa khen thưởng thành công");
+          $.notify("Chỉnh sửa khen thưởng thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+        });
         }
       }
     })
@@ -996,7 +1035,10 @@
       method: "DELETE",
       success: function (result) {
         deleteKL = "";
-        alert("Xóa thành công");
+        $.notify("Xóa kỷ luật thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
       }
     })
   }
@@ -1079,11 +1121,17 @@
                 })
 
               } else {
-                console.log("Error")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Tạo kỉ luật thành công");
+          $.notify("Thêm kỷ luật thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
         }
       }
     })
@@ -1118,9 +1166,9 @@
           $('#editNgayhieuluc').val(discipline.quyetDinh ? discipline.quyetDinh.startedDate : null),
           $('#editNgayhethieuluc').val(discipline.quyetDinh ? discipline.quyetDinh.endedDate : null),
           $('#editCapKL').val(discipline.quyetDinh ? discipline.quyetDinh.org : null),
-            $('#editSoKL').val(discipline.quyetDinh ? discipline.quyetDinh.number : null),
-            $('#editHinhthucKL').val(discipline.format),
-            $('#editLydoKL').val(discipline.description)
+          $('#editSoKL').val(discipline.quyetDinh ? discipline.quyetDinh.number : null),
+          $('#editHinhthucKL').val(discipline.format),
+          $('#editLydoKL').val(discipline.description)
         }
       }
     })
@@ -1149,9 +1197,11 @@
       success: function (result) {
         if (result) {
           editKL = "";
-          alert("Chỉnh sửa kỉ luật thành công");
+          $.notify("Chỉnh sửa kỷ luật thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+        });
         }
-
       }
     })
   }
@@ -1171,8 +1221,10 @@
       method: "DELETE",
       success: function (result) {
         deleteGP = "";
-        alert("Xóa thành công");
-        // window.location.reload();
+        $.notify("Xóa sáng kiến thành công", "success", {
+          style: "bootstrap",
+          showDuration: 1
+        });
       }
     })
   }
@@ -1245,12 +1297,17 @@
                 })
 
               } else {
-                console.log("Error")
+                $.notify("Có lỗi xảy ra. Vui lòng thử lại!", "error", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
               }
             }
           })
-          alert("Tạo thành công")
-          // window.location.reload();
+          $.notify("Thêm sáng kiến thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+        });
         }
       }
     })
@@ -1294,10 +1351,11 @@
       success: function (result) {
         if (result) {
           editGP = "";
-          alert("Chỉnh sửa thành công");
-          // window.location.reload();
+          $.notify("Chỉnh sửa sáng kiến thành công", "success", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
-
       }
     })
   }

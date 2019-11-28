@@ -9,20 +9,20 @@
           result.data.map((item, index) => {
             $(".listNS").append(
               '<tr class="temp">' +
-                '<td><input class="case" type="checkbox" value="' +
-                item._id +
-                '" />' +
-                "</td>" +
-                "<td>" +
-                item.usersCardNumber +
-                "</td>" +
-                "<td>" +
-                item.name +
-                "</td>" +
-                "<td>" +
-                (item.belongToDepartment ? item.belongToDepartment.name : "Chưa có") +
-                "</td>" +
-                "</tr>"
+              '<td><input class="case" type="checkbox" value="' +
+              item._id +
+              '" />' +
+              "</td>" +
+              "<td>" +
+              item.usersCardNumber +
+              "</td>" +
+              "<td>" +
+              item.name +
+              "</td>" +
+              "<td>" +
+              (item.belongToDepartment ? item.belongToDepartment.name : "Chưa có") +
+              "</td>" +
+              "</tr>"
             );
           });
         }
@@ -33,9 +33,7 @@
 
   $(".closes").click(function() {
     $(".listNS").each(function() {
-      $(this)
-        .find(".temp")
-        .remove();
+      $(this).find(".temp").remove();
     });
   });
 </script>
@@ -51,20 +49,20 @@
           result.data.map((item, index) => {
             $(".listNS1").append(
               '<tr class="temp1">' +
-                '<td><input class="case_RP" type="checkbox" value="' +
-                item._id +
-                '" />' +
-                "</td>" +
-                "<td>" +
-                item.usersCardNumber +
-                "</td>" +
-                "<td>" +
-                item.name +
-                "</td>" +
-                "<td>" +
-                (item.belongToDepartment ? item.belongToDepartment.name : "Chưa có") +
-                "</td>" +
-                "</tr>"
+              '<td><input class="case_RP" type="checkbox" value="' +
+              item._id +
+              '" />' +
+              "</td>" +
+              "<td>" +
+              item.usersCardNumber +
+              "</td>" +
+              "<td>" +
+              item.name +
+              "</td>" +
+              "<td>" +
+              (item.belongToDepartment ? item.belongToDepartment.name : "Chưa có") +
+              "</td>" +
+              "</tr>"
             );
           });
         }
@@ -75,9 +73,7 @@
 
   $(".closes").click(function() {
     $(".listNS1").each(function() {
-      $(this)
-        .find(".temp1")
-        .remove();
+      $(this).find(".temp1").remove();
     });
   });
 </script>
@@ -95,7 +91,10 @@
       }).get();
 
     if (!roles1 || !usersList1 || roles1 == "" || usersList1 == "" ) {
-      alert("Vui lòng kiểm tra lại thông tin");
+      $.notify("Vui lòng chọn nhân sự!", "info", {
+        style: "bootstrap",
+        showDuration: 10
+      });
     } else {
       let dataRole = {
         usersList: JSON.stringify(usersList1),
@@ -109,7 +108,13 @@
         data: dataRole,
         success: function(res) {
           if (res) {
-            window.location.reload();
+            $.notify("Chỉnh sửa quyền truy cập thành công", "success", {
+              style: "bootstrap",
+              showDuration: 1
+            });
+            setTimeout(function() {
+              window.location.reload();
+            }, 800);
           }
         }
       });
@@ -122,7 +127,10 @@
     let user = $(".case_RP:checkbox:checked").val();
 
     if (!user || user == "") {
-      alert("Vui lòng chọn nhân sự");
+      $.notify("Vui lòng chọn nhân sự!", "warn", {
+        style: "bootstrap",
+        showDuration: 10
+      });
     } else {
       if($("#form_RP").valid()){
         let password = $("#password").val();
@@ -142,13 +150,21 @@
             data: dataReset,
             success: function(res) {
               if (res) {
-                alert("Reset password thành công");
-                window.location.reload();
+                $.notify("Reset password thành công", "success", {
+                  style: "bootstrap",
+                  showDuration: 1
+                });
+                setTimeout(function() {
+                  window.location.reload();
+                }, 800);
               }
             }
           });
         } else {
-          alert("Password không trùng khớp");
+          $.notify("Password không trùng khớp", "error", {
+            style: "bootstrap",
+            showDuration: 1
+          });
         }
       }
     }
