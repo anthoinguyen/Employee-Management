@@ -10,8 +10,8 @@ module.exports = {
       SMTPAuth: true,
       SMTPSecure: 'tls',
       auth: {
-        user: "anthoi.nguyen.dev@gmail.com",
-        pass: "thanthoai1223..,a"
+        user: "16521194@gm.uit.edu.vn",
+        pass: "anthoi.it.3105"
       }
     });
     mailOpts = {
@@ -38,8 +38,8 @@ module.exports = {
       SMTPAuth: true,
       SMTPSecure: 'tls',
       auth: {
-        user: "anthoi.nguyen.dev@gmail.com",
-        pass: "thanthoai1223..,a"
+        user: "16521194@gm.uit.edu.vn",
+        pass: "anthoi.it.3105"
       }
     });
     mailOpts = {

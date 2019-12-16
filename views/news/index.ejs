@@ -75,7 +75,7 @@
                             <%- item.title %>
                           </td>
                           <td>
-                            <%- item.postedBy.name %>
+                            <%- item.postedBy ? item.postedBy.name : null %>
                           </td>
                           <td>
                             <% if(item.createdDate!=null){ %>
