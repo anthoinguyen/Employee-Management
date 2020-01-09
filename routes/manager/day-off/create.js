@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var { errorProcess, success, successWithNoData } = require('../../../services/returnToUsers')
 const { check, validationResult } = require("express-validator/check");
-var moment = require('moment');
 var _ = require('lodash');
 
 let totalDateAllow = 12;
@@ -24,7 +23,7 @@ module.exports = router => {
             let update = {
               $push: {
                 'detail.$[coursYear].absenceDetail': {
-                  date: moment(req.body.date ? req.body.date : new Date()),
+                  date: req.body.date ? req.body.date : new Date(),
                   isApprove: req.body.isApprove,
                   reason: req.body.reason
                 }
@@ -41,7 +40,7 @@ module.exports = router => {
                   year: req.body.date ? new Date(req.body.date).getFullYear() : new Date().getFullYear(),
                   totalDateAllow: totalDateAllow,
                   absenceDetail: [{
-                    date: moment(req.body.date ? req.body.date : new Date()),
+                    date: req.body.date ? req.body.date : new Date(),
                     isApprove: req.body.isApprove,
                     reason: req.body.reason
                   }]
@@ -63,7 +62,7 @@ module.exports = router => {
               year: req.body.date ? new Date(req.body.date).getFullYear() : new Date().getFullYear(),
               totalDateAllow: totalDateAllow,
               absenceDetail: [{
-                date: moment(req.body.date ? req.body.date : new Date()),
+                date: req.body.date ? req.body.date : new Date(),
                 isApprove: req.body.isApprove,
                 reason: req.body.reason
               }]

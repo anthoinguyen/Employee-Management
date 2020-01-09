@@ -19,9 +19,9 @@ module.exports = router => {
         name: req.body.name,
         shortName: req.body.shortName
       }
-      console.log(insert)
+      // console.log(insert)
       let department = await mongoose.model('departments').create(insert);
-      console.log(department)
+      // console.log(department)
       if (department) {
         return res.redirect('/quan-ly/khoa-phong')
       } else {
@@ -71,7 +71,7 @@ module.exports = router => {
         }
       }
       
-      // update = Object.assign({}, updateUser, isManager ? addRoles : {})
+      update = Object.assign({}, updateUser, isManager ? addRoles : {})
       return success(res, "Done", null);
     } catch (err) {
       console.log(err);

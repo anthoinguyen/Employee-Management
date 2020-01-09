@@ -88,7 +88,7 @@
     UserID = id;
 
     var selectYear = $('#selectYear').val();
-
+    $('.abc').remove();
     $.ajax({
       url: `/quan-ly/ngay-nghi/${UserID}`,
       method: "GET",
@@ -97,7 +97,16 @@
           result.data.detail.map((item, index) => {
             if (item.year == selectYear) {
               detailID = item._id;
-              $("#soNgayNghi").val(item.absenceDetail.length)
+              $("#soNgayNghi").val(item.absenceDetail.length);
+              $('.export').append(
+              '<div class="abc" style="margin-top:25px">'+
+                '<a href="/quan-ly/ngay-nghi/'+ UserID +'/export/'+ selectYear+'">'+
+              '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" >'+
+              '<i class="fa fa-download"></i>'+
+              '</button>'+
+              '</a>'+
+              '</div>'
+              );
               item.absenceDetail.map((item1, index1) => {
                 if (item1.date != "") {
                   var toDate2 = moment(item1.date).format('DD-MM-YYYY');
@@ -136,7 +145,7 @@
   $('#selectYear').change(function () {
 
     var selectYear = $('#selectYear').val();
-
+    $('.abc').remove();
     $.ajax({
       url: `/quan-ly/ngay-nghi/${UserID}`,
       method: "GET",
@@ -146,6 +155,15 @@
             if (item.year == selectYear) {
               detailID = item._id;
               $("#soNgayNghi").val(item.absenceDetail.length)
+              $('.export').append(
+              '<div class="abc" style="margin-top:25px">'+
+              '<a href="/quan-ly/ngay-nghi/'+ UserID +'/export/'+ selectYear+'">'+
+              '<button type="button" class="btn btn-icons btn-rounded btn-outline-primary" >'+
+              '<i class="fa fa-download"></i>'+
+              '</button>'+
+              '</a>'+
+              '</div>'
+              );
               item.absenceDetail.map((item1, index1) => {
                 if (item1.date != "") {
                   var toDate2 = moment(item1.date).format('DD-MM-YYYY');

@@ -3,4 +3,5 @@ module.exports = router =>{
     require('./create')(router);
     require('./list')(router);
     require('./delete')(router);
+    require('./export')(router);
 }
